@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import HamburgerIcon from "./icon/HamburgerIcon";
 import CloseIcon from "./icon/CloseIcon";
-import NavigationMenu from "./NavMenu";
+import NavMenu from "./NavMenu";
 
 type Props = {
     navMenuList: { title: string; path: string }[];
@@ -36,7 +36,7 @@ export default function MobileMenu({ navMenuList }: Props) {
                     onClick={toggleNav}
                 >
                     <nav className="p-6">
-                        <NavigationMenu navMenuList={navMenuList} isColumn={true} />
+                        <NavMenu navMenuList={navMenuList} isColumn={true} />
                     </nav>
                 </div>
             )}

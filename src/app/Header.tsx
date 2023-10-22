@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
-import MobileMenu from "./components/MobileMenu";
-import NaveMenu from "./components/NavMenu";
+import MobileNavMenu from "./components/MobileNavMenu";
+import NavMenu from "./components/NavMenu";
 
 const LINKS = [
     { title: "Home", path: "/" },
@@ -21,9 +21,9 @@ export default function Header() {
                     <Link href={PATH_HOME}>{TITLE}</Link>
                 </h1>
                 <nav className="hidden sm:block">
-                    <NaveMenu navMenuList={LINKS} />
+                    <NavMenu navMenuList={LINKS} />
                 </nav>
-                <MobileMenu navMenuList={LINKS} />
+                <MobileNavMenu navMenuList={LINKS} />
             </div>
         </header>
     );
