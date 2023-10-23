@@ -2,7 +2,7 @@ import React from "react";
 import { AiOutlineClose } from "react-icons/ai";
 
 type Props = {
-    onClick: () => void;
+    onClick?: () => void;
 };
 
 export default function CloseIcon({ onClick }: Props) {

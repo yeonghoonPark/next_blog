@@ -2,7 +2,7 @@ import React from "react";
 import { AiOutlineMenu } from "react-icons/ai";
 
 type Props = {
-    onClick: () => void;
+    onClick?: () => void;
 };
 
 export default function HamburgerIcon({ onClick }: Props) {

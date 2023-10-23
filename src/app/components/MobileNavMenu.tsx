@@ -1,22 +1,24 @@
 "use client";
 import React, { useState } from "react";
+import ThemeMenu from "./ThemeMenu";
+
 import HamburgerIcon from "./icon/HamburgerIcon";
+import MobileNavContents from "./MobileNavContents";
 import CloseIcon from "./icon/CloseIcon";
-import NavMenu from "./NavMenu";
+import { NavMenuList } from "../model/nav";
 
 type Props = {
-    navMenuList: { title: string; path: string }[];
+    navMenuList: NavMenuList;
 };
 
 export default function MobileMenu({ navMenuList }: Props) {
     const [isNavShow, setIsNavShow] = useState(false);
-
     const toggleNav = () => setIsNavShow((prev) => !prev);
 
     return (
         <>
             <div className="flex sm:hidden items-center">
-                <ul>
+                <ul className="flex items-center gap-6">
                     <li>
                         {isNavShow ? (
                             <CloseIcon onClick={toggleNav} />
@@ -24,21 +26,17 @@ export default function MobileMenu({ navMenuList }: Props) {
                             <HamburgerIcon onClick={toggleNav} />
                         )}
                     </li>
+                    <li>
+                        <ThemeMenu />
+                    </li>
                 </ul>
             </div>
             {isNavShow && (
-                <div
-                    className={`
-                        sm:hidden fixed ${
-                            isNavShow ? "inset-0" : "-right-full"
-                        } mt-16 bg-white border-t
-                    `}
+                <MobileNavContents
+                    isShow={isNavShow}
                     onClick={toggleNav}
-                >
-                    <nav className="p-6">
-                        <NavMenu navMenuList={navMenuList} isColumn={true} />
-                    </nav>
-                </div>
+                    navMenuList={navMenuList}
+                />
             )}
         </>
     );

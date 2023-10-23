@@ -7,16 +7,14 @@
     --color-black: #242222;
 }
 
-@media (prefers-color-scheme: dark) {
-    :root {
-        color: var(--color-white);
-        background: linear-gradient(to top, #242222 50%, #212529);
-        background-attachment: fixed;
-    }
-}
-
-body {
+html {
     color: var(--color-black);
     background: linear-gradient(to top, #ffffff 50%, #dee2e6);
+    background-attachment: fixed;
+}
+
+html.dark {
+    color: var(--color-white);
+    background: linear-gradient(to top, #242222 50%, #212529);
     background-attachment: fixed;
 }

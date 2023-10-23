@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Open_Sans } from "next/font/google";
-
+import { ThemeProvider } from "./context/ThemeContext";
 import "./globals.css";
 import Header from "./Header";
 
@@ -15,9 +15,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     return (
         <html lang="en" className="scroll-smooth overflow-y-scroll">
             <body className={`${OpenSans.className} flex flex-col select-none`}>
-                <Header />
-                <main className="w-full max-w-6xl self-center p-6">{children}</main>
-                <footer className="w-full max-w-6xl self-center px-6">Just Footer</footer>
+                <ThemeProvider>
+                    <Header />
+                    <main className="w-full max-w-6xl self-center p-6">{children}</main>
+                    <footer className="w-full max-w-6xl self-center px-6">Just Footer</footer>
+                </ThemeProvider>
             </body>
         </html>
     );
