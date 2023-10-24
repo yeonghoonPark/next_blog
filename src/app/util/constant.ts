@@ -1,4 +1,13 @@
 export const constant = {
-    THEME_LIGHT: "light",
-    THEME_DARK: "dark",
+    THEME: {
+        LIGHT: "light",
+        DARK: "dark",
+    },
+
+    KEY: {
+        CLOSE: "close",
+        HAMBURGER: "hamburger",
+        SUN: "sun",
+        MOON: "moon",
+    },
 };

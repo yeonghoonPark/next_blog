@@ -1,19 +1,37 @@
 "use client";
-import React, { useContext } from "react";
-import { ThemeContext } from "../context/ThemeContext";
+import React, { useMemo } from "react";
+import { useTheme } from "../hook/useTheme";
 import { constant } from "../util/constant";
 import SunIcon from "./icon/SunIcon";
 import MoonIcon from "./icon/MoonIcon";
 
 export default function ThemeMenu() {
-    const { theme, toggleTheme } = useContext(ThemeContext);
+    const { theme, toggleTheme } = useTheme();
+
+    const themeMenuList = useMemo(() => {
+        return [
+            {
+                id: constant.KEY.SUN,
+                visibility: constant.THEME.LIGHT,
+                element: <SunIcon />,
+            },
+            {
+                id: constant.KEY.MOON,
+                visibility: constant.THEME.DARK,
+                element: <MoonIcon />,
+            },
+        ];
+    }, []);
+
     return (
         <>
-            {theme === constant.THEME_LIGHT ? (
-                <SunIcon onClick={toggleTheme} />
-            ) : (
-                <MoonIcon onClick={toggleTheme} />
-            )}
+            {themeMenuList
+                .filter(({ visibility }) => visibility === theme)
+                .map(({ id, element }) => (
+                    <li key={id} onClick={toggleTheme}>
+                        {element}
+                    </li>
+                ))}
         </>
     );
 }

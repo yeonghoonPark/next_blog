@@ -1,11 +1,12 @@
 "use client";
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import ThemeMenu from "./ThemeMenu";
 
 import HamburgerIcon from "./icon/HamburgerIcon";
 import MobileNavContents from "./MobileNavContents";
 import CloseIcon from "./icon/CloseIcon";
 import { NavMenuList } from "../model/nav";
+import { constant } from "../util/constant";
 
 type Props = {
     navMenuList: NavMenuList;
@@ -13,22 +14,35 @@ type Props = {
 
 export default function MobileMenu({ navMenuList }: Props) {
     const [isNavShow, setIsNavShow] = useState(false);
-    const toggleNav = () => setIsNavShow((prev) => !prev);
+    const toggleNav = () => setIsNavShow((prevNavShow) => !prevNavShow);
+
+    const mobileMenuList = useMemo(() => {
+        return [
+            {
+                id: constant.KEY.CLOSE,
+                isVisibility: true,
+                element: <CloseIcon />,
+            },
+            {
+                id: constant.KEY.HAMBURGER,
+                isVisibility: false,
+                element: <HamburgerIcon />,
+            },
+        ];
+    }, []);
 
     return (
         <>
             <div className="flex sm:hidden items-center">
                 <ul className="flex items-center gap-6">
-                    <li>
-                        {isNavShow ? (
-                            <CloseIcon onClick={toggleNav} />
-                        ) : (
-                            <HamburgerIcon onClick={toggleNav} />
-                        )}
-                    </li>
-                    <li>
-                        <ThemeMenu />
-                    </li>
+                    {mobileMenuList
+                        .filter(({ isVisibility }) => isVisibility === isNavShow)
+                        .map(({ id, element }) => (
+                            <li key={id} onClick={toggleNav}>
+                                {element}
+                            </li>
+                        ))}
+                    <ThemeMenu />
                 </ul>
             </div>
             {isNavShow && (
