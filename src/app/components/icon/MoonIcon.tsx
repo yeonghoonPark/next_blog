@@ -6,5 +6,5 @@ type Props = {
 };
 
 export default function MoonIcon({ onClick }: Props) {
-    return <FaMoon className="text-blue-800 text-xl cursor-pointer" onClick={onClick} />;
+    return <FaMoon className="text-blue-700 text-xl cursor-pointer" onClick={onClick} />;
 }

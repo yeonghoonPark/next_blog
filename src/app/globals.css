@@ -4,17 +4,27 @@
 
 :root {
     --color-white: #ffffff;
-    --color-black: #242222;
+    --color-black: #222222;
 }
 
 html {
     color: var(--color-black);
-    background: linear-gradient(to top, #ffffff 50%, #dee2e6);
+    background: linear-gradient(to top, #ffffff 18%, #e4e6e8);
     background-attachment: fixed;
 }
 
 html.dark {
     color: var(--color-white);
-    background: linear-gradient(to top, #242222 50%, #212529);
+    background: linear-gradient(to top, #000000 18%, #15181e);
     background-attachment: fixed;
 }
+
+body {
+    height: 100vh;
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+}
+
+/* ::-webkit-scrollbar {
+    width: 8px;
+} */

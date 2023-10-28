@@ -12,12 +12,12 @@ export default function ThemeMenu() {
         return [
             {
                 id: constant.KEY.SUN,
-                visibility: constant.THEME.LIGHT,
+                visibility: constant.THEME.DARK,
                 element: <SunIcon />,
             },
             {
                 id: constant.KEY.MOON,
-                visibility: constant.THEME.DARK,
+                visibility: constant.THEME.LIGHT,
                 element: <MoonIcon />,
             },
         ];

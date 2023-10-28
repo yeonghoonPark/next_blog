@@ -12,7 +12,7 @@ export default function MobileNavContents({ isShow, onClick, navMenuList }: Prop
     return (
         <div
             className={`
-        sm:hidden fixed ${isShow ? "inset-0" : "-right-full"} mt-16 bg-white border-t
+        sm:hidden fixed ${isShow ? "inset-0" : "-right-full"} mt-16 bg-[#e4e6e8] dark:bg-[#15181e]
     `}
             onClick={onClick}
         >

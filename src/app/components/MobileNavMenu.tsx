@@ -14,7 +14,9 @@ type Props = {
 
 export default function MobileMenu({ navMenuList }: Props) {
     const [isNavShow, setIsNavShow] = useState(false);
-    const toggleNav = () => setIsNavShow((prevNavShow) => !prevNavShow);
+    const toggleNav = () => {
+        setIsNavShow((prevNavShow) => !prevNavShow);
+    };
 
     const mobileMenuList = useMemo(() => {
         return [
