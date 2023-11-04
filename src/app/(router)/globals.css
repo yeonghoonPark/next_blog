@@ -9,13 +9,13 @@
 
 html {
     color: var(--color-black);
-    background: linear-gradient(to top, #ffffff 18%, #e4e6e8);
+    background: linear-gradient(to top, #ffffff 28%, #e8eef4);
     background-attachment: fixed;
 }
 
 html.dark {
     color: var(--color-white);
-    background: linear-gradient(to top, #000000 18%, #15181e);
+    background: linear-gradient(to top, #161719 28%, #1e2635);
     background-attachment: fixed;
 }
 
