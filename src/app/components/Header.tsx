@@ -17,7 +17,7 @@ const PATH_HOME = "/";
 
 export default function Header() {
     return (
-        <header className="sticky top-0 flex items-center w-full h-16 border-b-[0.2px] border-neutral-300 dark:border-gray-600">
+        <header className="sticky top-0 flex items-center w-full h-16 shadow-sm shadow-neutral-300 dark:shadow-gray-800">
             <div className="flex justify-between w-full max-w-6xl my-0 mx-auto px-6">
                 <h1 className="font-semibold text-lg">
                     <Link href={PATH_HOME}>{TITLE}</Link>
