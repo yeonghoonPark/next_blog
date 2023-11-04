@@ -12,7 +12,7 @@ const LINKS = [
     // { title: "Contact", path: "/contact" }, // file does not exist
 ];
 
-const TITLE = "YH's.dev";
+const TITLE = "yeonghoon-dev";
 const PATH_HOME = "/";
 
 export default function Header() {

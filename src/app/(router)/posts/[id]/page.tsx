@@ -1,7 +1,6 @@
 import React from "react";
-
-import { useMDXComponent } from "next-contentlayer/hooks";
 import { allPosts } from "@/contentlayer/generated";
+import { useMDXComponent } from "next-contentlayer/hooks";
 import { notFound } from "next/navigation";
 
 export default function PostDetailPage({ params }: { params: { id: string } }) {
