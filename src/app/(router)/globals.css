@@ -15,7 +15,7 @@ html {
 
 html.dark {
     color: var(--color-white);
-    background: linear-gradient(to top, #161719 28%, #1e2635);
+    background: linear-gradient(to top, #131925 28%, #181e2b);
     background-attachment: fixed;
 }
 
