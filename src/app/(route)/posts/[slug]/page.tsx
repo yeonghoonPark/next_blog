@@ -3,12 +3,16 @@ import { allPosts } from "@/contentlayer/generated";
 import { useMDXComponent } from "next-contentlayer/hooks";
 import { notFound } from "next/navigation";
 
-export default function PostDetailPage({ params }: { params: { id: string } }) {
-    const post = allPosts.find((post) => post._raw.flattenedPath === params.id);
-    const MDXConponent = useMDXComponent(post?.body.code || "");
+export function generateStaticParams() {
+    return allPosts.map(({ _raw }) => ({ slug: _raw.flattenedPath }));
+}
 
-    // ##$$ Todo, notFound
+export default function PostDetailPage({ params }: { params: { slug: string } }) {
+    const post = allPosts.find(({ _raw }) => _raw.flattenedPath === params.slug);
+
     if (!post) notFound();
+
+    const MDXConponent = useMDXComponent(post?.body.code || "");
 
     const { title, description, category, thumbnail, createdAt } = post;
     return (
