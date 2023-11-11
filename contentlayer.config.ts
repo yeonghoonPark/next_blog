@@ -36,6 +36,10 @@ export const Post = defineDocumentType(() => ({
             type: "date",
             required: true,
         },
+        featured: {
+            type: "boolean",
+            required: true,
+        },
     },
 }));
 
