@@ -18,7 +18,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <body className={`${OpenSans.className} flex flex-col select-none`}>
                 <ThemeProvider>
                     <Header />
-                    <main className="grow w-full max-w-6xl self-center mt-16 p-6">{children}</main>
+                    <main className="grow w-full max-w-6xl self-center mt-16 px-6 py-10">
+                        {children}
+                    </main>
                     <Footer />
                 </ThemeProvider>
             </body>
