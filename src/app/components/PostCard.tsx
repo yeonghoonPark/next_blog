@@ -39,7 +39,7 @@ export default function PostCard({ post }: Props) {
                             py-1 px-2 mx-1 rounded-xl border-[0.5px]
                         ${
                             category === CATEGORY_JAVASCRIPT &&
-                            "bg-yellow-300 border-yellow-400 text-black"
+                            "bg-yellow-400 border-yellow-500 text-black"
                         }
                         ${
                             category === CATEGORY_TYPESCRIPT &&

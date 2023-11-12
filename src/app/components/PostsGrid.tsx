@@ -7,16 +7,20 @@ type Props = {
     max?: number;
 };
 
+const getGridCols = (max: number): string => {
+    switch (max) {
+        case 3:
+            return "grid-cols-1 sm:grid-cols-2 md:grid-cols-3";
+        case 4:
+            return "grid-cols-2 sm:grid-cols-3 md:grid-cols-4";
+        default:
+            return "";
+    }
+};
+
 export default function PostsGrid({ posts, max = 3 }: Props) {
     return (
-        <ul
-            className={`
-                grid 
-                grid-cols-${max - 2} 
-                sm:grid-cols-${max - 1} 
-                md:grid-cols-${max} gap-8
-            `}
-        >
+        <ul className={`grid gap-8 ${getGridCols(max)}`}>
             {posts.map((post) => (
                 <li
                     key={post.title}
