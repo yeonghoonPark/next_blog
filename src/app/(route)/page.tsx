@@ -28,7 +28,7 @@ export default function HomePage() {
                     {ALL_POSTS_TITLE}&nbsp;
                     <span className="text-emerald-500">&nbsp;{`${allPostsCount}`}</span>
                 </h2>
-                <PostsGrid posts={sortedAllPosts} />
+                <PostsGrid max={4} posts={sortedAllPosts} />
             </section>
         </>
     );
