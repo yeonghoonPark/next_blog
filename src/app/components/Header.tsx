@@ -1,5 +1,7 @@
 import React from "react";
+
 import Link from "next/link";
+
 import MobileNavMenu from "./MobileNavMenu";
 import NavMenu from "./NavMenu";
 import ThemeMenu from "./ThemeMenu";

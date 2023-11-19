@@ -1,5 +1,3 @@
-import React from "react";
-
 const FOOTER_CONTENTS = "© 2023. Park Yeong Hoon | All right reserved";
 
 export default function Footer() {

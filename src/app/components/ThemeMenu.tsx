@@ -1,9 +1,10 @@
 "use client";
 import React, { useMemo } from "react";
+
 import { useTheme } from "../hook/useTheme";
 import { constant } from "../util/constant";
-import SunIcon from "./icon/SunIcon";
 import MoonIcon from "./icon/MoonIcon";
+import SunIcon from "./icon/SunIcon";
 
 export default function ThemeMenu() {
     const { theme, toggleTheme } = useTheme();

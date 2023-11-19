@@ -1,26 +1,18 @@
-import { Post } from "@/contentlayer/generated";
+import { memo } from "react";
+
 import Link from "next/link";
+
+import { Post } from "@/contentlayer/generated";
+
 import PostCard from "./PostCard";
 
 type Props = {
     posts: Post[];
-    max?: number;
 };
 
-const getGridCols = (max: number): string => {
-    switch (max) {
-        case 3:
-            return "grid-cols-1 sm:grid-cols-2 md:grid-cols-3";
-        case 4:
-            return "grid-cols-2 sm:grid-cols-3 md:grid-cols-4";
-        default:
-            return "";
-    }
-};
-
-export default function PostsGrid({ posts, max = 3 }: Props) {
+function PostsGrid({ posts }: Props) {
     return (
-        <ul className={`grid gap-8 ${getGridCols(max)}`}>
+        <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
             {posts.map((post) => (
                 <li
                     key={post.title}
@@ -34,3 +26,5 @@ export default function PostsGrid({ posts, max = 3 }: Props) {
         </ul>
     );
 }
+
+export default memo(PostsGrid);

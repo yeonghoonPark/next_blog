@@ -1,4 +1,5 @@
 import React from "react";
+
 import { FaMoon } from "react-icons/fa";
 
 type Props = {

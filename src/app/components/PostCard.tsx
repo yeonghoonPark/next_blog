@@ -1,6 +1,7 @@
-import { Post } from "@/contentlayer/generated";
 import { format, parseISO } from "date-fns";
 import Image from "next/image";
+
+import { Post } from "@/contentlayer/generated";
 
 type Props = {
     post: Post;

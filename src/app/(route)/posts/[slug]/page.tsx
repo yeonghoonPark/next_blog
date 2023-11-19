@@ -1,7 +1,9 @@
 import React from "react";
-import { allPosts } from "@/contentlayer/generated";
+
 import { useMDXComponent } from "next-contentlayer/hooks";
 import { notFound } from "next/navigation";
+
+import { allPosts } from "@/contentlayer/generated";
 
 export function generateStaticParams() {
     return allPosts.map(({ _raw }) => ({ slug: _raw.flattenedPath }));

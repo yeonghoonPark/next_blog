@@ -1,8 +1,10 @@
 "use client";
 import React from "react";
+
 import Link from "next/link";
-import { NavMenuList } from "../model/nav";
 import { usePathname } from "next/navigation";
+
+import { NavMenuList } from "../model/nav";
 
 type Props = {
     navMenuList: NavMenuList;

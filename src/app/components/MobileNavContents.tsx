@@ -1,6 +1,7 @@
 import React from "react";
-import NavMenu from "./NavMenu";
+
 import { NavMenuList } from "../model/nav";
+import NavMenu from "./NavMenu";
 
 type Props = {
     isShow: boolean;
