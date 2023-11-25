@@ -2,20 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-    --color-white: #ffffff;
-    --color-black: #222222;
-}
-
 html {
-    color: var(--color-black);
     background: linear-gradient(to top, #ffffff 28%, #e8eef4);
     background-attachment: fixed;
 }
 
 html.dark {
-    color: var(--color-white);
-    background: linear-gradient(to top, #131925 28%, #181e2b);
+    /* background: linear-gradient(to top, #131925 28%, #181e2b); */
+    background: linear-gradient(to top, #19243b 28%, #0f192d);
     background-attachment: fixed;
 }
 
@@ -24,7 +18,3 @@ body {
     overflow-y: scroll;
     scroll-behavior: smooth;
 }
-
-/* ::-webkit-scrollbar {
-    width: 8px;
-} */

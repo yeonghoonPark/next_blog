@@ -20,7 +20,7 @@ export default function NavMenu({ navMenuList }: Props) {
     return (
         <>
             {navMenuList.map(({ title, path }) => (
-                <li key={title} className="text-lg text-center">
+                <li key={title} className="my-4 text-lg text-center">
                     <Link
                         href={path}
                         className={`${hasPathname(path) && "text-blue-600 dark:text-yellow-500"}`}

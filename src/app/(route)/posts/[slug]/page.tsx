@@ -3,6 +3,8 @@ import React from "react";
 import { useMDXComponent } from "next-contentlayer/hooks";
 import { notFound } from "next/navigation";
 
+import PostCardCategoryIcon from "@/app/components/PostCardCategoryIcon";
+import PostCardCreateAt from "@/app/components/PostCardCreateAt";
 import { allPosts } from "@/contentlayer/generated";
 
 export function generateStaticParams() {
@@ -18,13 +20,17 @@ export default function PostDetailPage({ params }: { params: { slug: string } })
 
     const { title, description, category, thumbnail, createdAt } = post;
     return (
-        <section>
-            <h2>{title}</h2>
-            <p>{description}</p>
-            <span>{category}</span>
-            <time>{createdAt}</time>
-            <img src={thumbnail as string} alt={`${title} image`} width={100} height={100} />
-            <MDXConponent />
+        <section className="flex flex-col gap-12">
+            <section className="flex flex-col items-center gap-6 pt-4 pb-12 border-b border-neutral-300 dark:border-gray-700">
+                <PostCardCreateAt createdAt={createdAt} />
+                <h2 className="font-bold text-3xl">{title}</h2>
+                <p className="font-semibold text-xl">{description}</p>
+                <PostCardCategoryIcon category={category} />
+            </section>
+
+            <section className="">
+                <MDXConponent />
+            </section>
         </section>
     );
 }
