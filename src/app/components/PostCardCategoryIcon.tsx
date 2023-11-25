@@ -14,7 +14,7 @@ const getClassNameByCategory = (category: string): string | undefined => {
         case CATEGORY_NEXTJS:
             return "bg-neutral-50 border-gray-400 text-gray-900";
         case CATEGORY_REACTJS:
-            return "bg-gray-700 border-gray-700 text-sky-300";
+            return "bg-gray-800 border-gray-800 text-sky-300";
         default:
             return;
     }

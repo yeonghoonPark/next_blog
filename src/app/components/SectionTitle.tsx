@@ -9,7 +9,7 @@ function SectionTitle({ title, count }: Props) {
     return (
         <h2 className="text-xl font-semibold my-4">
             {title}&nbsp;
-            <span className="text-emerald-500">&nbsp;{`${count}`}</span>
+            <span className="text-sky-500 dark:text-emerald-500">&nbsp;{`${count}`}</span>
         </h2>
     );
 }
