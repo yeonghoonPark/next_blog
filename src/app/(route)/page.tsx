@@ -5,7 +5,7 @@ import { allPosts } from "@/contentlayer/generated";
 
 import PostsGrid from "../components/PostsGrid";
 
-const FEATURED_POSTS_TITLE = "FEATURED POSTS";
+const FEATURED_POSTS_TITLE = "Featured Posts";
 
 export default function HomePage() {
     const featuredPosts = useMemo(() => allPosts.filter(({ featured }) => featured), []);

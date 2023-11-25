@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 
 import CategoryNavMenu from "@/app/components/CategoryNavMenu";
 import CategoryTitle from "@/app/components/CategoryTitle";
@@ -9,8 +9,8 @@ import SectionTitle from "@/app/components/SectionTitle";
 import { Post } from "@/contentlayer/generated";
 
 const ALL = "All";
-const POSTS_TITLE = "POSTS";
-const CATEGORY_TITLE = "CATEGORY";
+const POSTS_TITLE = "Posts";
+const CATEGORY_TITLE = "Category";
 
 type Props = {
     posts: Post[];
@@ -24,9 +24,9 @@ export default function FilterablePosts({ posts, categories }: Props) {
         return posts.filter((post) => (selected === ALL ? post : post.category === selected));
     }, [posts, selected]);
 
-    const getTitleToUpperCase = useCallback((selected: string): string => {
-        return `${selected.toUpperCase()} ${POSTS_TITLE}`;
-    }, []);
+    const getTitle = (selected: string): string => {
+        return `${selected} ${POSTS_TITLE}`;
+    };
 
     return (
         <section className="flex flex-col items-center gap-6">
@@ -39,7 +39,7 @@ export default function FilterablePosts({ posts, categories }: Props) {
                 />
             </section>
             <section className="mb-12">
-                <SectionTitle title={getTitleToUpperCase(selected)} count={filteredPosts.length} />
+                <SectionTitle title={getTitle(selected)} count={filteredPosts.length} />
                 <PostsGrid posts={filteredPosts} />
             </section>
         </section>

@@ -19,7 +19,7 @@ export default function PostDetailPage({ params }: { params: { slug: string } })
 
     return (
         <section className="flex flex-col gap-8 max-w-2xl mx-auto">
-            <section className="flex flex-col gap-6 pt-3 pb-8 border-b-[0.5px] border-neutral-300 dark:border-gray-700">
+            <section className="flex flex-col gap-6 pt-4 pb-8 border-b-[0.5px] border-neutral-300 dark:border-gray-700">
                 <PostContents post={post} type="page" />
             </section>
 
