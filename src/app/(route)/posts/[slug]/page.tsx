@@ -18,14 +18,14 @@ export default function PostDetailPage({ params }: { params: { slug: string } })
     const MDXConponent = useMDXComponent(post?.body.code || "");
 
     return (
-        <section className="flex flex-col gap-8 max-w-2xl mx-auto">
-            <section className="flex flex-col gap-6 pt-4 pb-8 border-b border-neutral-300 dark:border-gray-700">
+        <article className="flex flex-col gap-8 max-w-2xl mx-auto">
+            <section className="flex flex-col gap-6 py-4">
                 <PostContents post={post} type="page" />
             </section>
 
-            <section>
+            <section className="max-w-2xl prose dark:prose-invert prose-blockquote:not-italic prose-em:not-italic prose-em:font-semibold prose-em:text-pink-500">
                 <MDXConponent />
             </section>
-        </section>
+        </article>
     );
 }

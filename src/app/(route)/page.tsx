@@ -1,9 +1,8 @@
 import { useMemo } from "react";
 
+import PostsGrid from "@/app/components/PostsGrid";
 import SectionTitle from "@/app/components/SectionTitle";
 import { allPosts } from "@/contentlayer/generated";
-
-import PostsGrid from "../components/PostsGrid";
 
 const FEATURED_POSTS_TITLE = "Featured Posts";
 
