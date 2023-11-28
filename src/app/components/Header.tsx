@@ -2,16 +2,13 @@ import React from "react";
 
 import Link from "next/link";
 
-import MobileNavMenu from "./MobileNavMenu";
-import NavMenu from "./NavMenu";
-import ThemeMenu from "./ThemeMenu";
+import MobileNavMenu from "@/app/components/MobileNavMenu";
+import NavMenu from "@/app/components/NavMenu";
+import ThemeMenu from "@/app/components/ThemeMenu";
 
 const LINKS = [
     { title: "Home", path: "/" },
     { title: "Posts", path: "/posts" },
-    // { title: "About", path: "/about" },
-    // { title: "Daily", path: "/daily" },
-    // { title: "Contact", path: "/contact" }, // file does not exist
 ];
 
 const TITLE = "YeongChi-Dev";
