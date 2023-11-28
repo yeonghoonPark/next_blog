@@ -15,7 +15,7 @@ export default function PostDetailPage({ params }: { params: { slug: string } })
 
     if (!post) notFound();
 
-    const MDXConponent = useMDXComponent(post?.body.code || "");
+    const MDXComponent = useMDXComponent(post?.body.code || "");
 
     return (
         <article className="flex flex-col gap-8 max-w-2xl mx-auto">
@@ -24,7 +24,7 @@ export default function PostDetailPage({ params }: { params: { slug: string } })
             </section>
 
             <section
-                className="
+                className="                  
                     max-w-2xl 
                     prose 
                     dark:prose-invert 
@@ -34,7 +34,7 @@ export default function PostDetailPage({ params }: { params: { slug: string } })
                     prose-a:no-underline prose-a:text-sky-600 dark:prose-a:text-sky-400
                 "
             >
-                <MDXConponent />
+                <MDXComponent />
             </section>
         </article>
     );
