@@ -1,4 +1,4 @@
-const FOOTER_CONTENTS = "© 2023. Park Yeong Hoon | All right reserved";
+const FOOTER_CONTENTS = "© 2023 • Yeong Chi";
 
 export default function Footer() {
     return (
