@@ -2,13 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+    scroll-behavior: smooth;
+}
+
 html {
     background: linear-gradient(to top, #ffffff 28%, #e8eef4);
     background-attachment: fixed;
 }
 
 html.dark {
-    /* background: linear-gradient(to top, #131925 28%, #181e2b); */
     background: linear-gradient(to top, #19243b 28%, #0f192d);
     background-attachment: fixed;
 }
@@ -16,5 +19,4 @@ html.dark {
 body {
     height: 100vh;
     overflow-y: scroll;
-    scroll-behavior: smooth;
 }
