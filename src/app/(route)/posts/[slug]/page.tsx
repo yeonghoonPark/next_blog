@@ -23,7 +23,17 @@ export default function PostDetailPage({ params }: { params: { slug: string } })
                 <PostContents post={post} type="page" />
             </section>
 
-            <section className="max-w-2xl prose dark:prose-invert prose-blockquote:not-italic prose-em:not-italic prose-em:font-semibold prose-em:text-pink-500">
+            <section
+                className="
+                    max-w-2xl 
+                    prose 
+                    dark:prose-invert 
+                    prose-blockquote:not-italic
+                    prose-em:not-italic prose-em:font-semibold prose-em:text-black dark:prose-em:text-white
+                    prose-code:text-pink-500 dark:prose-code:text-pink-400
+                    prose-a:no-underline prose-a:text-sky-600 dark:prose-a:text-sky-400
+                "
+            >
                 <MDXConponent />
             </section>
         </article>
