@@ -11,10 +11,18 @@ html {
     background-attachment: fixed;
 }
 
+/* html. {
+    display: none;
+} */
+
 html.dark {
     background: linear-gradient(to top, #19243b 28%, #0f192d);
     background-attachment: fixed;
 }
+
+/* html.dark {
+    display: none;
+} */
 
 body {
     height: 100vh;

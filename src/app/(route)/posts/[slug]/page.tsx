@@ -28,10 +28,16 @@ export default function PostDetailPage({ params }: { params: { slug: string } })
                     max-w-2xl 
                     prose 
                     dark:prose-invert 
-                    prose-blockquote:not-italic
+                    prose-hr:border-gray-300 dark:prose-hr:border-gray-700 
+                    prose-blockquote:not-italic prose-blockquote:font-normal prose-blockquote:border-pink-500 dark:prose-blockquote:border-pink-400
+                    prose-p:before:content-none prose-p:after:content-none
                     prose-em:not-italic prose-em:font-semibold prose-em:text-black dark:prose-em:text-white
                     prose-code:text-pink-500 dark:prose-code:text-pink-400
                     prose-a:no-underline prose-a:text-sky-600 dark:prose-a:text-sky-400
+                    prose-table:mb-5 prose-table:border-separate prose-table:border-spacing-1 prose-table:text-center 
+                    prose-th:p-1.5 prose-th:rounded prose-th:bg-red-200 dark:prose-th:bg-red-900 first:prose-th:bg-gray-300 dark:first:prose-th:bg-gray-600
+                    prose-td:p-1.5 prose-td:rounded prose-td:bg-sky-200 dark:prose-td:bg-sky-900 first:prose-td:bg-gray-300 dark:first:prose-td:bg-gray-600
+                    prose-h3:text-center
                 "
             >
                 <MDXComponent />
