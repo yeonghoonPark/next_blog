@@ -35,7 +35,7 @@ export const Post = defineDocumentType(() => ({
 }));
 
 const rehypeOptions = {
-    theme: "slack-dark",
+    theme: "one-dark-pro",
     keepBackground: true,
 };
 
