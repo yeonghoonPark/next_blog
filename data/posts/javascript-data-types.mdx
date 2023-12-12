@@ -44,7 +44,48 @@ featured: true
 let a = "apple";
 ```
 
--   `Call Stack`의 메모리 공간을 확보합니다, 이 확보된 메모리 공간은 주소를 가지게 되며 이곳에 "apple"이라는 값을 저장하고 변수 a는 식별자로서 해당주소를 가리키고 있습니다.
+-   `Call Stack`에 저장된 값중에 "apple"이 있는지 확인하고 "apple"이 없다면 메모리 공간을 확보합니다, 이 확보된 메모리 공간은 주소를 가지게 되며 이곳에 "apple"이라는 값을 저장합니다. 이 후 변수 a는 식별자로서 해당주소를 가리키고 있습니다.
+
+<div className='flex justify-between gap-2'>
+  <table>
+    <caption className='text-base'>`.js file`</caption>
+    <thead>
+      <tr>
+        <th>식별자</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>a</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <table>
+    <caption className='text-base'>`Call Stack`</caption>
+    <thead>
+      <tr>
+        <th>주소</th>
+        <th>값</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>A21DC0011</td>
+        <td>apple</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+---
+
+2.  a를 호출하는 경우
+
+```typescript
+a;
+```
+
+-   `Call Stack`의 메모리 공간에서 식별자 a가 가리키고 있는 주소를 찾아 저장되어 있는 값 "apple"을 꺼내옵니다.
 
 ### `Call Stack`
 
@@ -64,15 +105,6 @@ let a = "apple";
         </tr>
     </tbody>
 </table>
----
-
-2.  a를 호출하는 경우
-
-```typescript
-a;
-```
-
--   a가 `Call Stack`의 메모리 공간에서 가리키고 있는 주소를 찾아 저장되어 있는 값 "apple"을 꺼내옵니다.
 
 ---
 
@@ -82,7 +114,7 @@ a;
 a = "banana";
 ```
 
--   `Call Stack`에서 처음 "apple"을 할당받을 때의 주소가 아닌 새로운 주소를 가지게 되며 그곳에 "banana"를 저장하고 식별자 b는 해당 주소를 가리키게 됩니다.
+-   `Call Stack`에는 현재 "banana"란 값이 없으므로 처음 "apple"을 할당받을 때의 주소가 아닌 새로운 주소를 가지게 되며 그곳에 "banana"를 저장하고 식별자 a는 해당 주소를 가리키게 됩니다.
 
 ### `Call Stack`
 
@@ -109,7 +141,7 @@ a = "banana";
 </table>
 ---
 
-4. b라는 변수에 "banana"를 할당하는 경우
+4. b라는 새로운 변수에 "banana"를 할당하는 경우
 
 ```typescript
 let b = "banana";
