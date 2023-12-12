@@ -35,8 +35,9 @@ export default function PostDetailPage({ params }: { params: { slug: string } })
                     prose-code:text-pink-500 dark:prose-code:text-pink-400
                     prose-a:no-underline prose-a:text-sky-600 dark:prose-a:text-sky-400
                     prose-table:mb-5 prose-table:border-separate prose-table:border-spacing-1 prose-table:text-center 
-                    prose-th:p-1.5 prose-th:rounded prose-th:bg-red-200 dark:prose-th:bg-red-900 first:prose-th:bg-gray-300 dark:first:prose-th:bg-gray-600
-                    prose-td:p-1.5 prose-td:rounded prose-td:bg-sky-200 dark:prose-td:bg-sky-900 first:prose-td:bg-gray-300 dark:first:prose-td:bg-gray-600
+                    prose-th:p-1.5 prose-th:rounded prose-th:bg-red-200 dark:prose-th:bg-red-900
+                    prose-td:p-1.5 prose-td:rounded prose-td:bg-sky-200 dark:prose-td:bg-sky-900
+                    prose-h2:mt-[-100px] prose-h2:pt-[100px]
                     prose-h3:text-center
                 "
             >
