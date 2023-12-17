@@ -1,0 +1,509 @@
+---
+title: Call Stack and Memory Heap in JavaScript
+description: Storage and referencing principles based on data types in JavaScript
+category: JavaScript
+thumbnail: /image/javascript-data-types.jpg
+createdAt: 2023-10-01
+featured: true
+---
+
+---
+
+## 자바스크립트의 데이터 유형에 따른 저장 및 참조 원칙
+
+> `Call Stack` & `Memory Heap`
+
+자바스크립트의 데이터 저장소는 크게 `Call Stack`과 `Memory Heap`으로 구성되어 있습니다.  
+데이터는 변수에 할당할 수 있으며 변수에 할당된 데이터는 메모리에 저장됩니다, 하지만 메모리에 저장되는 방식에 있어 `Primitive(원시)`와 `Reference(참조)`타입에 따라 서로 차이점이 존재합니다. 이 차이점을 이해한다면 보다 효율적인 코드를 작성하는 데 도움이 되리라 생각합니다.
+
+---
+
+## # 목차
+
+-   [# `Call Stack`과 `Memory Heap`의 역할](#-call-stack과-memory-heap의-역할)
+-   [# `Primitive(원시)`타입의 종류와 저장 방식](#-primitive원시타입의-종류와-저장-방식)
+-   [# `Reference(참조)`타입의 종류와 저장 방식](#-reference참조타입의-종류와-저장-방식)
+-   [# 마무리](#-마무리)
+
+---
+
+## # `Call Stack`과 `Memory Heap`의 역할
+
+[# 목차](#-목차)
+
+-   `Call Stack`의 역할
+
+    1. `Primitive(원시)`타입의 데이터를 저장
+    2. `Execution Context`
+    3. `Scope Chain`
+
+-   `Memory Heap`의 역할
+
+    1. `Reference(참조)`타입의 데이터를 저장
+
+> hoisting, this, function..등의 관리나 실행을 담당하는 환경을 의미하는 `Execution Context`나 이를 위해 `{}`간의 유효범위를 위해 상하관계를 정의하는 `Scope Chain`의 역할은 다루지 않으며 해당 글에서의 `Call Stack`은 오로지 `Primitive(원시)`타입을 저장하는 저장소의 역할을 의미합니다.
+
+---
+
+## # `Primitive(원시)`타입의 종류와 저장 방식
+
+[# 목차](#-목차)
+
+-   `Primitive(원시)`타입의 종류 [(JavaScript data Types, MDN Web Docs)](https://developer.mozilla.org/ko/docs/Web/JavaScript/Data_structures)
+
+    -   string
+    -   number
+    -   bigint
+    -   boolean
+    -   null
+    -   undefined
+    -   Symbol
+
+-   `Primitive(원시)`타입의 특징 [(Immutable, MDN Web Docs)](https://developer.mozilla.org/ko/docs/Glossary/Immutable)
+    -   `Immutable Value(변경 불가능한 값)`
+
+자바스크립트에서는 `Call Stack`과 `Memory Heap`이라는 두 곳의 메모리 공간이 존재합니다.
+`Primitive(원시)`타입으로 변수를 선언하고 값을 할당할 경우, 오직 `Call Stack` 한 곳에 저장되며 `Primitive(원시)`타입이 저장되는 방식에 대해 알아보겠습니다.
+
+<br />
+
+### 1. a라는 변수에 "apple"을 할당하는 경우
+
+```typescript
+let a = "apple";
+```
+
+<div className="flex justify-between gap-2">
+    <table>
+        <caption className="text-base">`Call Stack`</caption>
+        <thead>
+            <tr>
+                <th>주소</th>
+                <th>값</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>a &nbsp;👉&nbsp; A1DC01</td>
+                <td>apple</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+1.  `Call Stack`에 저장된 값 중 "apple"이 있는지 확인합니다.
+2.  "apple"이 없다면 `Call Stack`에 주소(A1DC01)를 할당하고 값("apple")을 저장합니다.
+3.  변수 a는 식별자로서 `Call Stack`의 주소(A1DC01)를 가리키게 됩니다.
+
+---
+
+### 2. a를 호출하는 경우
+
+```typescript
+a;
+```
+
+<div className="flex justify-between gap-2">
+    <table>
+        <caption className="text-base">`Call Stack`</caption>
+        <thead>
+            <tr>
+                <th>주소</th>
+                <th>값</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>a &nbsp;👉&nbsp; A1DC01</td>
+                <td>apple</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+1.  변수 a가 식별자로서 `Call Stack`에서 가리키고 있는 주소(A1DC01)를 찾습니다.
+2.  `Call Stack`의 주소(A1DC01)에 저장되어 있는 값("apple")을 꺼내옵니다.
+
+---
+
+### 3. a의 값을 "banana"로 재할당하는 경우
+
+```typescript
+a = "banana";
+```
+
+<div className="flex justify-between gap-2">
+    <table>
+        <caption className="text-base">`Call Stack`</caption>
+        <thead>
+            <tr>
+                <th>주소</th>
+                <th>값</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>A1DC01</td>
+                <td>apple</td>
+            </tr>
+            <tr>
+                <td>a &nbsp;👉&nbsp; B2DC01</td>
+                <td>banana</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+1.  `Call Stack`에 저장된 값 중 "banana"가 있는지 확인합니다.
+2.  현재 저장된 값 중 "banana"가 없으므로 `Call Stack`에 새로운 주소(B2DC01)를 할당합니다.
+3.  `Call Stack`의 할당된 주소(B2DC01)에 값("banana")을 저장합니다.
+4.  변수 a는 식별자로서 `Call Stack`에 주소(B2DC01)를 가리키게 됩니다.
+
+> `Primitive(원시)`타입은 `Immutable Value(변경 불가능한 값)`입니다.  
+> `Immutable Value(변경 불가능한 값)`란 식별자 a가 최종적으로 가리키는 `Call Stack`에 저장된 값("apple")은 변경이 불가능하다는 것을 의미합니다. 즉, 이미 저장된 값("apple")을 변경할 수 없기 때문에 새로운 주소(B2DC01)를 할당하고 값("banana")을 저장하는 것입니다.
+
+---
+
+### 4. b라는 새로운 변수에 "banana"를 할당하는 경우
+
+```typescript
+let b = "banana";
+```
+
+<div className="flex justify-between gap-2">
+    <table>
+        <caption className="text-base">`Call Stack`</caption>
+        <thead>
+            <tr>
+                <th>주소</th>
+                <th>값</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>A1DC01</td>
+                <td>apple</td>
+            </tr>
+            <tr>
+                <td>a, b &nbsp;👉&nbsp; B2DC01</td>
+                <td>banana</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+1.  `Call Stack`에 저장된 값 중 "banana"가 있는지 확인합니다.
+2.  현재 저장된 값 중 "banana"가 있으므로 `Call Stack`의 주소(B2DC01)를 재사용합니다.
+3.  변수 b는 a와 마찬가지로 식별자로서 `Call Stack`의 주소(B2DC01)를 가리키게 됩니다.
+
+> 변수 a와 b가 의미하는 것은 string으로 구성된 "apple"이나 "banana"라는 값이라기보단 식별자로서 가리키고 있는 `Call Stack`의 주소를 의미하며 호출될 경우, 단지 그 시점의 주소에 저장되어 있는 값을 꺼내올 뿐입니다.
+
+---
+
+### 5. a와 b의 값의 비교
+
+```typescript
+a === b; // true
+```
+
+<div className="flex justify-between gap-2">
+    <table>
+        <caption className="text-base">`Call Stack`</caption>
+        <thead>
+            <tr>
+                <th>주소</th>
+                <th>값</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>A1DC01</td>
+                <td>apple</td>
+            </tr>
+            <tr>
+                <td>a, b &nbsp;👉&nbsp; B2DC01</td>
+                <td>banana</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+> 자바스크립트에서 값을 비교할 때는 항상 `Call Stack`의 주소를 기준으로 판단합니다.  
+> 즉, 변수 a와 b는 같은 주소(B2DC01)를 공유하기 때문에 동일한 값입니다.
+
+---
+
+## # `Reference(참조)`타입의 종류와 저장 방식
+
+[# 목차](#-목차)
+
+-   `Reference(참조)`타입의 종류 [(JavaScript data Types, MDN Web Docs)](https://developer.mozilla.org/ko/docs/Web/JavaScript/Data_structures)
+
+    -   array
+    -   object
+    -   function
+
+-   `Reference(참조)`타입의 특징 [(Mutable, MDN Web Docs)](https://developer.mozilla.org/ko/docs/Glossary/Mutable)
+    -   `Mutable Value(변경 가능한 값)`
+
+`Reference(참조)`타입은 `Call Stack`과 `Memory Heap` 두 곳 모두에 저장됩니다.  
+`Reference(참조)`타입의 경우, 식별자는 `Call Stack`을 바라보지만 값은 `Memory Heap`에 저장됩니다. `Reference(참조)`타입이 저장되는 방식에 대해 알아보겠습니다.
+
+<br />
+
+### 1. alphabet이라는 변수에 "a", "b" 요소를 가진 array타입의 변수 선언
+
+```typescript
+let alphabet = ["a", "b"];
+```
+
+<div className="flex justify-between gap-2">
+    <table>
+        <caption className="text-base">`Call Stack`</caption>
+        <thead>
+            <tr>
+                <th>주소</th>
+                <th>값</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>alphabet &nbsp;👉&nbsp; C1AZ01</td>
+                <td>H5RT02</td>
+            </tr>
+        </tbody>
+    </table>
+    <table>
+        <caption className="text-base">`Memory Heap`</caption>
+        <thead>
+            <tr>
+                <th>주소</th>
+                <th>값</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>H5RT02</td>
+                <td>["a", "b"]</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+1. `Call Stack`에 주소(C1AZ01)를 할당합니다.
+2. `Momory Heap`에 주소(H5RT02)를 할당하고 값(["a", "b"])을 저장합니다.
+3. `Call Stack`에 주소(C1AZ01)의 값으로 `Memory Heap`에 저장된 주소(H5RT02)를 값으로 저장합니다.
+4. 변수 alphabet은 식별자로서 `Call Stack`의 주소(C1AZ01)를 가리키게 됩니다.
+
+> `Reference(참조)`타입은 선언시 항상 `Call Stack`에 새로운 주소를 할당합니다.
+
+---
+
+### 2. alphabet을 호출하는 경우
+
+```typescript
+console.log(alphabet);
+```
+
+<div className="flex justify-between gap-2">
+    <table>
+        <caption className="text-base">`Call Stack`</caption>
+        <thead>
+            <tr>
+                <th>주소</th>
+                <th>값</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>alphabet &nbsp;👉&nbsp; C1AZ01</td>
+                <td>H5RT02</td>
+            </tr>
+        </tbody>
+    </table>
+    <table>
+        <caption className="text-base">`Memory Heap`</caption>
+        <thead>
+            <tr>
+                <th>주소</th>
+                <th>값</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>H5RT02</td>
+                <td>["a", "b"]</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+1.  변수 alphabet이 식별자로서 `Call Stack`에서 가리키고 있는 주소(C1AZ01)를 찾습니다.
+2.  `Call Stack`의 주소(C1AZ01)에 저장되어 있는 값(H5RT02)을 기반으로 `Memory Heap`에서 해당 주소(H5RT02)를 찾습니다.
+3.  `Memory Heap`의 주소(H5RT02)에 저장되어 있는 값(["a", "b"])를 꺼내옵니다.
+
+---
+
+### 3. alphabet의 값을 ["a", "b", "c"]로 변경 하는 경우
+
+```typescript
+alphabet = ["a", "b", "c"];
+```
+
+<div className="flex justify-between gap-2">
+    <table>
+        <caption className="text-base">`Call Stack`</caption>
+        <thead>
+            <tr>
+                <th>주소</th>
+                <th>값</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>alphabet &nbsp;👉&nbsp; C1AZ01</td>
+                <td>H5RT02</td>
+            </tr>
+        </tbody>
+    </table>
+    <table>
+        <caption className="text-base">`Memory Heap`</caption>
+        <thead>
+            <tr>
+                <th>주소</th>
+                <th>값</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>H5RT02</td>
+                <td>["a", "b", "c"]</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+1.  변수 alphabet이 식별자로서 `Call Stack`에서 가리키고 있는 주소(C1AZ01)를 찾습니다.
+2.  `Call Stack`의 주소(C1AZ01)에 저장되어 있는 값(H5RT02)을 기반으로 `Memory Heap`에서 해당 주소(H5RT02)를 찾습니다.
+3.  `Memory Heap`의 주소(H5RT02)에 저장되어 있는 값(["a", "b"])을 ["a", "b", "c"]로 변경합니다.
+
+> `Reference(참조)`타입은 `Mutable Value(변경 가능한 값)`입니다.  
+> `Mutable Value(변경 가능한 값)`란 식별자 alphabet이 최종적으로 가리키는 `Memory Heap`의 값(["a", "b"])을 변경할 수 있다는 의미입니다.
+
+---
+
+### 4. abc라는 새로운 변수에 값을 ["a", "b", "c"]로 할당 하는 경우
+
+```typescript
+let abc = ["a", "b", "c"];
+```
+
+<div className="flex justify-between gap-2">
+    <table>
+        <caption className="text-base">`Call Stack`</caption>
+        <thead>
+            <tr>
+                <th>주소</th>
+                <th>값</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>alphabet &nbsp;👉&nbsp; C1AZ01</td>
+                <td>H5RT02</td>
+            </tr>
+            <tr>
+                <td>abc &nbsp;👉&nbsp; C2BZ02</td>
+                <td>M7RT05</td>
+            </tr>
+        </tbody>
+    </table>
+    <table>
+        <caption className="text-base">`Memory Heap`</caption>
+        <thead>
+            <tr>
+                <th>주소</th>
+                <th>값</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>H5RT02</td>
+                <td>["a", "b", "c"]</td>
+            </tr>
+            <tr>
+                <td>M7RT05</td>
+                <td>["a", "b", "c"]</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+1. `Call Stack`에 주소(C2BZ02)를 할당합니다.
+2. `Momory Heap`에 주소(M7RT05)를 할당하고 값(["a", "b", "c"])을 저장합니다.
+3. `Call Stack`에 주소(C2BZ02)의 값으로 `Memory Heap`에 저장된 주소(M7RT05)를 값으로 저장합니다.
+4. 변수 abc는 식별자로서 `Call Stack`의 주소(C2BZ02)를 가리키게 됩니다.
+
+---
+
+### 5. alphabet과 abc의 값의 비교
+
+```typescript
+alphabet === abc; // false
+```
+
+<div className="flex justify-between gap-2">
+    <table>
+        <caption className="text-base">`Call Stack`</caption>
+        <thead>
+            <tr>
+                <th>주소</th>
+                <th>값</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>alphabet &nbsp;👉&nbsp; C1AZ01</td>
+                <td>H5RT02</td>
+            </tr>
+            <tr>
+                <td>abc &nbsp;👉&nbsp; C2BZ02</td>
+                <td>M7RT05</td>
+            </tr>
+        </tbody>
+    </table>
+    <table>
+        <caption className="text-base">`Memory Heap`</caption>
+        <thead>
+            <tr>
+                <th>주소</th>
+                <th>값</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>H5RT02</td>
+                <td>["a", "b", "c"]</td>
+            </tr>
+            <tr>
+                <td>M7RT05</td>
+                <td>["a", "b", "c"]</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+> 변수 alphabet과 abc는 식별자로서 최종적으로 가리키는 값이 ["a", "b", "c"]이며 동일한 값처럼 보입니다, 하지만 자바스크립트에서 값을 비교할 때는 항상 `Call Stack`의 주소가 기준이 됩니다.  
+> 즉, 변수 alphabet의 주소(C1AZ01)와 abc의 주소(C2BZ02)는 서로 다른 주소를 가지기 때문에 동일한 값이 아닙니다.
+
+---
+
+### # 마무리
+
+[# 목차](#-목차)
+
+_references_
+
+-   [https://charming-kyu.tistory.com/19](https://charming-kyu.tistory.com/19)
+-   [https://medium.com/@allansendagi/javascript-fundamentals-call-stack-and-memory-heap-401eb8713204](https://medium.com/@allansendagi/javascript-fundamentals-call-stack-and-memory-heap-401eb8713204)
+-   [https://levelup.gitconnected.com/understanding-call-stack-and-heap-memory-in-js-e34bf8d3c3a4](https://levelup.gitconnected.com/understanding-call-stack-and-heap-memory-in-js-e34bf8d3c3a4)
