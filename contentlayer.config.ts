@@ -35,8 +35,8 @@ export const Post = defineDocumentType(() => ({
 }));
 
 const rehypeOptions = {
-    theme: "one-dark-pro",
-    keepBackground: true,
+    theme: "dark-plus",
+    keepBackground: false,
 };
 
 const contentSource = makeSource({
