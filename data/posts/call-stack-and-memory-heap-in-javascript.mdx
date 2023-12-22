@@ -160,7 +160,8 @@ a = "banana";
 4.  변수 a는 식별자로서 해당 주소(B2DC5)를 가리키게 됩니다.
 
 > `Primitive(원시)`타입은 `Immutable Value(변경 불가능한 값)`입니다.  
-> `Immutable Value(변경 불가능한 값)`란 식별자가 최종적으로 가리키는 값은 변경이 불가능하다는 것을 의미합니다. 즉, 이미 저장된 값("apple")을 변경할 수 없기 때문에 `Call Stack`에 새로운 주소(B2DC5)를 할당하고 값("banana")을 저장하는 것입니다. 그리고 이를 불변성이 유지되었다고 말합니다.
+> `Immutable Value(변경 불가능한 값)`란 식별자가 최종적으로 가리키는 값은 변경이 불가능하다는 것을 의미합니다.  
+> 즉, 이미 저장된 값("apple")을 변경할 수 없기 때문에 `Call Stack`에 새로운 주소(B2DC5)를 할당하고 값("banana")을 저장하는 것입니다. 그리고 이를 불변성이 유지되었다고 말합니다.
 
 ---
 
@@ -193,7 +194,7 @@ let b = "banana";
 </div>
 
 1.  `Call Stack`에 저장된 값 중 "banana"가 있는지 확인합니다.
-2.  현재 저장된 값 중 "banana"가 있으므로 기존의 주소(B2DC5)를 사용합니다.
+2.  현재 저장된 값 중 "banana"가 있으므로 해당 값이 저장되어 있는 주소(B2DC5)를 사용합니다.
 3.  변수 b는 a와 마찬가지로 식별자로서 해당 주소(B2DC5)를 가리키게 됩니다.
 
 > 변수 a와 b가 의미하는 것은 string으로 구성된 "apple"이나 "banana"라는 값이라기보단 식별자로서 가리키고 있는 `Call Stack`의 주소를 의미하며 호출될 경우, 단지 그 시점의 주소에 저장되어 있는 값을 꺼내올 뿐입니다.
@@ -228,7 +229,8 @@ a === b; // true
     </table>
 </div>
 
-> 자바스크립트에서 값의 비교는 식별자가 `Call Stack`에서 가리키는 주소가 기준이 됩니다. 즉, 변수 a와 b는 식별자로서 같은 주소(B2DC5)를 가리키기 때문에 동일한 값이 됩니다.
+> 자바스크립트에서 값의 비교는 식별자가 `Call Stack`에서 가리키는 주소가 기준이 됩니다.  
+> 즉, 변수 a와 b는 식별자로서 같은 주소(B2DC5)를 가리키기 때문에 동일한 값이 됩니다.
 
 ---
 
@@ -294,8 +296,6 @@ let alphabet = ["a", "b"];
 3. `Memory Heap`의 주소(H5RT4)를 `Call Stack`에 주소(C1AZ3)에 대한 값으로 저장합니다.
 4. 변수 alphabet은 식별자로서 `Call Stack`의 주소(C1AZ3)를 가리키게 됩니다.
 
-> `Reference(참조)`타입은 선언시 항상 `Call Stack`에 새로운 주소를 할당합니다.
-
 ---
 
 ### 2. alphabet을 호출하는 경우
@@ -339,7 +339,7 @@ console.log(alphabet);
 
 1.  변수 alphabet이 식별자로서 `Call Stack`에서 가리키고 있는 주소(C1AZ3)를 찾습니다.
 2.  해당 주소(C1AZ3)에 저장되어 있는 값(H5RT4)을 기반으로 `Memory Heap`에서 주소(H5RT4)를 찾습니다.
-3.  해당 주소(H5RT4)에 저장되어 있는 값(["a", "b"])를 꺼내옵니다.
+3.  해당 주소(H5RT4)에 저장되어 있는 값(["a", "b"])을 꺼내옵니다.
 
 ---
 
@@ -387,7 +387,8 @@ alphabet = ["a", "b", "c"];
 3.  해당 주소(H5RT4)에 저장되어 있는 값(["a", "b"])을 ["a", "b", "c"]로 변경합니다.
 
 > `Reference(참조)`타입은 `Mutable Value(변경 가능한 값)`입니다.  
-> `Mutable Value(변경 가능한 값)`란 식별자가 최종적으로 가리키는 값을 변경할 수 있다는 것을 의미합니다. 즉, `Call Stack`에 기존의 주소(C1AZ3)를 그대로 사용하면서 식별자가 최종적으로 가리키는 저장 된 값(["a", "b"])을 새로운 값(["a", "b", "c"])으로 변경하여 저장합니다. 그리고 이를 불변성이 유지되지 않았다고 말합니다.
+> `Mutable Value(변경 가능한 값)`란 식별자가 최종적으로 가리키는 값을 변경할 수 있다는 것을 의미합니다.  
+> 즉, `Call Stack`에 기존의 주소(C1AZ3)를 사용하면서 식별자가 최종적으로 가리키는 저장 된 값(["a", "b"])을 새로운 값(["a", "b", "c"])으로 변경합니다. 그리고 이를 불변성이 유지되지 않았다고 말합니다.
 
 ---
 
@@ -492,7 +493,8 @@ alphabet === abc; // false
     </table>
 </div>
 
-> 변수 alphabet과 abc는 식별자로서 최종적으로 가리키는 값이 ["a", "b", "c"]이며 동일한 값처럼 보입니다, 하지만 자바스크립트에서 값을 비교할 때는 식별자가 가리키고 있는 `Call Stack`의 주소가 기준이 됩니다. 즉, 식별자로서 alphabet이 가리키는 주소(C1AZ3)와 abc가 가리키는 주소(D2BZ8)는 서로 다르기 때문에 동일한 값이 아닙니다.
+> 변수 alphabet과 abc는 식별자로서 최종적으로 가리키는 값이 ["a", "b", "c"]이며 동일한 값처럼 보입니다. 하지만 자바스크립트에서 값을 비교할 때는 식별자가 가리키고 있는 `Call Stack`의 주소가 기준이 됩니다.  
+> 즉, 식별자로서 alphabet이 가리키는 주소(C1AZ3)와 abc가 가리키는 주소(D2BZ8)는 서로 다르기 때문에 동일한 값이 아닙니다.
 
 ---
 
@@ -505,10 +507,13 @@ alphabet === abc; // false
 
 `Memory Heap`은 `Primitive(원시)`타입보다 크기가 큰 `Reference(참조)`타입의 값을 저장하기 위한 저장소입니다.
 
+데이터 타입에 따른 저장과 참조 원칙을 이해하고 효율적인 프로그래밍을 하는데 도움이 되시길 바랍니다.
+
 [# 목차](#-목차)
 
 _references_
 
+-   [https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures)
 -   [https://charming-kyu.tistory.com/19](https://charming-kyu.tistory.com/19)
 -   [https://medium.com/@allansendagi/javascript-fundamentals-call-stack-and-memory-heap-401eb8713204](https://medium.com/@allansendagi/javascript-fundamentals-call-stack-and-memory-heap-401eb8713204)
 -   [https://levelup.gitconnected.com/understanding-call-stack-and-heap-memory-in-js-e34bf8d3c3a4](https://levelup.gitconnected.com/understanding-call-stack-and-heap-memory-in-js-e34bf8d3c3a4)
