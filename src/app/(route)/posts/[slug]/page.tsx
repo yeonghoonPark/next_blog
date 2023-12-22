@@ -31,7 +31,7 @@ export default function PostDetailPage({ params }: { params: { slug: string } })
                     prose
                     dark:prose-invert 
                     prose-hr:border-gray-300 dark:prose-hr:border-gray-700 
-                    prose-blockquote:py-0.5 prose-blockquote:px-4 prose-blockquote:bg-gray-200 dark:prose-blockquote:bg-slate-800 prose-blockquote:rounded-r prose-blockquote:not-italic prose-blockquote:font-normal prose-blockquote:border-rose-500 dark:prose-blockquote:border-pink-400
+                    prose-blockquote:py-0.5 prose-blockquote:px-4 prose-blockquote:bg-gray-200 dark:prose-blockquote:bg-slate-900 prose-blockquote:rounded-r prose-blockquote:not-italic prose-blockquote:font-normal prose-blockquote:border-rose-500 dark:prose-blockquote:border-pink-400
                     prose-p:before:content-none prose-p:after:content-none 
                     prose-em:text-[#112827] dark:prose-em:text-[#fff]
                     prose-code:text-rose-500 dark:prose-code:text-pink-400
