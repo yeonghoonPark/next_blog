@@ -16,7 +16,7 @@ function PostContents({ post, type }: Props) {
             <h2
                 className={`w-full font-bold ${
                     type === "card"
-                        ? "text-base group-hover:text-sky-500 group-hover:dark:text-emerald-500 truncate"
+                        ? "text-base group-hover:text-rose-500 group-hover:dark:text-pink-400 truncate"
                         : "text-3xl"
                 } `}
             >

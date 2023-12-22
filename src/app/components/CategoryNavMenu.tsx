@@ -16,7 +16,7 @@ export default function CategoryNavMenu({ categories, selected, onCategoryClick 
                 <li
                     className={`${
                         selected === category &&
-                        "text-sky-500 dark:text-emerald-500 sm:border-b-sky-500 dark:sm:border-b-emerald-500"
+                        "text-rose-500 dark:text-pink-400 sm:border-b-rose-500 dark:sm:border-b-pink-400"
                     } w-full py-1 font-semibold text-center text-sm sm:py-3 sm:border-b sm:border-neutral-300 dark:sm:border-gray-700 sm:text-base  cursor-pointer`}
                     key={i}
                     onClick={() => handleClick(category)}

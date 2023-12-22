@@ -25,20 +25,22 @@ export default function PostDetailPage({ params }: { params: { slug: string } })
 
             <section
                 className="               
-                    max-w-2xl 
+                    max-w-2xl
+                    mx-auto
                     text-[#112827] dark:text-[#fff]
                     prose
                     dark:prose-invert 
                     prose-hr:border-gray-300 dark:prose-hr:border-gray-700 
-                    prose-blockquote:py-0.5 prose-blockquote:px-4 prose-blockquote:bg-gray-200 dark:prose-blockquote:bg-gray-900 prose-blockquote:rounded-r prose-blockquote:not-italic prose-blockquote:font-normal prose-blockquote:border-pink-500 dark:prose-blockquote:border-pink-400
-                    prose-p:before:content-none prose-p:after:content-none
+                    prose-blockquote:py-0.5 prose-blockquote:px-4 prose-blockquote:bg-gray-200 dark:prose-blockquote:bg-slate-800 prose-blockquote:rounded-r prose-blockquote:not-italic prose-blockquote:font-normal prose-blockquote:border-rose-500 dark:prose-blockquote:border-pink-400
+                    prose-p:before:content-none prose-p:after:content-none 
                     prose-em:text-[#112827] dark:prose-em:text-[#fff]
-                    prose-code:text-pink-500 dark:prose-code:text-pink-400
+                    prose-code:text-rose-500 dark:prose-code:text-pink-400
                     prose-a:no-underline prose-a:text-sky-600 dark:prose-a:text-sky-400
                     prose-table:mb-5 prose-table:border-separate prose-table:border-spacing-1 prose-table:text-center 
-                    prose-th:p-1.5 prose-th:rounded prose-th:bg-gray-300 dark:prose-th:bg-gray-600
-                    prose-td:p-1.5 prose-td:rounded prose-td:bg-gray-200 dark:prose-td:bg-gray-500
+                    prose-th:p-1.5 prose-th:rounded prose-th:bg-gray-300 dark:prose-th:bg-slate-700
+                    prose-td:p-1.5 prose-td:rounded prose-td:bg-gray-200 dark:prose-td:bg-slate-600
                     prose-h2:mt-[-100px] prose-h2:pt-[100px]
+                    prose-h3:text-base
                 "
             >
                 <MDXComponent />
