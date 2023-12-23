@@ -9,15 +9,6 @@ featured: true
 
 ---
 
-## 자바스크립트의 데이터 유형에 따른 저장 및 참조 원칙
-
-> `Call Stack` & `Memory Heap`
-
-자바스크립트의 데이터 저장소는 크게 `Call Stack`과 `Memory Heap`으로 구성되어 있습니다.  
-데이터는 변수에 할당할 수 있으며 변수에 할당된 데이터는 메모리에 저장됩니다, 하지만 메모리에 저장되는 방식에 있어 `Primitive(원시)`타입과 `Reference(참조)`타입은 서로 차이점이 존재합니다. 이 차이점을 이해한다면 보다 효율적이고 버그가 적은 코드를 작성하는 데 도움이 되리라 생각합니다.
-
----
-
 ## # 목차
 
 -   [# `Call Stack`과 `Memory Heap`의 역할](#-call-stack과-memory-heap의-역할)
@@ -41,7 +32,7 @@ featured: true
 
     1. `Reference(참조)`타입의 데이터를 저장
 
-> hoisting, this, function..등의 관리나 실행을 담당하는 `Execution Context(실행 컨텍스트)`나 이를 위해 `{}`간의 유효범위를 위해 상하관계를 정의하는 `Scope Chain(스코프 체인)`의 역할은 다루지 않으며 해당 글에서의 `Call Stack`은 오로지 `Primitive(원시)`타입을 저장하는 저장소의 역할을 의미합니다.
+> hoisting, this, function..등의 관리나 실행을 담당하는 `Execution Context(실행 컨텍스트)`나 이를 위해 `{}`간의 유효범위를 위해 상하관계를 정의하는 `Scope Chain(스코프 체인)`의 역할은 다루지 않으며 해당 글에서의 `Call Stack`은 `Primitive(원시)`타입을 저장하는 저장소의 역할을 의미합니다.
 
 ---
 
@@ -49,7 +40,7 @@ featured: true
 
 [# 목차](#-목차)
 
--   `Primitive(원시)`타입의 종류 [(JavaScript data Types, MDN Web Docs)](https://developer.mozilla.org/ko/docs/Web/JavaScript/Data_structures)
+1.  `Primitive(원시)`타입의 종류 [(JavaScript data Types, MDN Web Docs)](https://developer.mozilla.org/ko/docs/Web/JavaScript/Data_structures)
 
     -   string
     -   number
@@ -59,15 +50,14 @@ featured: true
     -   undefined
     -   Symbol
 
--   `Primitive(원시)`타입의 특징 [(Immutable, MDN Web Docs)](https://developer.mozilla.org/ko/docs/Glossary/Immutable)
+2.  `Primitive(원시)`타입의 특징 [(Immutable, MDN Web Docs)](https://developer.mozilla.org/ko/docs/Glossary/Immutable)
+
     -   `Immutable Value(변경 불가능한 값)`
 
 자바스크립트에서는 `Call Stack`과 `Memory Heap`이라는 두 곳의 메모리 공간이 존재합니다.
 `Primitive(원시)`타입은 `Call Stack` 한 곳에만 저장되며 경우에 따른 저장 원칙은 다음과 같습니다.
 
-<br />
-
-### 1. a라는 변수에 "apple"을 할당하는 경우
+-   a라는 변수에 "apple"을 할당하는 경우
 
 ```typescript
 let a = "apple";
@@ -97,7 +87,7 @@ let a = "apple";
 
 ---
 
-### 2. a를 호출하는 경우
+-   a를 호출하는 경우
 
 ```typescript
 a;
@@ -126,7 +116,7 @@ a;
 
 ---
 
-### 3. a의 값을 "banana"로 재할당하는 경우
+-   a의 값을 "banana"로 재할당하는 경우
 
 ```typescript
 a = "banana";
@@ -161,11 +151,11 @@ a = "banana";
 
 > `Primitive(원시)`타입은 `Immutable Value(변경 불가능한 값)`입니다.  
 > `Immutable Value(변경 불가능한 값)`란 식별자가 최종적으로 가리키는 값은 변경이 불가능하다는 것을 의미합니다.  
-> 즉, 이미 저장된 값("apple")을 변경할 수 없기 때문에 `Call Stack`에 새로운 주소(B2DC5)를 할당하고 값("banana")을 저장하는 것입니다. 그리고 이를 불변성이 유지되었다고 말합니다.
+> 즉, 이미 저장된 값("apple")을 변경할 수 없기 때문에 `Call Stack`에 새로운 주소(B2DC5)를 할당하고 값("banana")을 저장하는 것입니다. 그리고 이를 불변성이 유지되었다고 합니다.
 
 ---
 
-### 4. b라는 새로운 변수에 "banana"를 할당하는 경우
+-   b라는 새로운 변수에 "banana"를 할당하는 경우
 
 ```typescript
 let b = "banana";
@@ -201,7 +191,7 @@ let b = "banana";
 
 ---
 
-### 5. a와 b의 값의 비교
+-   a와 b의 값의 비교
 
 ```typescript
 a === b; // true
@@ -238,21 +228,20 @@ a === b; // true
 
 [# 목차](#-목차)
 
--   `Reference(참조)`타입의 종류 [(JavaScript data Types, MDN Web Docs)](https://developer.mozilla.org/ko/docs/Web/JavaScript/Data_structures)
+1.  `Reference(참조)`타입의 종류 [(JavaScript data Types, MDN Web Docs)](https://developer.mozilla.org/ko/docs/Web/JavaScript/Data_structures)
 
     -   array
     -   object
     -   function
 
--   `Reference(참조)`타입의 특징 [(Mutable, MDN Web Docs)](https://developer.mozilla.org/ko/docs/Glossary/Mutable)
+2.  `Reference(참조)`타입의 특징 [(Mutable, MDN Web Docs)](https://developer.mozilla.org/ko/docs/Glossary/Mutable)
+
     -   `Mutable Value(변경 가능한 값)`
 
 `Reference(참조)`타입은 `Call Stack`과 `Memory Heap` 두 곳에 모두 저장됩니다.  
-`Reference(참조)`타입의 경우, 식별자는 `Call Stack`을 가리키지만 값은 `Memory Heap`에 저장되며 경우에 따른 저장 원칙은 다음과 같습니다.
+`Reference(참조)`타입의 경우, 식별자는 `Call Stack`을 가리키지만 실제 값은 `Memory Heap`에 저장되며 경우에 따른 저장 원칙은 다음과 같습니다.
 
-<br />
-
-### 1. alphabet이라는 변수에 "a", "b" 요소를 가진 array타입의 변수 선언
+-   alphabet이라는 변수에 "a", "b" 요소를 가진 array타입의 변수 선언
 
 ```typescript
 let alphabet = ["a", "b"];
@@ -298,7 +287,7 @@ let alphabet = ["a", "b"];
 
 ---
 
-### 2. alphabet을 호출하는 경우
+-   alphabet을 호출하는 경우
 
 ```typescript
 console.log(alphabet);
@@ -343,7 +332,7 @@ console.log(alphabet);
 
 ---
 
-### 3. alphabet의 값을 ["a", "b", "c"]로 변경 하는 경우
+-   alphabet의 값을 ["a", "b", "c"]로 변경 하는 경우
 
 ```typescript
 alphabet = ["a", "b", "c"];
@@ -388,11 +377,11 @@ alphabet = ["a", "b", "c"];
 
 > `Reference(참조)`타입은 `Mutable Value(변경 가능한 값)`입니다.  
 > `Mutable Value(변경 가능한 값)`란 식별자가 최종적으로 가리키는 값을 변경할 수 있다는 것을 의미합니다.  
-> 즉, `Call Stack`에 기존의 주소(C1AZ3)를 사용하면서 식별자가 최종적으로 가리키는 저장 된 값(["a", "b"])을 새로운 값(["a", "b", "c"])으로 변경합니다. 그리고 이를 불변성이 유지되지 않았다고 말합니다.
+> 즉, `Call Stack`에 기존의 주소(C1AZ3)를 사용하면서 식별자가 최종적으로 가리키는 저장 된 값(["a", "b"])을 새로운 값(["a", "b", "c"])으로 변경합니다. 그리고 이를 불변성이 유지되지 않았다고 합니다.
 
 ---
 
-### 4. abc라는 새로운 변수에 값을 ["a", "b", "c"]로 할당 하는 경우
+-   abc라는 새로운 변수에 값을 ["a", "b", "c"]로 할당 하는 경우
 
 ```typescript
 let abc = ["a", "b", "c"];
@@ -446,7 +435,7 @@ let abc = ["a", "b", "c"];
 
 ---
 
-### 5. alphabet과 abc의 값의 비교
+-   alphabet과 abc의 값의 비교
 
 ```typescript
 alphabet === abc; // false
@@ -507,13 +496,14 @@ alphabet === abc; // false
 
 `Memory Heap`은 `Primitive(원시)`타입보다 크기가 큰 `Reference(참조)`타입의 값을 저장하기 위한 저장소입니다.
 
-데이터 타입에 따른 저장과 참조 원칙을 이해하고 효율적인 프로그래밍을 하는데 도움이 되시길 바랍니다.
-
 [# 목차](#-목차)
 
-_references_
+_# references_
 
--   [https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures)
--   [https://charming-kyu.tistory.com/19](https://charming-kyu.tistory.com/19)
--   [https://medium.com/@allansendagi/javascript-fundamentals-call-stack-and-memory-heap-401eb8713204](https://medium.com/@allansendagi/javascript-fundamentals-call-stack-and-memory-heap-401eb8713204)
--   [https://levelup.gitconnected.com/understanding-call-stack-and-heap-memory-in-js-e34bf8d3c3a4](https://levelup.gitconnected.com/understanding-call-stack-and-heap-memory-in-js-e34bf8d3c3a4)
+_[https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures)_
+
+_[https://charming-kyu.tistory.com/19](https://charming-kyu.tistory.com/19)_
+
+_[https://medium.com/@allansendagi/javascript-fundamentals-call-stack-and-memory-heap-401eb8713204](https://medium.com/@allansendagi/javascript-fundamentals-call-stack-and-memory-heap-401eb8713204)_
+
+_[https://levelup.gitconnected.com/understanding-call-stack-and-heap-memory-in-js-e34bf8d3c3a4](https://levelup.gitconnected.com/understanding-call-stack-and-heap-memory-in-js-e34bf8d3c3a4)_

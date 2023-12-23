@@ -23,7 +23,7 @@ featured: true
 
 [# 목차](#-목차)
 
-### 1. 기본 구조
+1. 구조
 
 ```typescript
 leftExpression ?? rightExpression;
@@ -38,13 +38,13 @@ leftExpression ?? rightExpression;
 
 [# 목차](#-목차)
 
-### 1. 기본 원리
+1. 원리
 
 ```typescript
 (null || undefined) ?? rightExpression;
 ```
 
-    -   left expression의 값이 `null` 또는 `undefined`인 경우 오른쪽이 실행되고 그렇지 않다면 왼쪽이 실행됩니다.
+-   left expression의 값이 `null` 또는 `undefined`인 경우 오른쪽이 실행되고 그렇지 않다면 왼쪽이 실행됩니다.
 
 ---
 
@@ -52,28 +52,25 @@ leftExpression ?? rightExpression;
 
 [# 목차](#-목차)
 
-### 1. 기본 예시
+1.  예시
 
 ```typescript
-// 1.
 let something;
 
-// 2.
 const printEmpty = () => {
     console.log("empty");
 };
 
-// 3.
 something ?? printEmpty();
 ```
 
-1.  something은 선언은 되었지만 값이 할당되지 않았기 때문에 `undefined`입니다.
-2.  printEmpty()는 console에 "empty"를 출력하는 함수입니다.
-3.  left expression이 `undefined`이기 때문에 right expression인 printEmpty()를 실행합니다.
+-   something은 선언은 되었지만 값이 할당되지 않았기 때문에 `undefined`입니다.
+-   printEmpty()는 console에 "empty"를 출력하는 함수입니다.
+-   left expression이 `undefined`이기 때문에 right expression인 printEmpty()를 실행합니다.
 
 <br />
 
-### 2. if문 변경 예시
+2.  if문 변경 예시
 
 ```typescript
 // if...else
@@ -102,7 +99,7 @@ const printMessage = (text) => {
 
 [# 목차](#-목차)
 
-### 1. 구조의 차이점
+1. 차이점
 
 ```typescript
 falsy || rightExpression;
@@ -110,37 +107,43 @@ falsy || rightExpression;
 
 -   left expression이 `falsy`인 경우 오른쪽이 실행되고 그렇지 않다면 왼쪽이 실행됩니다.
 
-<br />
+2.  `falsy`가 되는 경우
 
-### 2. `falsy`가 되는 경우의 값
-
-`falsy`는 `null`이나 `undefined`뿐만 아니라 다음의 값들을 모두 포함합니다.
-
--   null
--   undefined
--   false
--   0
--   -0
--   NaN
--   "" ('', ``)
+    -   null
+    -   undefined
+    -   false
+    -   0
+    -   -0
+    -   NaN
+    -   "" ('', ``)
 
 ---
 
 ### # 마무리
 
-연산자에 대한 해당 유효조건은 다음과 같습니다.
+    1.  `nullish coalescing operator(null 병합 연산자)`
 
-    - `nullish coalescing operator(null 병합 연산자)` : null, undefined
+        -   null
+        -   undefined
 
-    - `logical OR operator(논리적 OR 연산자)` : null, undefined, false, 0, -0, NaN, ""('', ``)
+    2.  `logical OR operator(논리적 OR 연산자)`
 
-    - `default parameter` : undefined
+        -   null
+        -   undefined
+        -   false
+        -   0
+        -   -0
+        -   NaN
+        -   "" ('', ``)
 
-연산자에 대한 원리나 조건을 이해하는데 도움이 되시길 바랍니다.
+    3.  `default parameter`
+
+        -   undefined
 
 [# 목차](#-목차)
 
-_references_
+_# references_
 
--   [https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Nullish_coalescing](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Nullish_coalescing)
--   [https://www.youtube.com/watch?v=BUAhpB3FmS4](https://www.youtube.com/watch?v=BUAhpB3FmS4)
+_[https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Nullish_coalescing](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Nullish_coalescing)_
+
+_[https://www.youtube.com/watch?v=BUAhpB3FmS4](https://www.youtube.com/watch?v=BUAhpB3FmS4)_
