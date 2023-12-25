@@ -1,0 +1,355 @@
+---
+title: Why Avoid Using Inline Styles in React.js
+description: What are the benefits of avoiding inline style?
+category: React.js
+thumbnail: /image/why-avoid-using-inline-styles-in-react.jpg
+createdAt: 2023-12-25
+featured: true
+---
+
+---
+
+## # 목차
+
+-   [# `Readability(가독성)`과 `Maintainability(유지보수)` 향상](#-readability가독성과-maintainability유지보수-향상)
+-   [# `Performance(성능)`상향](#-performance성능상향)
+-   [# 보다 쉬운 `Features(기능)` 구현](#-보다-쉬운-features기능-구현)
+-   [# 마무리](#-마무리)
+
+---
+
+## # `Readability(가독성)`과 `Maintainability(유지보수)` 향상
+
+[# 목차](#-목차)
+
+`Post/Pre-Processors(전처리기)`나 `CSS-in-JS` library를 사용하면 inline style을 사용할 때 보다 `Readability(가독성)`를 올려주고 `Maintainability(유지보수)`또한 수월하게 만들어 줍니다.
+
+다음은 간단한 button 구현에 대한 예시입니다.
+
+1. inline style
+
+```js
+// 1. using inline style
+function App() {
+    const handleButtonClick = () => {
+        alert("what did you expect..?");
+    };
+    return (
+        <button
+            style={{
+                height: "40px",
+                padding: "8px",
+                backgroundColor: "coral",
+                borderRadius: "8px",
+                color: "white",
+                fontSize: "16px",
+                fontWeight: "500",
+            }}
+            onClick={() => handleButtonClick()}
+        >
+            click me!!
+        </button>
+    );
+}
+```
+
+재사용이 불가능하며 business logic과 style이 섞여 있어 다소 난잡해 보입니다.
+
+---
+
+2. `Post/Pre-Processors(전처리기)`
+
+```css
+/* globals.css */
+.button {
+    height: 40px;
+    padding: 8px;
+    background-color: coral;
+    border-radius: 8px;
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+}
+```
+
+```js
+import "@/app/globals.css";
+
+// 2. using post/pre-processors
+function App() {
+    const handleButtonClick = () => {
+        alert("what did you expect..?");
+    };
+    return (
+        <button className="button" onClick={() => handleButtonClick()}>
+            click me!!
+        </button>
+    );
+}
+```
+
+inline style을 사용한 1번에 비해 2번은 재사용이 가능하며 business logic과 style이 분리되어 `Readability(가독성)`와 `Maintainability(유지보수)`에서 이점이 있습니다.
+
+---
+
+## # `Performance(성능)`상향
+
+[# 목차](#-목차)
+
+inline style은 때에 따라 re-rendering을 할 때마다 새로운 object(객체)가 생성될 수 있습니다.  
+style을 props로 부모에게 전달받을 때 inline style을 object(객체)로 직접 정의하는 경우입니다.
+
+```js
+import { memo, useState } from "react";
+
+// 1. child component
+const StylableDiv = memo(function StylableDiv({ style }) {
+    for (let i = 100000; i--; ) {
+        console.log(i);
+    }
+    return <div style={style} />;
+});
+
+// 2. parent component
+export default function App() {
+    const [count, setIsCount] = useState(0);
+    const handleButtonClick = () => {
+        setIsCount((prev) => prev + 1);
+    };
+    return (
+        <div>
+            <StylableDiv
+                style={{
+                    width: "40px",
+                    height: "40px",
+                    backgroundColor: "lightblue",
+                }}
+            />
+            <button onClick={() => handleButtonClick()}>{count}</button>
+        </div>
+    );
+}
+```
+
+-   1번의 자식 컴포넌트는 rendering 될 때마다 100,000번의 console을 출력하는 비용이 많이 드는 logic을 포함하고 있습니다.
+-   2번의 부모 컴포넌트는 count라는 state를 가지고 있고 button을 클릭할 경우 state가 변화하고 그에 따라 re-rendering이 발생합니다.
+-   2번의 부모 컴포넌트는 사용자에 의해 state가 빈번하게 변경될 수 있고 이를 대비해 비용이 많이 드는 자식 컴포넌트는 불필요한 re-rendering을 방지하기 위해 `memo` 해두었습니다.
+
+하지만 이러한 최적화 과정을 거치더라도 2번의 자식 컴포넌트는 re-rendering이 발생합니다.  
+바로 이 부분이 inline style을 지양해야 하는 궁극적인 이유라고 생각합니다. React는 props의 변경 여부를 `Shallow Comparison(얕은 비교)`을 통해 판단하기 때문에 `memo`에 대한 비용을 추가하더라도 object(객체)로 전달해야만 하는 inline style은 적절하지 않으며 만약 props로 전달하는 데이터 타입을 변경하거나 `useMemo`를 사용하여 참조 값을 caching 하는 방법 또한 비용이 많이 드는 작업이기 때문입니다.
+
+> object(객체) 타입인 props에 object(객체) 타입의 style을 정의하면 object(객체) 안에 object(객체)가 존재하는 nested object(중첩 객체)의 구조를 가지게 됩니다.  
+> 하지만 `Shallow Comparison(얕은 비교)`은 식별자가 가리키는 최상위 주소만을 참조합니다.  
+> 즉, React는 nested object(중첩 객체) 안에 있는 inner object(내부 객체)를 새로운 참조 값으로 인식하고 props가 변경되었다고 판단하기 때문에 re-rendering이 발생하게 됩니다.
+
+다음은 cache를 이용하거나 전달되는 props의 데이터 타입을 변경하는 예시입니다.
+
+1. 2번의 부모 컴포넌트에서 props로 정의해주는 style을 컴포넌트 외부로 이동시켜 caching 한다.
+
+```js
+import { memo, useState } from "react";
+
+// 1. child component
+const StylableDiv = memo(function StylableDiv({ style }) {
+    for (let i = 100000; i--; ) {
+        console.log(i);
+    }
+    return <div style={style} />;
+});
+
+// external declaration for caching
+const squareStyle = {
+    width: "40px",
+    height: "40px",
+    backgroundColor: "lightblue",
+};
+
+// 2. parent component
+export default function App() {
+    const [count, setIsCount] = useState(0);
+    const handleButtonClick = () => {
+        setIsCount((prev) => prev + 1);
+    };
+    return (
+        <div>
+            <StylableDiv style={squareStyle} />
+            <button onClick={() => handleButtonClick()}>{count}</button>
+        </div>
+    );
+}
+```
+
+style을 컴포넌트 밖에서 선언하여 컴포넌트의 rendering과는 무관할 수 있도록 caching 하는 방법입니다. `Performance(성능)`를 챙겼지만, state 변화에 따른 dynamic style은 가지지 못합니다.
+
+---
+
+2. 만약 state에 따라 style이 변경되어야 한다면 컴포넌트 내부에서 `useMemo`를 이용해 caching 한다.
+
+```js
+import { memo, useState, useMemo, useEffect } from "react";
+
+// 1. child component
+const StylableDiv = memo(function StylableDiv({ style }) {
+    for (let i = 100000; i--; ) {
+        console.log(i);
+    }
+    return <div style={style} />;
+});
+
+// 2. parent component
+export default function App() {
+    const [count, setIsCount] = useState(0);
+    const [isBiggerThanTen, setIsBiggerThanTen] = useState(false);
+    const handleButtonClick = () => {
+        setIsCount((prev) => prev + 1);
+    };
+
+    // internal declaration for caching with useMemo
+    const squareStyle = useMemo(
+        () => ({
+            width: "40px",
+            height: "40px",
+            backgroundColor: isBiggerThanTen ? "red" : "lightblue",
+        }),
+        [isBiggerThanTen]
+    );
+
+    useEffect(() => {
+        count > 10 && setIsBiggerThanTen(true);
+    }, [count]);
+    return (
+        <div>
+            <StylableDiv style={squareStyle} />
+            <button onClick={() => handleButtonClick()}>{count}</button>
+        </div>
+    );
+}
+```
+
+state 변화에 따른 style 변화를 위해 컴포넌트 내부에서 선언하고 re-rendering을 방지하기 위해 `useMemo`를 사용하여 caching 하는 방법입니다. state 변화에 따른 dynamic style의 이점을 가지지만 `useMemo`를 사용함에 따라 비용도 추가되었습니다.
+
+---
+
+3. library나 framework의 힘을 빌린다. (feat. `tailwind`)
+
+```js
+import { memo, useState, useEffect } from "react";
+
+// 1. child component
+const StylableDiv = memo(function StylableDiv({ className }) {
+    for (let i = 100000; i--; ) {
+        console.log(i);
+    }
+    return <div className={className} />;
+});
+
+// 2. parent component
+export default function App() {
+    const [count, setIsCount] = useState(0);
+    const [isBiggerThanTen, setIsBiggerThanTen] = useState(false);
+    const handleButtonClick = () => {
+        setIsCount((prev) => prev + 1);
+    };
+    useEffect(() => {
+        count > 10 && setIsBiggerThanTen(true);
+    }, [count]);
+    return (
+        <div>
+            <StylableDiv
+                className={`
+                    w-[40px] 
+                    h-[40px] 
+                    ${isBiggerThanTen ? "bg-[red]" : "bg-[lightblue]"}
+                `}
+            />
+            <button onClick={() => handleButtonClick()}>{count}</button>
+        </div>
+    );
+}
+```
+
+state 변화에 따른 dynamic style의 이점을 가지면서 `useMemo`에 대한 비용 또한 추가되지 않습니다.
+
+---
+
+## # 보다 쉬운 `Features(기능)` 구현
+
+[# 목차](#-목차)
+
+inline style을 사용한다고 pseudo class, media query, animation 등의 많은 `Features(기능)`의 구현이 불가능한 것은 아닙니다.
+하지만 대부분 별도의 library를 설치해야 하거나 매우 번거로운 작업임은 틀림없습니다.
+
+다음은 간단한 hover 기능을 구현한 예시입니다.
+
+1. inline style을 사용한 구현
+
+```js
+import { useState } from "react";
+
+// 1. inline style
+function HoverableDiv() {
+    const [isHovered, setHovered] = useState(false);
+    return (
+        <div
+            style={{
+                backgroundColor: isHovered ? "red" : "lightblue",
+            }}
+            onMouseEnter={() => setHovered(true)}
+            onMouseLeave={() => setHovered(false)}
+        >
+            hover me!!
+        </div>
+    );
+}
+```
+
+구현이 불가능하진 않지만 번거롭고 style을 위해 state나 event에 대한 비용이 추가됩니다.
+
+---
+
+2. `CSS-in-JS` library를 사용한 구현 (feat.`styled-components`)
+
+```js
+import styled from "styled-components";
+
+// 2. styled-components
+const StyledDiv = styled.div`
+    background-color: lightblue;
+    &:hover {
+        background-color: red;
+    }
+`;
+
+function HoverableDiv() {
+    return <StyledDiv>hover me!!</StyledDiv>;
+}
+```
+
+3. `CSS framework`를 사용한 구현 (feat. `tailwind`)
+
+```js
+// 3. tailwind
+function HoverableDiv() {
+    return <div className="bg-[lightblue] hover:bg-[red]">hover me!!</div>;
+}
+```
+
+1번에 비해 2, 3번은 style을 위한 state나 event에 대한 비용을 아끼고 보다 쉽게 구현할 수 있습니다.
+
+---
+
+## # 마무리
+
+-   external style sheets, library, 또는 framework를 적극 활용하자
+
+inline style을 사용한다고 지구가 멸망하거나 잘 진행되던 프로젝트가 갑자기 파기되는 일은 없었습니다.  
+해당 글에서 이점으로 소개해 드린 `Readability(가독성)`와 `Maintainability(유지보수)`의 향상도 `tailwind`나 `bootstrap`과 같은 framework와 비교한다면 그렇게 큰 이점으로 다가오지 않습니다.
+다만 inline style을 사용하지 않고 잘 만들어진 library 또는 framework를 프로젝트에 알맞게 사용함으로 `Productivity(생산성)`를 크게 올리고 큰 비용을 절감했던 경험은 있습니다. 자신의 성향이나 프로젝트의 상황에 맞는 방식을 선택하여 효율적인 프로그래밍 하시는 데 도움이 되길 바랍니다.
+
+[# 목차](#-목차)
+
+_# references_
+
+_[https://blog.logrocket.com/why-you-shouldnt-use-inline-styling-in-production-react-apps/](https://blog.logrocket.com/why-you-shouldnt-use-inline-styling-in-production-react-apps/)_
+
+_[https://www.linkedin.com/pulse/stop-using-inline-styles-react-js-azeem-aleem](https://www.linkedin.com/pulse/stop-using-inline-styles-react-js-azeem-aleem)_
