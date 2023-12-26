@@ -22,7 +22,7 @@ featured: true
 
 [# 목차](#-목차)
 
-`Post/Pre-Processors(전처리기)`나 `CSS-in-JS` library를 사용하면 inline style을 사용할 때 보다 `Readability(가독성)`를 올려주고 `Maintainability(유지보수)`또한 수월하게 만들어 줍니다.
+`Post/Pre-Processors(전처리기)`나 `CSS-in-JS` library를 사용하면 inline style을 사용할 때 보다 `Readability(가독성)`를 올려주고 `Maintainability(유지보수)` 또한 수월하게 만들수 있습니다.
 
 다음은 간단한 button 구현에 대한 예시입니다.
 
@@ -96,7 +96,7 @@ inline style을 사용한 1번에 비해 2번은 재사용이 가능하며 busin
 
 [# 목차](#-목차)
 
-inline style은 때에 따라 re-rendering을 할 때마다 새로운 object(객체)가 생성될 수 있습니다.  
+inline style은 상황에 따라 re-rendering이 발생할 때 새로운 object(객체)가 생성될 수 있습니다.  
 style을 props로 부모에게 전달받을 때 inline style을 object(객체)로 직접 정의하는 경우입니다.
 
 ```js
@@ -144,7 +144,7 @@ export default function App() {
 
 다음은 cache를 이용하거나 전달되는 props의 데이터 타입을 변경하는 예시입니다.
 
-1. 2번의 부모 컴포넌트에서 props로 정의해주는 style을 컴포넌트 외부로 이동시켜 caching 한다.
+1. 2번의 부모 컴포넌트에서 props로 정의해주는 style을 컴포넌트 외부로 이동시켜 caching 할 수 있습니다.
 
 ```js
 import { memo, useState } from "react";
@@ -183,7 +183,7 @@ style을 컴포넌트 밖에서 선언하여 컴포넌트의 rendering과는 무
 
 ---
 
-2. 만약 state에 따라 style이 변경되어야 한다면 컴포넌트 내부에서 `useMemo`를 이용해 caching 한다.
+2. 만약 state에 따라 style이 변경되어야 한다면 컴포넌트 내부에서 `useMemo`를 이용해 caching 할 수 있습니다.
 
 ```js
 import { memo, useState, useMemo, useEffect } from "react";
