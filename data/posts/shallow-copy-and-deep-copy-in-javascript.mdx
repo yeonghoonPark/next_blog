@@ -1,0 +1,240 @@
+---
+title: Shallow copy and Deep copy in JavaScript
+description: Difference between Shallow and Deep copy
+category: JavaScript
+thumbnail: /image/shallow-copy-and-deep-copy-in-javascript.jpg
+createdAt: 2024-01-21
+featured: true
+---
+
+---
+
+## # 목차
+
+- [# Data copy를 하는 이유](#-data-copy를-하는-이유)
+- [# `Shallow copy`와 `Deep copy`의 차이점](#-shallow-copy와-deep-copy의-차이점)
+- [# `Shallow copy`를 하는 방법](#-shallow-copy를-하는-방법)
+- [# `Deep copy`를 하는 방법](#-deep-copy를-하는-방법)
+- [# 마무리](#-마무리)
+
+---
+
+## # Data copy를 하는 이유
+
+[# 목차](#-목차)
+
+데이터를 복사하는 주요 이유 중 하나는 `원본 데이터가 손상되는 것을 방지`하기 위함입니다.  
+기본적으로 불변성이 유지 되지 않는 `Reference type`의 array 또는 object 같은 데이터를 작업할 때 의도치 않게 원본 데이터가 변경된다면 예상치 못한 결과를 마주할 수 있습니다. 특히 어플리케이션의 광범위한 부분에서 동일한 데이터를 사용하는 경우 많은 부작용을 야기할 수 있어 주의가 필요합니다.
+
+> ❓ Data copy를 하는 이유
+>
+> ✅ 원본 데이터를 손상시키지 않고 참조한 자료를 가공하여 새로운 데이터를 만들기 위함입니다.
+
+> ✳️ 복사는 단순한 값의 복제가 아닌 `원본과 관계 없는 새로운 데이터를 생성`하는 것을 의미합니다.
+
+---
+
+## # `Shallow copy`와 `Deep copy`의 차이점
+
+[# 목차](#-목차)
+
+두 복사의 차이점은 `Reference type의 데이터를 어느 차원까지 새롭게 데이터를 생성하는가` 입니다.
+
+```js
+// 1️번. 1차원 Reference type 데이터
+const array = [1, 2, 3];
+const object = { a: 1, b: 2 };
+
+// 2️번. 2차원 이상 중첩 Reference 데이터
+const nastedArray = [1, 2, [3]];
+const nastedObject = { a: 1, b: { c: 2 } };
+const arrayOfObjects = [{ a: 1 }, { b: 2 }];
+```
+
+`Shallow copy`는 1차원으로 구성된 `Reference type`만 새롭게 생성합니다.  
+반면 `Deep copy`는 2차원 이상으로 구성된 모든 `Reference type`을 새롭게 생성합니다.
+
+> 얕은 복사와 깊은 복사 모두 원본과는 관계 없는 독립적인 새로운 데이터를 생성하는 점은 동일합니다.  
+> 하지만 얕은 복사와 깊은 복사는 `어느 차원까지 새로운 데이터를 생성하는지에 차이`를 가집니다.
+
+---
+
+## # `Shallow copy`를 하는 방법
+
+[# 목차](#-목차)
+
+JavaScript에서 지원하는 모든 내장 method는 `Shallow copy`를 수행합니다.
+
+1. Spread syntax(...)
+
+- array ✅
+- object ✅
+
+```js
+const originalArray = [1, 2, 3];
+const shallowCopyArray = [...originalArray];
+
+const originalObject = { a: 1, b: 2 };
+const shallowCopyObject = { ...originalObject };
+```
+
+<br />
+
+2. Array.from()
+
+- array ✅
+- object ❌
+
+```js
+const originalArray = [1, 2, 3];
+const shallowCopyArray = Array.from(originalArray);
+```
+
+<br />
+
+3. Array.prototype.concat()
+
+- array ✅
+- object ❌
+
+```js
+const originalArray = [1, 2, 3];
+const shallowCopyArray = originalArray.concat();
+```
+
+<br />
+
+4. Array.prototype.slice()
+
+- array ✅
+- object ❌
+
+```js
+const originalArray = [1, 2, 3];
+const shallowCopyArray = originalArray.slice();
+```
+
+<br />
+
+5. Object.assign()
+
+- array ❌
+- object ✅
+
+```js
+const originalObject = { a: 1, b: 2 };
+const shallowCopyObject = Object.assign({}, originalObject);
+```
+
+<br />
+
+6. Object.create()
+
+- array ❌
+- object ✅
+
+```js
+const originalObject = { a: 1, b: 2 };
+const shallowCopyObject = Object.create(originalObject);
+```
+
+<br />
+
+> JavaScript에서 지원하는 위의 방법들은 1차원 형식의 array나 object에서는 복사가 됩니다.  
+> 하지만 array나 object안에 array나 object가 위치하는 2차원 형식의 중첩 된 구조를 가지게 된다면 `1차원만 복사되고 2차원은 복사되지 않기 때문에 완전한 복사를 위해서는 Deep copy가 필요합니다.`
+
+---
+
+## # `Deep copy`를 하는 방법
+
+[# 목차](#-목차)
+
+1. Recursive Function
+
+- array ✅
+- object ✅
+
+```js
+function deepCopy(obj) {
+  if (typeof obj !== "object" || obj === null) {
+    return obj;
+  }
+
+  let copy;
+
+  if (Array.isArray(obj)) {
+    copy = [];
+    for (let i = 0; i < obj.length; i++) {
+      copy[i] = deepCopy(obj[i]);
+    }
+  } else {
+    copy = {};
+    for (const key in obj) {
+      if (obj.hasOwnProperty(key)) {
+        copy[key] = deepCopy(obj[key]);
+      }
+    }
+  }
+
+  return copy;
+}
+
+const originalObject = { a: 1, b: { c: 2 } };
+const deepCopyObject = deepCopy(originalObject);
+```
+
+<br />
+
+2. JSON.parse() and JSON.stringify()
+
+- array ✅
+- object ✅
+
+```js
+const originalObject = { a: 1, b: { c: 2 } };
+const deepCopyObject = JSON.parse(JSON.stringify(originalObject));
+```
+
+<br />
+
+3. Library (lodash, immer etc...)
+
+- array ✅
+- object ✅
+
+```js
+const lodash = require("lodash");
+
+const originalObject = { a: 1, b: { c: 2 } };
+const deepCopyObject = lodash.cloneDeep(originalObject);
+```
+
+<br />
+
+4. window.structuredClone()
+
+- array ✅
+- object ✅
+
+```js
+const originalObject = { a: 1, b: { c: 2 } };
+const deepCopyObject = window.structuredClone(originalObject);
+```
+
+<br />
+
+> 위의 방법들은 `2차원 이상의 모든 중첩 된 array나 object들을 새로운 데이터로 복사합니다.`
+
+---
+
+## # 마무리
+
+복사란 `원본을 손상시키지 않는 동일한 데이터를 가진 새로운 데이터를 만드는 것`을 의미합니다.  
+이를 `불변성을 유지한다`라고 말하며 불변성을 유지하므로 프로그래밍 하는데 많은 이점을 가질 수 있습니다. 예측 가능한 코드의 흐름과 상태 값 추척을 통해 비교적 쉬운 디버깅이 가능하고 안정성과 유지보수성을 향상 시킬 수 있습니다. `copy는 불변성을 유지하기 위한 방법`일 뿐이며 상황에 따라 적절한 방법을 사용하는데 도움이 되길 바랍니다.
+
+[# 목차](#-목차)
+
+_# references_
+
+- _[https://developer.mozilla.org/ko/docs/Glossary/Shallow_copy](https://developer.mozilla.org/ko/docs/Glossary/Shallow_copy)_
+- _[https://developer.mozilla.org/ko/docs/Glossary/Deep_copy](https://developer.mozilla.org/ko/docs/Glossary/Deep_copy)_

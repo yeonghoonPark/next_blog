@@ -7,20 +7,24 @@ import PostContents from "@/app/components/PostContents";
 import { allPosts } from "@/contentlayer/generated";
 
 export function generateStaticParams() {
-    return allPosts.map(({ _raw }) => ({ slug: _raw.flattenedPath }));
+  return allPosts.map(({ _raw }) => ({ slug: _raw.flattenedPath }));
 }
 
-export default function PostDetailPage({ params }: { params: { slug: string } }) {
-    const post = allPosts.find(({ _raw }) => _raw.flattenedPath === params.slug);
+export default function PostDetailPage({
+  params,
+}: {
+  params: { slug: string };
+}) {
+  const post = allPosts.find(({ _raw }) => _raw.flattenedPath === params.slug);
 
-    if (!post) notFound();
+  if (!post) notFound();
 
-    const MDXComponent = useMDXComponent(post?.body.code || "");
+  const MDXComponent = useMDXComponent(post?.body.code || "");
 
-    return (
-        <article>
-            <div
-                className="
+  return (
+    <article>
+      <div
+        className="
                     max-w-2xl
                     mx-auto
                     prose
@@ -30,7 +34,7 @@ export default function PostDetailPage({ params }: { params: { slug: string } })
                     prose-hr:border-gray-300 dark:prose-hr:border-gray-700 
                     prose-blockquote:py-0.5 prose-blockquote:px-4 prose-blockquote:bg-gray-200 dark:prose-blockquote:bg-slate-900 prose-blockquote:rounded-r prose-blockquote:not-italic prose-blockquote:font-normal prose-blockquote:border-rose-500 dark:prose-blockquote:border-pink-400
                     prose-p:before:content-none prose-p:after:content-none 
-                    prose-em:text-[#112827] dark:prose-em:text-[#fff]
+                    prose-em:text-[#112827] dark:prose-em:text-[#fff] prose-em:not-italic prose-em:font-semibold
                      prose-code:text-rose-500 dark:prose-code:text-pink-400
                     prose-a:no-underline prose-a:text-sky-600 dark:prose-a:text-sky-400
                     prose-table:mb-5 prose-table:border-separate prose-table:border-spacing-1 prose-table:text-center 
@@ -41,14 +45,14 @@ export default function PostDetailPage({ params }: { params: { slug: string } })
                     prose-ul:pl-5
                     prose-ol:pl-5
                 "
-            >
-                <section className="py-4">
-                    <PostContents post={post} type="page" />
-                </section>
-                <section>
-                    <MDXComponent />
-                </section>
-            </div>
-        </article>
-    );
+      >
+        <section className="py-4">
+          <PostContents post={post} type="page" />
+        </section>
+        <section>
+          <MDXComponent />
+        </section>
+      </div>
+    </article>
+  );
 }
