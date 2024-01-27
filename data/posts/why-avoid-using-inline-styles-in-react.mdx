@@ -11,10 +11,10 @@ featured: true
 
 ## # 목차
 
--   [# `Readability(가독성)`과 `Maintainability(유지보수)` 향상](#-readability가독성과-maintainability유지보수-향상)
--   [# `Performance(성능)`상향](#-performance성능상향)
--   [# 보다 쉬운 `Features(기능)` 구현](#-보다-쉬운-features기능-구현)
--   [# 마무리](#-마무리)
+- [# `Readability(가독성)`과 `Maintainability(유지보수)` 향상](#-readability가독성과-maintainability유지보수-향상)
+- [# `Performance(성능)`상향](#-performance성능상향)
+- [# 보다 쉬운 `Features(기능)` 구현](#-보다-쉬운-features기능-구현)
+- [# 마무리](#-마무리)
 
 ---
 
@@ -31,25 +31,25 @@ featured: true
 ```js
 // 1. using inline style
 function App() {
-    const handleButtonClick = () => {
-        alert("what did you expect..?");
-    };
-    return (
-        <button
-            style={{
-                height: "40px",
-                padding: "8px",
-                backgroundColor: "coral",
-                borderRadius: "8px",
-                color: "white",
-                fontSize: "16px",
-                fontWeight: "500",
-            }}
-            onClick={() => handleButtonClick()}
-        >
-            click me!!
-        </button>
-    );
+  const handleButtonClick = () => {
+    alert("what did you expect..?");
+  };
+  return (
+    <button
+      style={{
+        height: "40px",
+        padding: "8px",
+        backgroundColor: "coral",
+        borderRadius: "8px",
+        color: "white",
+        fontSize: "16px",
+        fontWeight: "500",
+      }}
+      onClick={() => handleButtonClick()}
+    >
+      click me!!
+    </button>
+  );
 }
 ```
 
@@ -62,13 +62,13 @@ function App() {
 ```css
 /* globals.css */
 .button {
-    height: 40px;
-    padding: 8px;
-    background-color: coral;
-    border-radius: 8px;
-    color: white;
-    font-size: 16px;
-    font-weight: 500;
+  height: 40px;
+  padding: 8px;
+  background-color: coral;
+  border-radius: 8px;
+  color: white;
+  font-size: 16px;
+  font-weight: 500;
 }
 ```
 
@@ -77,14 +77,14 @@ import "@/app/globals.css";
 
 // 2. using post/pre-processors
 function App() {
-    const handleButtonClick = () => {
-        alert("what did you expect..?");
-    };
-    return (
-        <button className="button" onClick={() => handleButtonClick()}>
-            click me!!
-        </button>
-    );
+  const handleButtonClick = () => {
+    alert("what did you expect..?");
+  };
+  return (
+    <button className="button" onClick={() => handleButtonClick()}>
+      click me!!
+    </button>
+  );
 }
 ```
 
@@ -104,36 +104,36 @@ import { memo, useState } from "react";
 
 // 1. child component
 const StylableDiv = memo(function StylableDiv({ style }) {
-    for (let i = 100000; i--; ) {
-        console.log(i);
-    }
-    return <div style={style} />;
+  for (let i = 100000; i--; ) {
+    console.log(i);
+  }
+  return <div style={style} />;
 });
 
 // 2. parent component
 export default function App() {
-    const [count, setIsCount] = useState(0);
-    const handleButtonClick = () => {
-        setIsCount((prev) => prev + 1);
-    };
-    return (
-        <div>
-            <StylableDiv
-                style={{
-                    width: "40px",
-                    height: "40px",
-                    backgroundColor: "lightblue",
-                }}
-            />
-            <button onClick={() => handleButtonClick()}>{count}</button>
-        </div>
-    );
+  const [count, setIsCount] = useState(0);
+  const handleButtonClick = () => {
+    setIsCount((prev) => prev + 1);
+  };
+  return (
+    <div>
+      <StylableDiv
+        style={{
+          width: "40px",
+          height: "40px",
+          backgroundColor: "lightblue",
+        }}
+      />
+      <button onClick={() => handleButtonClick()}>{count}</button>
+    </div>
+  );
 }
 ```
 
--   1번의 자식 컴포넌트는 rendering 될 때마다 100,000번의 console을 출력하는 비용이 많이 드는 logic을 포함하고 있습니다.
--   2번의 부모 컴포넌트는 count라는 state를 가지고 있고 button을 클릭할 경우 state가 변화하고 그에 따라 re-rendering이 발생합니다.
--   2번의 부모 컴포넌트는 사용자에 의해 state가 빈번하게 변경될 수 있고 이를 대비해 비용이 많이 드는 자식 컴포넌트는 불필요한 re-rendering을 방지하기 위해 `memo` 해두었습니다.
+- 1번의 자식 컴포넌트는 rendering 될 때마다 100,000번의 console을 출력하는 비용이 많이 드는 logic을 포함하고 있습니다.
+- 2번의 부모 컴포넌트는 count라는 state를 가지고 있고 button을 클릭할 경우 state가 변화하고 그에 따라 re-rendering이 발생합니다.
+- 2번의 부모 컴포넌트는 사용자에 의해 state가 빈번하게 변경될 수 있고 이를 대비해 비용이 많이 드는 자식 컴포넌트는 불필요한 re-rendering을 방지하기 위해 `memo` 해두었습니다.
 
 하지만 이러한 최적화 과정을 거치더라도 2번의 자식 컴포넌트는 re-rendering이 발생합니다.  
 바로 이 부분이 inline style을 지양해야 하는 궁극적인 이유라고 생각합니다. React는 props의 변경 여부를 `Shallow Comparison(얕은 비교)`을 통해 판단하기 때문에 `memo`에 대한 비용을 추가하더라도 object(객체)로 전달해야만 하는 inline style은 적절하지 않으며 만약 props로 전달하는 데이터 타입을 변경하거나 `useMemo`를 사용하여 참조 값을 caching 하는 방법 또한 비용이 많이 드는 작업이기 때문입니다.
@@ -151,31 +151,31 @@ import { memo, useState } from "react";
 
 // 1. child component
 const StylableDiv = memo(function StylableDiv({ style }) {
-    for (let i = 100000; i--; ) {
-        console.log(i);
-    }
-    return <div style={style} />;
+  for (let i = 100000; i--; ) {
+    console.log(i);
+  }
+  return <div style={style} />;
 });
 
 // external declaration for caching
 const squareStyle = {
-    width: "40px",
-    height: "40px",
-    backgroundColor: "lightblue",
+  width: "40px",
+  height: "40px",
+  backgroundColor: "lightblue",
 };
 
 // 2. parent component
 export default function App() {
-    const [count, setIsCount] = useState(0);
-    const handleButtonClick = () => {
-        setIsCount((prev) => prev + 1);
-    };
-    return (
-        <div>
-            <StylableDiv style={squareStyle} />
-            <button onClick={() => handleButtonClick()}>{count}</button>
-        </div>
-    );
+  const [count, setIsCount] = useState(0);
+  const handleButtonClick = () => {
+    setIsCount((prev) => prev + 1);
+  };
+  return (
+    <div>
+      <StylableDiv style={squareStyle} />
+      <button onClick={() => handleButtonClick()}>{count}</button>
+    </div>
+  );
 }
 ```
 
@@ -190,39 +190,39 @@ import { memo, useState, useMemo, useEffect } from "react";
 
 // 1. child component
 const StylableDiv = memo(function StylableDiv({ style }) {
-    for (let i = 100000; i--; ) {
-        console.log(i);
-    }
-    return <div style={style} />;
+  for (let i = 100000; i--; ) {
+    console.log(i);
+  }
+  return <div style={style} />;
 });
 
 // 2. parent component
 export default function App() {
-    const [count, setIsCount] = useState(0);
-    const [isBiggerThanTen, setIsBiggerThanTen] = useState(false);
-    const handleButtonClick = () => {
-        setIsCount((prev) => prev + 1);
-    };
+  const [count, setIsCount] = useState(0);
+  const [isBiggerThanTen, setIsBiggerThanTen] = useState(false);
+  const handleButtonClick = () => {
+    setIsCount((prev) => prev + 1);
+  };
 
-    // internal declaration for caching with useMemo
-    const squareStyle = useMemo(
-        () => ({
-            width: "40px",
-            height: "40px",
-            backgroundColor: isBiggerThanTen ? "red" : "lightblue",
-        }),
-        [isBiggerThanTen]
-    );
+  // internal declaration for caching with useMemo
+  const squareStyle = useMemo(
+    () => ({
+      width: "40px",
+      height: "40px",
+      backgroundColor: isBiggerThanTen ? "red" : "lightblue",
+    }),
+    [isBiggerThanTen]
+  );
 
-    useEffect(() => {
-        count > 10 && setIsBiggerThanTen(true);
-    }, [count]);
-    return (
-        <div>
-            <StylableDiv style={squareStyle} />
-            <button onClick={() => handleButtonClick()}>{count}</button>
-        </div>
-    );
+  useEffect(() => {
+    count > 10 && setIsBiggerThanTen(true);
+  }, [count]);
+  return (
+    <div>
+      <StylableDiv style={squareStyle} />
+      <button onClick={() => handleButtonClick()}>{count}</button>
+    </div>
+  );
 }
 ```
 
@@ -237,34 +237,34 @@ import { memo, useState, useEffect } from "react";
 
 // 1. child component
 const StylableDiv = memo(function StylableDiv({ className }) {
-    for (let i = 100000; i--; ) {
-        console.log(i);
-    }
-    return <div className={className} />;
+  for (let i = 100000; i--; ) {
+    console.log(i);
+  }
+  return <div className={className} />;
 });
 
 // 2. parent component
 export default function App() {
-    const [count, setIsCount] = useState(0);
-    const [isBiggerThanTen, setIsBiggerThanTen] = useState(false);
-    const handleButtonClick = () => {
-        setIsCount((prev) => prev + 1);
-    };
-    useEffect(() => {
-        count > 10 && setIsBiggerThanTen(true);
-    }, [count]);
-    return (
-        <div>
-            <StylableDiv
-                className={`
+  const [count, setIsCount] = useState(0);
+  const [isBiggerThanTen, setIsBiggerThanTen] = useState(false);
+  const handleButtonClick = () => {
+    setIsCount((prev) => prev + 1);
+  };
+  useEffect(() => {
+    count > 10 && setIsBiggerThanTen(true);
+  }, [count]);
+  return (
+    <div>
+      <StylableDiv
+        className={`
                     w-[40px] 
                     h-[40px] 
                     ${isBiggerThanTen ? "bg-[red]" : "bg-[lightblue]"}
                 `}
-            />
-            <button onClick={() => handleButtonClick()}>{count}</button>
-        </div>
-    );
+      />
+      <button onClick={() => handleButtonClick()}>{count}</button>
+    </div>
+  );
 }
 ```
 
@@ -288,18 +288,18 @@ import { useState } from "react";
 
 // 1. inline style
 function HoverableDiv() {
-    const [isHovered, setHovered] = useState(false);
-    return (
-        <div
-            style={{
-                backgroundColor: isHovered ? "red" : "lightblue",
-            }}
-            onMouseEnter={() => setHovered(true)}
-            onMouseLeave={() => setHovered(false)}
-        >
-            hover me!!
-        </div>
-    );
+  const [isHovered, setHovered] = useState(false);
+  return (
+    <div
+      style={{
+        backgroundColor: isHovered ? "red" : "lightblue",
+      }}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+    >
+      hover me!!
+    </div>
+  );
 }
 ```
 
@@ -314,14 +314,14 @@ import styled from "styled-components";
 
 // 2. styled-components
 const StyledDiv = styled.div`
-    background-color: lightblue;
-    &:hover {
-        background-color: red;
-    }
+  background-color: lightblue;
+  &:hover {
+    background-color: red;
+  }
 `;
 
 function HoverableDiv() {
-    return <StyledDiv>hover me!!</StyledDiv>;
+  return <StyledDiv>hover me!!</StyledDiv>;
 }
 ```
 
@@ -330,7 +330,7 @@ function HoverableDiv() {
 ```js
 // 3. tailwind
 function HoverableDiv() {
-    return <div className="bg-[lightblue] hover:bg-[red]">hover me!!</div>;
+  return <div className="bg-[lightblue] hover:bg-[red]">hover me!!</div>;
 }
 ```
 
@@ -340,7 +340,7 @@ function HoverableDiv() {
 
 ## # 마무리
 
--   external style sheets, library, 또는 framework를 적극 활용하자
+- external style sheets, library, 또는 framework를 적극 활용하자
 
 inline style을 사용한다고 지구가 멸망하거나 잘 진행되던 프로젝트가 갑자기 파기되는 일은 없었습니다.  
 해당 글에서 이점으로 소개해 드린 `Readability(가독성)`와 `Maintainability(유지보수)`의 향상도 `tailwind`나 `bootstrap`과 같은 framework와 비교한다면 그렇게 큰 이점으로 다가오지 않습니다.
@@ -350,6 +350,5 @@ inline style을 사용한다고 지구가 멸망하거나 잘 진행되던 프�
 
 _# references_
 
-_[https://blog.logrocket.com/why-you-shouldnt-use-inline-styling-in-production-react-apps/](https://blog.logrocket.com/why-you-shouldnt-use-inline-styling-in-production-react-apps/)_
-
-_[https://www.linkedin.com/pulse/stop-using-inline-styles-react-js-azeem-aleem](https://www.linkedin.com/pulse/stop-using-inline-styles-react-js-azeem-aleem)_
+- _[https://blog.logrocket.com/why-you-shouldnt-use-inline-styling-in-production-react-apps/](https://blog.logrocket.com/why-you-shouldnt-use-inline-styling-in-production-react-apps/)_
+- _[https://www.linkedin.com/pulse/stop-using-inline-styles-react-js-azeem-aleem](https://www.linkedin.com/pulse/stop-using-inline-styles-react-js-azeem-aleem)_
