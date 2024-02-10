@@ -1,0 +1,38 @@
+---
+title: Optimizing Performance (Part. 1)
+description: Minimize The Number Of Re-renders
+category: React.js
+thumbnail: /image/optimizing-performance-part1.jpg
+createdAt: 2023-11-25
+featured: false
+---
+
+---
+
+## React.js의 성능 최적화, 1화
+
+> 불필요한 re-rendering을 최소화하자
+
+React.js의 성능 최적화 중 1가지 방법은 `state`나 `props`의 변경으로 인한 DOM의 업데이트에 있어 불필요한 re-rendering을 최소화하고 그 비용을 줄이는 것입니다.  
+특히 하위 컴포넌트에서 복잡한 연산이나 API 요청을 수행하는 경우에 무분별하게 실행되는 re-rendering은 많은 비용이 드는 작업이 될 수 있으며, 이는 장기적으로 성능저하를 일으킬 수 있습니다.  
+이러한 문제를 피하고자 Function Component를 기반으로 한 React.js의 re-rendering 최소화에 대해 알아보겠습니다.
+
+---
+
+---
+
+### 1. Re-rendering은 무엇이고 언제 일어날까?
+
+```typescript
+export default function App() {
+    console.log("[App Component]");
+    const [appRenderIndex, setAppRenderIndex] = useState<number>(0);
+    const [bgColor, setBgColor] = useState<string>("bg-red-500");
+
+    const handleButtonClick = useCallback((): void => {
+        setAppRenderIndex((prev) => prev + 1);
+    }, []);
+
+    return <div></div>;
+}
+```
