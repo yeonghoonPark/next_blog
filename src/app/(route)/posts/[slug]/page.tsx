@@ -44,6 +44,7 @@ export default function PostDetailPage({
                     prose-h3:text-base
                     prose-ul:pl-5
                     prose-ol:pl-5
+                    prose-li:marker:text-[#112827] dark:prose-li:marker:text-[#fff] 
                 "
       >
         <section className="py-4">
