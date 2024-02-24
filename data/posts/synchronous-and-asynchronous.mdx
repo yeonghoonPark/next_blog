@@ -1,0 +1,198 @@
+---
+title: Synchronous and Asynchronous
+description: Why single-threaded languages can do asynchronous processing
+category: JavaScript
+thumbnail: /image/synchronous-and-asynchronous.jpg
+createdAt: 2024-02-10
+featured: true
+---
+
+---
+
+## # 목차
+
+- [# `Synchronous(동기식)`와 `Asynchronous(비동기식)`의 개념](#-synchronous동기식와-asynchronous비동기식의-개념)
+- [# `Synchronous processing(동기식 처리)`](#-synchronous-processing동기식-처리)
+- [# `Asynchronous processing(비동기식 처리)`](#-asynchronous-processing비동기식-처리)
+- [# 마무리](#-마무리)
+
+> 🚨 알림
+>
+> 해당 글 내에서 등장하는 Call stack은 `Execution stack(실행 스택)의 역할을 의미`합니다.
+
+---
+
+## # `Synchronous(동기식)`와 `Asynchronous(비동기식)`의 개념
+
+[# 목차](#-목차)
+
+`Synchronous(동기식)`
+
+- 하나의 작업이 들어오면 나머지 작업은 해당 `작업이 완료될 때까지 기다린 후 다음 작업을 진행`합니다.
+
+`Asynchronous(비동기식)`
+
+- 하나의 작업이 들어오면 해당 `작업의 완료를 기다리지 않고 다음 작업을 진행`합니다.
+
+---
+
+## # `Synchronous processing(동기식 처리)`
+
+[# 목차](#-목차)
+
+JavaScript는 Single threaded 언어이며 이는 Execution thread가 하나라는 것을 의미합니다. 이말은 작업을 처리하는 역할인 `Thread가 하나 밖에 없기 때문에 동시에 두 가지 일을 할 수 없다`는 말입니다. JavaScript가 브라우저에 로드되면 엔진은 `Hoisting`을 수행하고 이후에 파일의 가장 위에서부터 아래방향으로 명령문이나 코드를 Block(블록) 단위로 읽어나갑니다.
+
+> ❓ Hoisting이란?
+>
+> ✅ `var` 또는 `function`을 통해 선언 된 변수나 함수가 `가장 상단으로 이동하는 현상`
+
+다음 코드는 `Synchronous processing(동기식 처리)`의 예시입니다.
+
+```js
+console.log("Start");
+
+sayHello();
+
+console.log("End");
+
+function sayHello() {
+  console.log("Hello");
+}
+
+/********** Output **********
+ * 1. Start                 *
+ * 2. Hello                 *
+ * 3. End                   *
+ ****************************/
+```
+
+Explanation
+
+1. `function`을 통해 선언 된 함수 sayHello는 `Hoisting` 됩니다.
+2. `Hoisting`으로 인한 영역을 제외한 가장 상단의 console.log를 통해 "Start"를 출력합니다.
+3. 함수 sayHello가 호출되고 console.log를 통해 "Hello"를 출력합니다.
+4. 마지막으로 가장 하단의 console.log를 통해 "End"를 출력합니다.
+
+위의 코드는 JavaScript가 Single threaded 언어라는 것을 잘 표현하고 있습니다. `Hoisting` 이후 가장 위에서 아래로 작업을 수행하면서 완료 후에 후속 작업들을 순차적으로 처리하는 모습을 보여주고 있습니다. 이는 코드의 흐름을 `직관적이고 예측하기 쉽게 만들며 Unit testing과 Debugging에 이점`을 가집니다. 하지만 네트워크 요청이나 과도한 연산과 같은 장기적 실행을 요하는 작업이 포함된다면 `Blocking`이 발생하는 문제점 또한 지니고 있습니다.
+
+> ❓ Blocking이란?
+>
+> ✅ 선행 작업이 완료 될 때까지 오랜 시간이 걸려 `후속 작업이 지연되거나 방해받는 현상`
+
+다음 코드는 `Blocking`이 발생하는 `Synchronous processing(동기식 처리)`의 예시입니다.
+
+```js
+console.log("Start");
+
+loopWithEndMessage(); // Blocking 발생
+
+console.log("End");
+
+function loopWithEndMessage() {
+  for (let index = 1000000000; index--; ) {
+    if (index === 0) {
+      console.log("Loop is over");
+    }
+  }
+}
+
+/********** Output **********
+ * 1. Start                 *
+ * 2. Loop is over          *
+ * 3. End                   *
+ ****************************/
+```
+
+Explanation
+
+1. `function`을 통해 선언 된 함수 loopWithEndMessage는 `Hoisting` 됩니다.
+2. `Hoisting`으로 인한 영역을 제외한 가장 상단의 console.log를 통해 "Start"를 출력합니다.
+3. 함수 loopWithEndMessage가 호출되고 10억 번의 반복문이 끝나면 "Loop is over"를 출력합니다.  
+   (과도한 연산으로 인해 `Blocking`이 발생하고 작업이 완료된 후 다음 요청으로 넘어갑니다.)
+4. 마지막으로 가장 하단의 console.log를 통해 "End"를 출력합니다.
+
+위의 코드는 해당 작업을 완료하기 전까지 다음 작업을 진행하지 못하는 `Blocking`이 발생하는 예입니다. 이로인해 애플리케이션은 응답하지 않거나 지연 될 수 있으며 이는 사용자에게 답답하고 열악한 경험을 주게 됩니다. 또한 이러한 문제점은 `Asynchronous processing`의 필요성을 잘 대변해주고 있습니다.
+
+---
+
+## # `Asynchronous processing(비동기식 처리)`
+
+[# 목차](#-목차)
+
+JavaScript는 `Thread를 차단하지 않는 Asynchronous processing(비동기식 처리)을 지원`하며 이는 애플리케이션의 응답성과 효율성을 향상시키며 비교적 간단한 오류 처리를 지원하고 사용에게는 쾌적한 경험을 제공합니다. 이처럼 유용한 JavaScript의 `Asynchronous processing(비동기식 처리)`은 크게 두 가지 부류로 나눌 수 있으며 Broswer에서 지원하는 `WEB APIs`와 `JavaScript 언어 기능`으로 나뉩니다.
+
+1. WEB APIs
+
+- `Timer` (setTimeout, setInterval)
+- `AJAX` (XMLHttpRequest, fetch)
+- `Event listeners` (addEventListener)
+
+2. JavaScript 언어 기능
+
+- `Promise`
+- `async/await`
+
+위의 `Asynchronous processing(비동기식 처리)은 Blocking이 발생하지 않고` 독립적으로 예약하고 실행할 수 있다는 특징을 가지며 `Synchronous processing(동기식 처리)이 모두 종료 된 뒤에 실행`됩니다. 하지만 JavaScript는 Single threaded 언어인데 어떻게 비동기식 처리가 가능한지 의문점을 가질 수 있습니다.
+
+<center>
+  <img src="/asset/run-time.png" />
+</center>
+
+실제로 JavaScript의 Engine 하나만으로는 비동기식 처리를 할 수 없으며 비동기식 처리가 가능한 이유는 `Browser의 Runtime 환경에서 지원하는 WEB APIs, Callback queue, Event loop`의 도움을 받기 때문입니다.
+
+> ❓ Callback queue란?
+>
+> - `Asynchronous processing(비동기식 처리)에 해당하는 callback이 대기하는 장소`입니다. 동기식 처리가 모두 완료가 되어 `Call stack에 작업이 없는 상태가 될 때까지` 머무릅니다.
+
+> ❓ Event loop란?
+>
+> - `Call stack과 Callback queue를 동시에 감시하는 역할`을 합니다.  
+>   만약 Callback queue에서 대기 중인 callback이 있는 경우에는 동기식 처리가 모두 완료되어 `Call stack이 작업이 없는 빈 상태가 되면 대기하던 callback을 stack으로 이동`시킵니다.
+
+다음 코드는 `Asynchronous processing(비동기식 처리)`의 예시입니다.
+
+```js
+console.log("Start");
+
+setTimeout(() => {
+  for (let index = 1000000000; index--; ) {
+    if (index === 0) {
+      console.log("Time's up");
+    }
+  }
+}, 0);
+
+console.log("End");
+
+/********** Output **********
+ * 1. Start                 *
+ * 2. End                   *
+ * 3. Time is up            *
+ ****************************/
+```
+
+Explanation
+
+1. 가장 상단의 console.log를 통해 "Start"를 출력합니다.
+2. 중간의 Broswer에서 지원하는 `비동기식 함수 setTimeout이 호출`됩니다.
+3. 비동기식 setTimeout은 호출 시 `Call stack에서 바로 처리되지 않으며 WEB API로 이동`합니다.
+4. setTimeout의 `두 번째 인수로 지정된 0ms를 WEB API에서 처리`합니다.
+5. 두 번째 인수의 시간 후에 첫 번째 인수로 지정된 `callback은 Callback queue로 이동`합니다.
+6. Callback queue로 이동한 callback은 `Call stack의 동기식 처리가 모두 끝날 때까지 대기`합니다.
+7. 가장 하단의 console.log를 통해 "End"를 출력합니다.
+8. 가장 하단의 동기식 console.log가 실행되었으며 `Call stack은 작업이 없는 빈 상태`가 됩니다.
+9. `Event loop을 통해 Callback queue에서 대기하던 callback은 Call stack으로 이동`됩니다.
+10. 마지막으로 callback을 실행하고 "Time's up"을 출력합니다.
+
+위의 코드와 설명으로 알 수 있는 것은 setTimeout의 Delay가 0ms이더라도 바로 실행되지 않는다는 점, 즉 `Synchronous(동기) → Asynchronous(비동기)` 순서로 실행된다는 것입니다. 이는 Background에서 작업에 대한 처리를 분담하여 성능 향상을 도모하고 예상되는 작업 순서를 추론할 수 있어 Debugging에 이점을 제공합니다. 또한 `Thread가 차단되는 Blocking 현상이 발생하지 않아` 사용자에게는 쾌적한 경험과 뛰어난 응답성을 보장할 수 있습니다.
+
+---
+
+## # 마무리
+
+[# 목차](#-목차)
+
+_# references_
+
+- _[https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous)_
+- _[https://www.freecodecamp.org/news/synchronous-vs-asynchronous-in-javascript/](https://www.freecodecamp.org/news/synchronous-vs-asynchronous-in-javascript/)_
