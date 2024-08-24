@@ -3,28 +3,40 @@
 @tailwind utilities;
 
 * {
-    scroll-behavior: smooth;
+  scroll-behavior: smooth;
 }
 
 html {
-    background: linear-gradient(to top, #ffffff 28%, #e8eef4);
-    background-attachment: fixed;
+  background-attachment: fixed;
 }
 
-/* html. {
-    display: none;
-} */
+html::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to top, #ffffff 28%, #e8eef4);
+  z-index: -1;
+}
 
 html.dark {
-    background: linear-gradient(to top, #19243b 28%, #0f192d);
-    background-attachment: fixed;
+  background-attachment: fixed;
 }
 
-/* html.dark {
-    display: none;
-} */
+html.dark::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to top, #19243b 28%, #0f192d);
+  z-index: -1;
+}
 
 body {
-    height: 100vh;
-    overflow-y: scroll;
+  min-height: 100vh;
+  overflow-y: scroll;
 }
