@@ -76,7 +76,7 @@ let a = "apple";
     </thead>
     <tbody>
       <tr>
-        <td>a &nbsp;👉&nbsp; A1DC0</td>
+        <td>a &nbsp;👉&nbsp; 0xA0000001</td>
         <td>"apple"</td>
       </tr>
     </tbody>
@@ -84,8 +84,8 @@ let a = "apple";
 </div>
 
 1.  `Call Stack`에 저장된 값 중 "apple"이 있는지 확인합니다.
-2.  "apple"이 없다면 주소(A1DC0)를 할당하고 값("apple")을 저장합니다.
-3.  변수 a는 식별자로서 해당 주소(A1DC0)를 가리키게 됩니다.
+2.  "apple"이 없다면 주소(0xA0000001)를 할당하고 값("apple")을 저장합니다.
+3.  변수 a는 식별자로서 해당 주소(0xA0000001)를 가리키게 됩니다.
 
 ---
 
@@ -106,15 +106,15 @@ a;
     </thead>
     <tbody>
       <tr>
-        <td>a &nbsp;👉&nbsp; A1DC0</td>
+        <td>a &nbsp;👉&nbsp; 0xA0000001</td>
         <td>"apple"</td>
       </tr>
     </tbody>
   </table>
 </div>
 
-1.  변수 a가 식별자로서 가리키고 있는 주소(A1DC0)를 찾습니다.
-2.  해당 주소(A1DC0)에 저장되어 있는 값("apple")을 꺼내옵니다.
+1.  변수 a가 식별자로서 가리키고 있는 주소(0xA0000001)를 찾습니다.
+2.  해당 주소(0xA0000001)에 저장되어 있는 값("apple")을 꺼내옵니다.
 
 ---
 
@@ -135,11 +135,11 @@ a = "banana";
     </thead>
     <tbody>
       <tr>
-        <td>A1DC0</td>
+        <td>0xA0000001</td>
         <td>"apple"</td>
       </tr>
       <tr>
-        <td>a &nbsp;👉&nbsp; B2DC5</td>
+        <td>a &nbsp;👉&nbsp; 0xB0000002</td>
         <td>"banana"</td>
       </tr>
     </tbody>
@@ -147,13 +147,13 @@ a = "banana";
 </div>
 
 1.  `Call Stack`에 저장된 값 중 "banana"가 있는지 확인합니다.
-2.  현재 저장된 값 중 "banana"가 없으므로 새로운 주소(B2DC5)를 할당합니다.
-3.  해당 주소(B2DC5)에 값("banana")을 저장합니다.
-4.  변수 a는 식별자로서 해당 주소(B2DC5)를 가리키게 됩니다.
+2.  현재 저장된 값 중 "banana"가 없으므로 새로운 주소(0xB0000002)를 할당합니다.
+3.  해당 주소(0xB0000002)에 값("banana")을 저장합니다.
+4.  변수 a는 식별자로서 해당 주소(0xB0000002)를 가리키게 됩니다.
 
 > `Primitive(원시)`타입은 `Immutable Value(변경 불가능한 값)`입니다.  
 > `Immutable Value(변경 불가능한 값)`란 식별자가 최종적으로 가리키게 되는 값은 변경이 불가능하다는 것을 의미합니다.  
-> 즉, 이미 저장된 값("apple")을 변경할 수 없기 때문에 `Call Stack`에 새로운 주소(B2DC5)를 할당하고 값("banana")을 저장하는 것입니다. 그리고 이를 불변성이 유지되었다고 합니다.
+> 즉, 이미 저장된 값("apple")을 변경할 수 없기 때문에 `Call Stack`에 새로운 주소(0xB0000002)를 할당하고 값("banana")을 저장하는 것입니다. 그리고 이를 불변성이 유지되었다고 합니다.
 
 ---
 
@@ -174,11 +174,11 @@ let b = "banana";
     </thead>
     <tbody>
       <tr>
-        <td>A1DC0</td>
+        <td>0xA0000001</td>
         <td>"apple"</td>
       </tr>
       <tr>
-        <td>a, b &nbsp;👉&nbsp; B2DC5</td>
+        <td>a, b &nbsp;👉&nbsp; 0xB0000002</td>
         <td>"banana"</td>
       </tr>
     </tbody>
@@ -186,8 +186,8 @@ let b = "banana";
 </div>
 
 1.  `Call Stack`에 저장된 값 중 "banana"가 있는지 확인합니다.
-2.  현재 저장된 값 중 "banana"가 있으므로 해당 값이 저장되어 있는 주소(B2DC5)를 사용합니다.
-3.  변수 b는 a와 마찬가지로 식별자로서 해당 주소(B2DC5)를 가리키게 됩니다.
+2.  현재 저장된 값 중 "banana"가 있으므로 해당 값이 저장되어 있는 주소(0xB0000002)를 사용합니다.
+3.  변수 b는 a와 마찬가지로 식별자로서 해당 주소(0xB0000002)를 가리키게 됩니다.
 
 > 변수 a와 b가 의미하는 것은 string으로 구성된 "apple"이나 "banana"라는 값이라기보단 식별자로서 가리키고 있는 `Call Stack`의 주소를 의미하며 호출될 경우, 단지 그 시점의 주소에 저장되어 있는 값을 꺼내올 뿐입니다.
 
@@ -210,11 +210,11 @@ a === b; // true
     </thead>
     <tbody>
       <tr>
-        <td>A1DC0</td>
+        <td>0xA0000001</td>
         <td>"apple"</td>
       </tr>
       <tr>
-        <td>a, b &nbsp;👉&nbsp; B2DC5</td>
+        <td>a, b &nbsp;👉&nbsp; 0xB0000002</td>
         <td>"banana"</td>
       </tr>
     </tbody>
@@ -222,7 +222,7 @@ a === b; // true
 </div>
 
 > 자바스크립트에서 값의 비교 기준은 식별자가 가리키는 `Call Stack`의 주소입니다.  
-> 즉, 변수 a와 b는 식별자로서 같은 주소(B2DC5)를 가리키기 때문에 동일한 값이 됩니다.
+> 즉, 변수 a와 b는 식별자로서 같은 주소(0xB0000002)를 가리키기 때문에 동일한 값이 됩니다.
 
 ---
 
@@ -260,8 +260,8 @@ let alphabet = ["a", "b"];
     </thead>
     <tbody>
       <tr>
-        <td>alphabet &nbsp;👉&nbsp; C1AZ3</td>
-        <td>H5RT4</td>
+        <td>alphabet &nbsp;👉&nbsp; 0xC0000003</td>
+        <td>0x0000000A</td>
       </tr>
     </tbody>
   </table>
@@ -275,17 +275,17 @@ let alphabet = ["a", "b"];
     </thead>
     <tbody>
       <tr>
-        <td>H5RT4</td>
+        <td>0x0000000A</td>
         <td>["a", "b"]</td>
       </tr>
     </tbody>
   </table>
 </div>
 
-1. `Call Stack`에 주소(C1AZ3)를 할당합니다.
-2. `Momory Heap`에 주소(H5RT4)를 할당하고 값(["a", "b"])을 저장합니다.
-3. `Memory Heap`의 주소(H5RT4)를 `Call Stack`에 주소(C1AZ3)에 대한 값으로 저장합니다.
-4. 변수 alphabet은 식별자로서 `Call Stack`의 주소(C1AZ3)를 가리키게 됩니다.
+1. `Call Stack`에 주소(0xC0000003)를 할당합니다.
+2. `Momory Heap`에 주소(0x0000000A)를 할당하고 값(["a", "b"])을 저장합니다.
+3. `Memory Heap`의 주소(0x0000000A)를 `Call Stack`에 주소(0xC0000003)에 대한 값으로 저장합니다.
+4. 변수 alphabet은 식별자로서 `Call Stack`의 주소(0xC0000003)를 가리키게 됩니다.
 
 ---
 
@@ -306,8 +306,8 @@ console.log(alphabet);
     </thead>
     <tbody>
       <tr>
-        <td>alphabet &nbsp;👉&nbsp; C1AZ3</td>
-        <td>H5RT4</td>
+        <td>alphabet &nbsp;👉&nbsp; 0xC0000003</td>
+        <td>0x0000000A</td>
       </tr>
     </tbody>
   </table>
@@ -321,16 +321,16 @@ console.log(alphabet);
     </thead>
     <tbody>
       <tr>
-        <td>H5RT4</td>
+        <td>0x0000000A</td>
         <td>["a", "b"]</td>
       </tr>
     </tbody>
   </table>
 </div>
 
-1.  변수 alphabet이 식별자로서 `Call Stack`에서 가리키고 있는 주소(C1AZ3)를 찾습니다.
-2.  해당 주소(C1AZ3)에 저장되어 있는 값(H5RT4)을 기반으로 `Memory Heap`에서 주소(H5RT4)를 찾습니다.
-3.  해당 주소(H5RT4)에 저장되어 있는 값(["a", "b"])을 꺼내옵니다.
+1.  변수 alphabet이 식별자로서 `Call Stack`에서 가리키고 있는 주소(0xC0000003)를 찾습니다.
+2.  해당 주소(0xC0000003)에 저장되어 있는 값(0x0000000A)을 기반으로 `Memory Heap`에서 주소(0x0000000A)를 찾습니다.
+3.  해당 주소(0x0000000A)에 저장되어 있는 값(["a", "b"])을 꺼내옵니다.
 
 ---
 
@@ -351,8 +351,8 @@ alphabet = ["a", "b", "c"];
     </thead>
     <tbody>
       <tr>
-        <td>alphabet &nbsp;👉&nbsp; C1AZ3</td>
-        <td>H5RT4</td>
+        <td>alphabet &nbsp;👉&nbsp; 0xC0000003</td>
+        <td>0x0000000A</td>
       </tr>
     </tbody>
   </table>
@@ -366,20 +366,20 @@ alphabet = ["a", "b", "c"];
     </thead>
     <tbody>
       <tr>
-        <td>H5RT4</td>
+        <td>0x0000000A</td>
         <td>["a", "b", "c"]</td>
       </tr>
     </tbody>
   </table>
 </div>
 
-1.  변수 alphabet이 식별자로서 `Call Stack`에서 가리키고 있는 주소(C1AZ3)를 찾습니다.
-2.  해당 주소(C1AZ3)에 저장되어 있는 값(H5RT4)을 기반으로 `Memory Heap`에서 주소(H5RT4)를 찾습니다.
-3.  해당 주소(H5RT4)에 저장되어 있는 값(["a", "b"])을 ["a", "b", "c"]로 변경합니다.
+1.  변수 alphabet이 식별자로서 `Call Stack`에서 가리키고 있는 주소(0xC0000003)를 찾습니다.
+2.  해당 주소(0xC0000003)에 저장되어 있는 값(0x0000000A)을 기반으로 `Memory Heap`에서 주소(0x0000000A)를 찾습니다.
+3.  해당 주소(0x0000000A)에 저장되어 있는 값(["a", "b"])을 ["a", "b", "c"]로 변경합니다.
 
 > `Reference(참조)`타입은 `Mutable Value(변경 가능한 값)`입니다.  
 > `Mutable Value(변경 가능한 값)`란 식별자가 최종적으로 가리키는 값을 변경할 수 있다는 것을 의미합니다.  
-> 즉, `Call Stack`에 기존의 주소(C1AZ3)를 사용하면서 식별자가 최종적으로 가리키는 저장 된 값(["a", "b"])을 새로운 값(["a", "b", "c"])으로 변경합니다. 그리고 이를 불변성이 유지되지 않았다고 합니다.
+> 즉, `Call Stack`에 기존의 주소(0xC0000003)를 사용하면서 식별자가 최종적으로 가리키는 저장 된 값(["a", "b"])을 새로운 값(["a", "b", "c"])으로 변경합니다. 그리고 이를 불변성이 유지되지 않았다고 합니다.
 
 ---
 
@@ -400,12 +400,12 @@ let letters = ["a", "b", "c"];
     </thead>
     <tbody>
       <tr>
-        <td>alphabet &nbsp;👉&nbsp; C1AZ3</td>
-        <td>H5RT4</td>
+        <td>alphabet &nbsp;👉&nbsp; 0xC0000003</td>
+        <td>0x0000000A</td>
       </tr>
       <tr>
-        <td>letters &nbsp;👉&nbsp; D2BZ8</td>
-        <td>M7UJ3</td>
+        <td>letters &nbsp;👉&nbsp; 0xD0000004</td>
+        <td>0x0000000B</td>
       </tr>
     </tbody>
   </table>
@@ -419,21 +419,21 @@ let letters = ["a", "b", "c"];
     </thead>
     <tbody>
       <tr>
-        <td>H5RT4</td>
+        <td>0x0000000A</td>
         <td>["a", "b", "c"]</td>
       </tr>
       <tr>
-        <td>M7UJ3</td>
+        <td>0x0000000B</td>
         <td>["a", "b", "c"]</td>
       </tr>
     </tbody>
   </table>
 </div>
 
-1. `Call Stack`에 주소(D2BZ8)를 할당합니다.
-2. `Momory Heap`에 주소(M7UJ3)를 할당하고 값(["a", "b", "c"])을 저장합니다.
-3. `Memory Heap`의 주소(M7UJ3)를 `Call Stack`에 주소(D2BZ8)에 대한 값으로 저장합니다.
-4. 변수 letters는 식별자로서 `Call Stack`의 주소(D2BZ8)를 가리키게 됩니다.
+1. `Call Stack`에 주소(0xD0000004)를 할당합니다.
+2. `Momory Heap`에 주소(0x0000000B)를 할당하고 값(["a", "b", "c"])을 저장합니다.
+3. `Memory Heap`의 주소(0x0000000B)를 `Call Stack`에 주소(0xD0000004)에 대한 값으로 저장합니다.
+4. 변수 letters는 식별자로서 `Call Stack`의 주소(0xD0000004)를 가리키게 됩니다.
 
 ---
 
@@ -454,12 +454,12 @@ alphabet === letters; // false
     </thead>
     <tbody>
       <tr>
-        <td>alphabet &nbsp;👉&nbsp; C1AZ3</td>
-        <td>H5RT4</td>
+        <td>alphabet &nbsp;👉&nbsp; 0xC0000003</td>
+        <td>0x0000000A</td>
       </tr>
       <tr>
-        <td>letters &nbsp;👉&nbsp; D2BZ8</td>
-        <td>M7UJ3</td>
+        <td>letters &nbsp;👉&nbsp; 0xD0000004</td>
+        <td>0x0000000B</td>
       </tr>
     </tbody>
   </table>
@@ -473,11 +473,11 @@ alphabet === letters; // false
     </thead>
     <tbody>
       <tr>
-        <td>H5RT4</td>
+        <td>0x0000000A</td>
         <td>["a", "b", "c"]</td>
       </tr>
       <tr>
-        <td>M7UJ3</td>
+        <td>0x0000000B</td>
         <td>["a", "b", "c"]</td>
       </tr>
     </tbody>
@@ -485,7 +485,7 @@ alphabet === letters; // false
 </div>
 
 > 변수 alphabet과 letters는 식별자로서 최종적으로 가리키는 값이 ["a", "b", "c"]이며 같은 값처럼 보입니다. 하지만 자바스크립트에서 값의 비교 기준은 식별자가 가리키는 `Call Stack`의 주소입니다.  
-> 즉, 식별자로서 alphabet이 가리키는 주소(C1AZ3)와 letters가 가리키는 주소(D2BZ8)는 동일하지 않기 때문에 같은 값이 아닙니다.
+> 즉, 식별자로서 alphabet이 가리키는 주소(0xC0000003)와 letters가 가리키는 주소(0xD0000004)는 동일하지 않기 때문에 같은 값이 아닙니다.
 
 ---
 
