@@ -1,10 +1,10 @@
-import React from "react";
+import React from 'react';
 
-import { useMDXComponent } from "next-contentlayer/hooks";
-import { notFound } from "next/navigation";
+import { useMDXComponent } from 'next-contentlayer/hooks';
+import { notFound } from 'next/navigation';
 
-import PostContents from "@/app/components/PostContents";
-import { allPosts } from "@/contentlayer/generated";
+import PostContents from '@/app/components/PostContents';
+import { allPosts } from '@/contentlayer/generated';
 
 export function generateStaticParams() {
   return allPosts.map(({ _raw }) => ({ slug: _raw.flattenedPath }));
@@ -35,7 +35,7 @@ export default function PostDetailPage({
                     prose-blockquote:py-0.5 prose-blockquote:px-4 prose-blockquote:bg-gray-200 dark:prose-blockquote:bg-slate-900 prose-blockquote:rounded-r prose-blockquote:not-italic prose-blockquote:font-normal prose-blockquote:border-rose-500 dark:prose-blockquote:border-pink-400
                     prose-p:before:content-none prose-p:after:content-none 
                     prose-em:text-[#112827] dark:prose-em:text-[#fff] prose-em:not-italic prose-em:font-semibold
-                     prose-code:text-rose-500 dark:prose-code:text-pink-400
+                    prose-code:text-rose-500 dark:prose-code:text-pink-400 prose-code:before:content-none prose-code:after:content-none
                     prose-a:no-underline prose-a:text-sky-600 dark:prose-a:text-sky-400
                     prose-table:mb-5 prose-table:border-separate prose-table:border-spacing-1 prose-table:text-center 
                     prose-th:p-1.5 prose-th:rounded prose-th:bg-gray-300 dark:prose-th:bg-slate-700
