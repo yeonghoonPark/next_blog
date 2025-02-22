@@ -10,7 +10,7 @@ const Header = () => {
     <header className="fixed top-0 z-10 flex h-16 w-full items-center border-b border-neutral-300 bg-[#e8eef4] dark:border-gray-700 dark:bg-[#0f192d]">
       <div className="mx-auto my-0 flex w-full max-w-5xl justify-between px-10">
         <h1 className="flex items-center text-lg font-semibold">
-          <Link href="">{APP_TITLE}</Link>
+          <Link href="/">{APP_TITLE}</Link>
         </h1>
         <nav className="hidden sm:block">
           <ul className="flex items-center gap-6">
