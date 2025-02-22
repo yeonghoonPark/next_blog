@@ -1,9 +1,11 @@
-const FOOTER_CONTENTS = "© 2024 • Yeong Chi";
+const Footer = () => {
+  const currentYear = new Date().getFullYear();
 
-export default function Footer() {
   return (
-    <footer className="flex justify-center self-center w-full py-3 border-t-[0.2px] border-neutral-300 dark:border-gray-700">
-      <p className="text-sm font-light text-gray-400">{FOOTER_CONTENTS}</p>
+    <footer className="flex w-full justify-center border-t-[0.2px] border-neutral-300 py-3 dark:border-gray-700">
+      <p className="text-sm font-light text-gray-400">{`© ${currentYear} • 0hun`}</p>
     </footer>
   );
-}
+};
+
+export default Footer;
