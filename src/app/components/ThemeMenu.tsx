@@ -1,38 +1,36 @@
 "use client";
 
-import React, { useMemo } from "react";
-import { useTheme } from "../hooks/useTheme";
-import { constant } from "../utils/constant";
-import MoonIcon from "./atoms/icon/MoonIcon";
-import SunIcon from "./atoms/icon/SunIcon";
+import MoonIcon from "@/app/components/atoms/icon/MoonIcon";
+import SunIcon from "@/app/components/atoms/icon/SunIcon";
+import { ICONS } from "@/app/constants/icons";
+import { THEME } from "@/app/constants/theme";
+import { useTheme } from "@/app/hooks/useTheme";
 
-export default function ThemeMenu() {
+const THEME_MENU_LIST = [
+  {
+    id: ICONS.SUN,
+    visibility: THEME.DARK,
+    element: <SunIcon />,
+  },
+  {
+    id: ICONS.MOON,
+    visibility: THEME.LIGHT,
+    element: <MoonIcon />,
+  },
+];
+
+const ThemeMenu = () => {
   const { theme, toggleTheme } = useTheme();
-
-  const themeMenuList = useMemo(() => {
-    return [
-      {
-        id: constant.KEY.SUN,
-        visibility: constant.THEME.DARK,
-        element: <SunIcon />,
-      },
-      {
-        id: constant.KEY.MOON,
-        visibility: constant.THEME.LIGHT,
-        element: <MoonIcon />,
-      },
-    ];
-  }, []);
 
   return (
     <>
-      {themeMenuList
-        .filter(({ visibility }) => visibility === theme)
-        .map(({ id, element }) => (
-          <li key={id} onClick={toggleTheme}>
-            {element}
-          </li>
-        ))}
+      {THEME_MENU_LIST.filter(({ visibility }) => visibility === theme).map(({ id, element }) => (
+        <li key={id} onClick={toggleTheme}>
+          {element}
+        </li>
+      ))}
     </>
   );
-}
+};
+
+export default ThemeMenu;

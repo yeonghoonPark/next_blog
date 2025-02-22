@@ -1,42 +1,43 @@
 "use client";
-import React, { createContext, useEffect, useState } from "react";
-import { Theme, ThemeContextProps } from "../models/theme";
-import { constant } from "../utils/constant";
+
+import { createContext, useEffect, useState } from "react";
+import { THEME } from "@/app/constants/theme";
+import { Theme, ThemeContextProps } from "@/app/models/theme";
+
+const getNextTheme = (theme: Theme): Theme => {
+  return theme === THEME.LIGHT ? THEME.DARK : THEME.LIGHT;
+};
+
+const updateTheme = (theme: Theme, setTheme: React.Dispatch<React.SetStateAction<Theme>>) => {
+  if (theme === THEME.DARK) {
+    document.documentElement.classList.add(THEME.DARK);
+    localStorage.theme = THEME.DARK;
+    setTheme(THEME.DARK);
+  } else {
+    document.documentElement.classList.remove(THEME.DARK);
+    localStorage.theme = THEME.LIGHT;
+    setTheme(THEME.LIGHT);
+  }
+};
 
 export const ThemeContext = createContext<ThemeContextProps>({
-  theme: constant.THEME.LIGHT || constant.THEME.DARK,
+  theme: THEME.LIGHT || THEME.DARK,
   toggleTheme: () => {},
 });
 
-export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [theme, setTheme] = useState<Theme>(constant.THEME.LIGHT);
+export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
+  const [theme, setTheme] = useState<Theme>(THEME.LIGHT);
 
   const toggleTheme = () => {
-    setTheme((prevTheme) => getNextTheme(prevTheme));
+    setTheme((prevTheme: string) => getNextTheme(prevTheme));
     updateTheme(getNextTheme(theme), setTheme);
   };
 
   useEffect(() => {
-    localStorage.theme === constant.THEME.DARK
-      ? updateTheme(constant.THEME.DARK, setTheme)
-      : updateTheme(constant.THEME.LIGHT, setTheme);
+    localStorage.theme === THEME.DARK
+      ? updateTheme(THEME.DARK, setTheme)
+      : updateTheme(THEME.LIGHT, setTheme);
   }, []);
 
   return <ThemeContext.Provider value={{ theme, toggleTheme }}>{children}</ThemeContext.Provider>;
-}
-
-const getNextTheme = (theme: Theme): Theme => {
-  return theme === constant.THEME.LIGHT ? constant.THEME.DARK : constant.THEME.LIGHT;
-};
-
-const updateTheme = (theme: Theme, setTheme: React.Dispatch<React.SetStateAction<Theme>>) => {
-  if (theme === constant.THEME.DARK) {
-    document.documentElement.classList.add(constant.THEME.DARK);
-    localStorage.theme = constant.THEME.DARK;
-    setTheme(constant.THEME.DARK);
-  } else {
-    document.documentElement.classList.remove(constant.THEME.DARK);
-    localStorage.theme = constant.THEME.LIGHT;
-    setTheme(constant.THEME.LIGHT);
-  }
 };
