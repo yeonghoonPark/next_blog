@@ -5,7 +5,14 @@ type Props = {
 };
 
 const HamburgerIcon = ({ onClick }: Props) => {
-  return <AiOutlineMenu className="cursor-pointer text-xl" onClick={onClick} />;
+  return (
+    <div
+      className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full text-xl hover:bg-slate-300 hover:dark:bg-blue-900"
+      onClick={onClick}
+    >
+      <AiOutlineMenu className="h-6 w-6" />
+    </div>
+  );
 };
 
 export default HamburgerIcon;
