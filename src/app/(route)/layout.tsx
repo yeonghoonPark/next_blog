@@ -1,8 +1,9 @@
 import "@/app/(route)/globals.css";
 import type { Metadata } from "next";
 import { Open_Sans } from "next/font/google";
-import Footer from "@/app/components/Footer";
-import Header from "@/app/components/Header";
+import Footer from "@/app/components/organisms/Footer";
+import Header from "@/app/components/organisms/Header";
+import Sidebar from "@/app/components/organisms/Sidebar";
 import { ThemeProvider } from "@/app/contexts/ThemeContext";
 
 const OpenSans = Open_Sans({ subsets: ["latin"] });
@@ -17,11 +18,14 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <html lang="ko">
       <body
-        className={`${OpenSans.className} flex select-none flex-col text-gray-800 dark:text-gray-100`}
+        className={`${OpenSans.className} flex min-h-screen flex-1 select-none flex-col text-gray-800 dark:text-gray-100`}
       >
         <ThemeProvider>
           <Header />
-          <main className="mt-16 w-full max-w-5xl grow self-center p-10">{children}</main>
+          <div className="relative flex flex-1">
+            <Sidebar />
+            <main className="mx-auto mt-16 max-w-5xl flex-1 p-10">{children}</main>
+          </div>
           <Footer />
         </ThemeProvider>
       </body>
