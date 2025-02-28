@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { Open_Sans } from "next/font/google";
 import Footer from "@/app/components/organisms/Footer";
 import Header from "@/app/components/organisms/Header";
-import Sidebar from "@/app/components/organisms/Sidebar";
+import SideNavigation from "@/app/components/organisms/SideNavigation";
 import { ThemeProvider } from "@/app/contexts/ThemeContext";
 
 const OpenSans = Open_Sans({ subsets: ["latin"] });
@@ -23,7 +23,7 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
         <ThemeProvider>
           <Header />
           <div className="relative flex flex-1">
-            <Sidebar />
+            <SideNavigation />
             <main className="mx-auto mt-16 max-w-5xl flex-1 p-10">{children}</main>
           </div>
           <Footer />
