@@ -1,46 +1,46 @@
 "use client";
 
-import { useMemo, useState } from "react";
 import CategoryNavMenu from "@/app/components/CategoryNavMenu";
 import CategoryTitle from "@/app/components/CategoryTitle";
 import SectionTitle from "@/app/components/molecules/SectionTitle";
 import PostsGrid from "@/app/components/PostsGrid";
+import { ALL, CATEGORIES, CATEGORY_TITLE, POSTS_TITLE } from "@/app/constants/posts";
+import { Category } from "@/app/models/posts";
+import { useCategoryStore } from "@/app/store/useCategoryStore";
 import { Post } from "@/contentlayer/generated";
-
-const ALL = "All";
-const POSTS_TITLE = "Posts";
-const CATEGORY_TITLE = "Category";
 
 type Props = {
   posts: Post[];
-  categories: string[];
 };
 
-export default function FilterablePosts({ posts, categories }: Props) {
-  const [selected, setSelected] = useState(ALL);
+const FilterablePosts = ({ posts }: Props) => {
+  const category = useCategoryStore((state) => state.category);
+  const setCategory = useCategoryStore((state) => state.actions.setCategory);
 
-  const filteredPosts = useMemo(() => {
-    return posts.filter((post) => (selected === ALL ? post : post.category === selected));
-  }, [posts, selected]);
+  const filteredPosts = posts.filter((post) =>
+    category === ALL ? post : post.category === category,
+  );
 
-  const getTitle = (selected: string): string => {
-    return `${selected} ${POSTS_TITLE}`;
-  };
+  const changeCategory = (category: Category) => setCategory(category);
+
+  const getTitle = (category: Category) => `${category} ${POSTS_TITLE}`;
 
   return (
     <section className="flex flex-col items-center gap-6">
       <section className="flex w-full flex-col items-center gap-0 sm:gap-6">
         <CategoryTitle title={CATEGORY_TITLE} />
         <CategoryNavMenu
-          categories={categories}
-          selected={selected}
-          onCategoryClick={setSelected}
+          categories={CATEGORIES}
+          currentCategory={category}
+          onClick={changeCategory}
         />
       </section>
       <section className="mb-12">
-        <SectionTitle title={getTitle(selected)} count={filteredPosts.length} />
+        <SectionTitle title={getTitle(category)} count={filteredPosts.length} />
         <PostsGrid posts={filteredPosts} />
       </section>
     </section>
   );
-}
+};
+
+export default FilterablePosts;

@@ -1,17 +1,33 @@
+import { Category } from "@/app/models/posts";
+
 type Props = {
-  onClick?: () => void;
-  subitems: [];
+  onSubitemClick?: (path: string | undefined, subitem: Category) => void;
+  path: string | undefined;
+  pathname: string;
+  selectedSubitem?: Category;
+  subitems: Category[];
 };
 
-const SideNavigationSubitems = ({ onClick, subitems }: Props) => {
+const SideNavigationSubitems = ({
+  onSubitemClick,
+  path,
+  pathname,
+  selectedSubitem,
+  subitems,
+}: Props) => {
+  const handleClick = (path: string | undefined, subitem: Category) => () => {
+    if (onSubitemClick) onSubitemClick(path, subitem);
+  };
+
   return (
     <ul className="hidden w-full pl-16 xl:block">
-      {subitems.map((subitem, index) => (
+      {subitems.map((subitem) => (
         <li
-          className="cursor-pointer gap-1 rounded-md p-2 hover:bg-slate-300 dark:hover:bg-blue-900"
-          key={index}
+          className={`${pathname.includes(path as string) && selectedSubitem === subitem ? "font-semibold text-blue-600 dark:text-yellow-500" : "text-inherit"} flex cursor-pointer rounded-md p-2 hover:bg-slate-300 dark:hover:bg-blue-900`}
+          key={subitem}
+          onClick={handleClick(path, subitem)}
         >
-          <span className="ml-2 text-xs">{subitem}</span>
+          <span className="ml-1 text-xs">👉 &nbsp; {subitem}</span>
         </li>
       ))}
     </ul>

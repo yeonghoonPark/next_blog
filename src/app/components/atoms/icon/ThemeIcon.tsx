@@ -1,5 +1,5 @@
 import { FaMoon, FaSun } from "react-icons/fa";
-import { THEME } from "@/app/constants/theme";
+import { THEME } from "@/app/constants/theme/theme";
 import { Theme } from "@/app/models/theme";
 
 type Props = {

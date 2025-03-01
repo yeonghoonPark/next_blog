@@ -1,4 +1,4 @@
-import { THEME } from "../constants/theme";
+import { THEME } from "@/app/constants/theme/theme";
 
 export type Theme = typeof THEME.LIGHT | typeof THEME.DARK;
 
