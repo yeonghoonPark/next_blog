@@ -1,6 +1,9 @@
 "use client";
 
-import { usePathname, useRouter } from "next/navigation";
+import {
+  usePathname,
+  useRouter,
+} from "next/navigation";
 import SideNavigationItem from "@/app/components/molecules/SideNavigationItem";
 import { SIDE_NAVIGATION_ITEMS } from "@/app/constants/navigation";
 import { useTheme } from "@/app/hooks/useTheme";
@@ -24,8 +27,8 @@ const SideNavigation = () => {
   };
 
   return (
-    <nav className="sticky top-14 h-[calc(100vh-105px)] w-16 overflow-y-auto xl:w-60">
-      <ul className="flex w-full flex-col items-center gap-1 p-1">
+    <nav className="sticky top-14 h-[calc(100vh-105px)] w-16 overflow-y-auto xl:w-52">
+      <ul className="flex flex-col gap-1 p-1">
         {SIDE_NAVIGATION_ITEMS.map(({ hasSubitems, IconComponent, path, subitems, title }) => (
           <SideNavigationItem
             hasSubitems={hasSubitems}

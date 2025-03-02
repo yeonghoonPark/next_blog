@@ -40,14 +40,14 @@ const SideNavigationItem = ({
   };
 
   return (
-    <>
-      <li
+    <li>
+      <div
         className={`${isSelected ? "font-semibold text-blue-600 dark:text-yellow-500" : "text-inherit"} relative flex w-full cursor-pointer flex-col items-center gap-1 rounded-md p-2 hover:bg-slate-300 dark:hover:bg-blue-900 xl:flex-row xl:px-4 xl:py-2`}
         onClick={handleClick}
       >
         <IconComponent isSelected={isSelected} theme={theme} />
         <span className="text-xs xl:ml-8 xl:text-sm">{title}</span>
-      </li>
+      </div>
 
       {hasSubitems && (
         <SideNavigationSubitems
@@ -58,7 +58,7 @@ const SideNavigationItem = ({
           subitems={subitems}
         />
       )}
-    </>
+    </li>
   );
 };
 
