@@ -3,9 +3,11 @@ import NotebookIcon from "@/app/components/atoms/icon/NotebookIcon";
 import ThemeIcon from "@/app/components/atoms/icon/ThemeIcon";
 import { CATEGORIES } from "@/app/constants/posts";
 
+export const HIDDEN_NAVIGATION_HIDDEN = "hidden";
+export const HIDDEN_NAVIGATION_DISPLAY = "display";
 export const PATH_HOME = { path: "/", title: "Home" };
 export const PATH_POSTS = { path: "/posts", title: "Posts" };
-export const SIDE_NAVIGATION_ITEMS = [
+export const NAVIGATION_ITEMS = [
   {
     IconComponent: HomeIcon,
     path: PATH_HOME.path,

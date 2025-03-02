@@ -2,11 +2,12 @@
 
 import { Category } from "@/app/models/posts";
 import { Theme } from "@/app/models/theme";
-import SideNavigationSubitems from "./SideNavigationSubitems";
+import NavigationSubitems from "./NavigationSubitems";
 
 type Props = {
   hasSubitems: boolean;
   IconComponent: React.ElementType;
+  isHiddenNavigation?: boolean;
   isSelected?: boolean;
   onItemClick?: (path: string | undefined) => void;
   onSubitemClick?: (path: string | undefined, subitem: Category) => void;
@@ -18,9 +19,10 @@ type Props = {
   theme?: Theme;
 };
 
-const SideNavigationItem = ({
+const NavigationItem = ({
   hasSubitems = false,
   IconComponent,
+  isHiddenNavigation = false,
   isSelected,
   onItemClick,
   onSubitemClick,
@@ -42,15 +44,20 @@ const SideNavigationItem = ({
   return (
     <li>
       <div
-        className={`${isSelected ? "font-semibold text-blue-600 dark:text-yellow-500" : "text-inherit"} relative flex w-full cursor-pointer flex-col items-center gap-1 rounded-md p-2 hover:bg-slate-300 dark:hover:bg-blue-900 xl:flex-row xl:px-4 xl:py-2`}
+        className={`${isHiddenNavigation ? "flex-row px-4 py-2" : "flex-col p-2"} ${
+          isSelected ? "font-semibold text-blue-600 dark:text-yellow-500" : "text-inherit"
+        } relative flex w-full cursor-pointer items-center gap-1 rounded-md hover:bg-neutral-300 dark:hover:bg-blue-900 xl:flex-row xl:px-4 xl:py-2`}
         onClick={handleClick}
       >
         <IconComponent isSelected={isSelected} theme={theme} />
-        <span className="text-xs xl:ml-8 xl:text-sm">{title}</span>
+        <span className={`${isHiddenNavigation ? "ml-8 text-sm" : "text-xs"} xl:ml-8 xl:text-sm`}>
+          {title}
+        </span>
       </div>
 
       {hasSubitems && (
-        <SideNavigationSubitems
+        <NavigationSubitems
+          isHiddenNavigation={isHiddenNavigation}
           onSubitemClick={handleSubitemClick}
           path={path}
           pathname={pathname}
@@ -62,4 +69,4 @@ const SideNavigationItem = ({
   );
 };
 
-export default SideNavigationItem;
+export default NavigationItem;

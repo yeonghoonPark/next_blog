@@ -6,7 +6,7 @@ import SectionTitle from "@/app/components/molecules/SectionTitle";
 import PostsGrid from "@/app/components/PostsGrid";
 import { ALL, CATEGORIES, CATEGORY_TITLE, POSTS_TITLE } from "@/app/constants/posts";
 import { Category } from "@/app/models/posts";
-import { useCategoryStore } from "@/app/store/useCategoryStore";
+import { useCategoryStore } from "@/app/store/posts/useCategoryStore";
 import { Post } from "@/contentlayer/generated";
 
 type Props = {

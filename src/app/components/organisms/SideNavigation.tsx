@@ -1,14 +1,11 @@
 "use client";
 
-import {
-  usePathname,
-  useRouter,
-} from "next/navigation";
-import SideNavigationItem from "@/app/components/molecules/SideNavigationItem";
-import { SIDE_NAVIGATION_ITEMS } from "@/app/constants/navigation";
+import { usePathname, useRouter } from "next/navigation";
+import NavigationItem from "@/app/components/molecules/NavigationItem";
+import { NAVIGATION_ITEMS } from "@/app/constants/navigation";
 import { useTheme } from "@/app/hooks/useTheme";
 import { Category } from "@/app/models/posts";
-import { useCategoryStore } from "@/app/store/useCategoryStore";
+import { useCategoryStore } from "@/app/store/posts/useCategoryStore";
 import { capitalizeFirstLetter } from "@/app/utils/stringUtils";
 
 const SideNavigation = () => {
@@ -27,10 +24,10 @@ const SideNavigation = () => {
   };
 
   return (
-    <nav className="sticky top-14 h-[calc(100vh-105px)] w-16 overflow-y-auto xl:w-52">
-      <ul className="flex flex-col gap-1 p-1">
-        {SIDE_NAVIGATION_ITEMS.map(({ hasSubitems, IconComponent, path, subitems, title }) => (
-          <SideNavigationItem
+    <nav className="sticky top-14 hidden h-[calc(100vh-100px)] w-16 overflow-y-auto md:block xl:w-52 xl:border-r xl:border-neutral-300 xl:dark:border-gray-700">
+      <ul className="flex flex-col gap-4 p-1">
+        {NAVIGATION_ITEMS.map(({ hasSubitems, IconComponent, path, subitems, title }) => (
+          <NavigationItem
             hasSubitems={hasSubitems}
             IconComponent={IconComponent}
             isSelected={pathname.split("/")[1] === path?.split("/")[1]}

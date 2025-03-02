@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Open_Sans } from "next/font/google";
 import Footer from "@/app/components/organisms/Footer";
 import Header from "@/app/components/organisms/Header";
+import HiddenNavigation from "@/app/components/organisms/HiddenNavigation";
 import SideNavigation from "@/app/components/organisms/SideNavigation";
 import { ThemeProvider } from "@/app/contexts/ThemeContext";
 
@@ -23,6 +24,7 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
         <ThemeProvider>
           <Header />
           <div className="relative flex flex-1">
+            <HiddenNavigation />
             <SideNavigation />
             <main className="mx-auto mt-16 max-w-5xl flex-1 p-10">{children}</main>
           </div>
