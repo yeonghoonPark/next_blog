@@ -24,7 +24,7 @@ const SideNavigation = () => {
   };
 
   return (
-    <nav className="sticky top-14 hidden h-[calc(100vh-100px)] w-16 overflow-y-auto md:block xl:w-52 xl:border-r xl:border-neutral-300 xl:dark:border-gray-700">
+    <nav className="sticky top-14 hidden h-[calc(100vh-150px)] w-16 overflow-y-auto md:block xl:w-52">
       <ul className="flex flex-col gap-4 p-1">
         {NAVIGATION_ITEMS.map(({ hasSubitems, IconComponent, path, subitems, title }) => (
           <NavigationItem
