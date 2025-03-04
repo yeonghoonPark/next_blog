@@ -21,22 +21,41 @@ const my = {
 const PostCard = ({ post }: Props) => {
   const { title, thumbnail } = post;
   return (
-    <article className="flex flex-col">
-      <section className="overflow-hidden">
+    <article>
+      <figure className="group overflow-hidden rounded-md rounded-ee-3xl rounded-ss-3xl">
         <Image
-          className="grayscale-[33%] transition duration-300 group-hover:scale-110 group-hover:grayscale-0"
+          className="grayscale-[33%] transition duration-200 group-hover:scale-110 group-hover:grayscale-0"
           width={640}
           height={426}
           src={thumbnail as string}
           alt={`${title}'s image`}
           priority
         />
-      </section>
+      </figure>
 
-      <section className="flex flex-col gap-2 p-4">
+      <section className="flex flex-col gap-2 pt-4">
         <PostContents post={post} type="card" />
       </section>
     </article>
+
+    // border-neutral-300 dark:border-gray-700 border
+
+    // <article className="group flex h-64 w-80 flex-col overflow-hidden rounded-md rounded-ee-3xl rounded-ss-3xl">
+    //   <figure className="relative mb-2 h-44 overflow-hidden rounded-b-md">
+    //     <Image
+    //       alt={`${title}'s image`}
+    //       className="transition duration-200 group-hover:scale-110 group-hover:grayscale-0"
+    //       fill
+    //       objectFit="fill"
+    //       priority
+    //       src={thumbnail as string}
+    //     />
+    //   </figure>
+
+    //   <section className="flex flex-col gap-2">
+    //     <PostContents post={post} type="card" />
+    //   </section>
+    // </article>
   );
 };
 

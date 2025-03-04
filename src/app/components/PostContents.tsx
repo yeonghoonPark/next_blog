@@ -1,8 +1,7 @@
-import { memo } from 'react';
-
-import PostCardCategoryIcon from '@/app/components/PostCardCategoryIcon';
-import PostCardCreateAt from '@/app/components/PostCardCreateAt';
-import { Post } from '@/contentlayer/generated';
+import { memo } from "react";
+import PostCardCategoryIcon from "@/app/components/PostCardCategoryIcon";
+import PostCardCreateAt from "@/app/components/PostCardCreateAt";
+import { Post } from "@/contentlayer/generated";
 
 type Props = {
   post: Post;
@@ -16,20 +15,20 @@ function PostContents({ post, type }: Props) {
       <h2
         className={`w-full font-bold ${
           type === "card"
-            ? "text-base group-hover:text-rose-500 group-hover:dark:text-pink-400 truncate"
+            ? "truncate text-base group-hover:text-rose-500 group-hover:dark:text-pink-400"
             : "text-3xl"
         } `}
       >
         {title}
       </h2>
-      <p
+      {/* <p
         className={`w-full min-h-[40px] font-normal ${
           type === "card" ? "text-sm mb-1" : "text-xl"
         } text-gray-500 dark:text-gray-400 line-clamp-2`}
       >
         {description}
-      </p>
-      <div className="flex justify-between items-end">
+      </p> */}
+      <div className="flex items-end justify-between">
         <PostCardCategoryIcon category={category} />
         <PostCardCreateAt createdAt={createdAt} />
       </div>
