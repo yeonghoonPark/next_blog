@@ -3,8 +3,8 @@
 import CategoryNavMenu from "@/app/components/CategoryNavMenu";
 import CategoryTitle from "@/app/components/CategoryTitle";
 import SectionTitle from "@/app/components/molecules/SectionTitle";
-import PostsGrid from "@/app/components/PostsGrid";
-import { ALL, CATEGORIES, CATEGORY_TITLE, POSTS_TITLE } from "@/app/constants/posts";
+import PostsGrid from "@/app/components/organisms/PostsGrid";
+import { CATEGORIES, CATEGORY_ALL, CATEGORY_TITLE, POSTS_TITLE } from "@/app/constants/posts";
 import { Category } from "@/app/models/posts";
 import { useCategoryStore } from "@/app/store/posts/useCategoryStore";
 import { Post } from "@/contentlayer/generated";
@@ -18,7 +18,7 @@ const FilterablePosts = ({ posts }: Props) => {
   const setCategory = useCategoryStore((state) => state.actions.setCategory);
 
   const filteredPosts = posts.filter((post) =>
-    category === ALL ? post : post.category === category,
+    category === CATEGORY_ALL ? post : post.category === category,
   );
 
   const changeCategory = (category: Category) => setCategory(category);
@@ -27,7 +27,7 @@ const FilterablePosts = ({ posts }: Props) => {
 
   return (
     <section className="flex flex-col items-center gap-6">
-      <section className="flex w-full flex-col items-center gap-0 sm:gap-6">
+      <section className="flex flex-col items-center gap-0 sm:gap-6 w-full">
         <CategoryTitle title={CATEGORY_TITLE} />
         <CategoryNavMenu
           categories={CATEGORIES}

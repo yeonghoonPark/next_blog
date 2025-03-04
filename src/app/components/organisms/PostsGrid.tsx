@@ -1,7 +1,7 @@
 import { memo } from "react";
 import Link from "next/link";
+import PostCard from "@/app/components/organisms/PostCard";
 import { Post } from "@/contentlayer/generated";
-import PostCard from "./PostCard";
 
 type Props = {
   posts: Post[];
@@ -9,7 +9,7 @@ type Props = {
 
 const PostsGrid = ({ posts }: Props) => {
   return (
-    <div className="grid grid-cols-1 gap-x-4 gap-y-12 sm:grid-cols-2 md:grid-cols-3">
+    <div className="gap-x-6 gap-y-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4">
       {posts.map((post) => (
         <Link href={`/posts/${post._raw.flattenedPath}`} key={post.title}>
           <PostCard post={post} />

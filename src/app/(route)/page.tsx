@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import SectionTitle from "@/app/components/molecules/SectionTitle";
-import PostsGrid from "@/app/components/PostsGrid";
+import PostsGrid from "@/app/components/organisms/PostsGrid";
 import { allPosts } from "@/contentlayer/generated";
 
 const FEATURED_POSTS_TITLE = "Featured Posts";
