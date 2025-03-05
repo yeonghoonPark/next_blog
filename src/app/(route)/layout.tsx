@@ -23,10 +23,10 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
       >
         <ThemeProvider>
           <Header />
-          <div className="relative mx-auto flex max-w-[90rem] flex-1">
+          <div className="relative flex flex-1 mx-auto max-w-[90rem]">
             <HiddenNavigation />
             <SideNavigation />
-            <main className="mt-16 flex-1 p-10">{children}</main>
+            <main className="flex-1 mt-16 mb-12 p-10">{children}</main>
           </div>
           <Footer />
         </ThemeProvider>

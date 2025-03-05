@@ -1,17 +1,18 @@
-import { useMemo } from "react";
 import SectionTitle from "@/app/components/molecules/SectionTitle";
 import PostsGrid from "@/app/components/organisms/PostsGrid";
 import { allPosts } from "@/contentlayer/generated";
 
 const FEATURED_POSTS_TITLE = "Featured Posts";
 
-export default function HomePage() {
-  const featuredPosts = useMemo(() => allPosts.filter(({ featured }) => featured), []);
+const HomePage = () => {
+  const featuredPosts = allPosts.filter(({ featured }) => featured);
 
   return (
-    <section className="mx-auto mb-12">
+    <section>
       <SectionTitle title={FEATURED_POSTS_TITLE} count={featuredPosts.length} />
       <PostsGrid posts={featuredPosts} />
     </section>
   );
-}
+};
+
+export default HomePage;
