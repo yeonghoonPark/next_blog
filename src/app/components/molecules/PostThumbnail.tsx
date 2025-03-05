@@ -10,7 +10,7 @@ const PostThumbnail = ({ altText, thumbnail }: Props) => {
   return (
     <figure className="rounded-md rounded-ss-3xl rounded-ee-3xl overflow-hidden">
       <Image
-        className="grayscale-[33%] group-hover:grayscale-0 group-hover:scale-110 transition duration-200"
+        className="grayscale-[33%] group-hover:grayscale-0 group-hover:scale-110 transition-transform duration-300"
         width={640}
         height={426}
         src={thumbnail}
