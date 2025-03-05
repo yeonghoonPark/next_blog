@@ -1,6 +1,6 @@
 import { Category } from "@/app/models/posts";
 
-export const CATEGORIES: Category[] = ["All", "JavaScript", "React.js"];
+export const CATEGORIES: Category[] = ["All", "Design Pattern", "JavaScript", "React.js"];
 export const CATEGORY_ALL = "All";
 export const CATEGORY_JAVASCRIPT = "JavaScript";
 export const CATEGORY_NEXTJS = "NEXT.js";

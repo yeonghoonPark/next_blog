@@ -1,1 +1,7 @@
-export type Category = "All" | "JavaScript" | "TypeScript" | "React.js" | "NEXT.js";
+export type Category =
+  | "All"
+  | "Design Pattern"
+  | "JavaScript"
+  | "NEXT.js"
+  | "React.js"
+  | "TypeScript";
