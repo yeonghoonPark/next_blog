@@ -13,8 +13,10 @@ const PostMeta = ({ post, type }: Props) => {
   const { title, description, category, createdAt } = post;
 
   return (
-    <section className="group-hover:text-blue-600 group-hover:dark:text-yellow-500 flex flex-col gap-2 pt-4">
-      <h2 className="w-full font-bold truncate">{title}</h2>
+    <section className="flex flex-col gap-2 pt-4">
+      <h2 className="group-hover:text-blue-600 group-hover:dark:text-yellow-500 w-full font-bold text-slate-900 dark:text-slate-200 truncate">
+        {title}
+      </h2>
       <p
         className={`w-full min-h-[2.5rem] font-normal line-clamp-2
         ${type === "card" ? "mb-1 text-sm " : "text-xl"}`}

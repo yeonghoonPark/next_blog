@@ -10,7 +10,7 @@ import { ThemeProvider } from "@/app/contexts/ThemeContext";
 const OpenSans = Open_Sans({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "0hun-dev",
+  title: "PPOTTA-DEV",
   description:
     "A blog dedicated to JavaScript, TypeScript, and React. Dive deep into frontend development with practical insights and coding examples.",
 };
@@ -19,14 +19,14 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <html lang="ko">
       <body
-        className={`${OpenSans.className} flex min-h-screen flex-1 select-none flex-col text-gray-800 dark:text-gray-100`}
+        className={`${OpenSans.className} flex min-h-screen flex-1 flex-col text-slate-900 dark:text-slate-200`}
       >
         <ThemeProvider>
           <Header />
           <div className="relative flex flex-1 mx-auto max-w-[90rem]">
             <HiddenNavigation />
             <SideNavigation />
-            <main className="flex-1 mt-16 mb-12 p-10">{children}</main>
+            <main className="flex-1 p-10 text-slate-700 dark:text-slate-400">{children}</main>
           </div>
           <Footer />
         </ThemeProvider>

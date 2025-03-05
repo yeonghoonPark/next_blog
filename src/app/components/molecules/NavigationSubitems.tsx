@@ -1,3 +1,4 @@
+import DotIcon from "@/app/components/atoms/icon/DotIcon";
 import { Category } from "@/app/models/posts";
 
 type Props = {
@@ -25,19 +26,21 @@ const NavigationSubitems = ({
     if (onSubitemClick) onSubitemClick(path, subitem);
   };
 
+  // ml-1 text-xs
   return (
-    <ul className={`${isHiddenNavigation ? "block" : "hidden"} w-full pl-16 xl:block`}>
+    <ul className={`${isHiddenNavigation ? "block" : "hidden"} xl:block w-full`}>
       {subitems.map((subitem) => (
         <li
           className={`${
             isActiveSubitem(subitem)
               ? "font-semibold text-blue-600 dark:text-yellow-500"
               : "text-inherit"
-          } flex cursor-pointer rounded-md p-2 hover:bg-neutral-300 dark:hover:bg-blue-900`}
+          } flex items-center hover:bg-neutral-300 dark:hover:bg-blue-900 rounded-md cursor-pointer pl-4 py-1`}
           key={subitem}
           onClick={handleClick(path, subitem)}
         >
-          <span className="ml-1 text-xs">👉 &nbsp; {subitem}</span>
+          <DotIcon />
+          <span className="pl-12 text-xs">{subitem}</span>
         </li>
       ))}
     </ul>

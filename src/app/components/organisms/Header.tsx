@@ -13,11 +13,11 @@ const Header = () => {
   };
 
   return (
-    <header className="fixed top-0 z-10 w-full items-center border-b border-neutral-300 backdrop-blur-md dark:border-gray-700">
-      <div className="mx-auto flex h-14 max-w-[90rem] items-center justify-between px-3">
+    <header className="top-0 z-10 sticky flex-none backdrop-blur-md border-neutral-300 dark:border-gray-700 border-b w-full">
+      <div className="flex justify-between items-center mx-auto px-3 max-w-[90rem] h-14">
         <div className="flex items-center gap-6">
           <HamburgerIcon onClick={handleClick} />
-          <h1 className="text-lg font-semibold">
+          <h1 className="font-semibold text-lg">
             <Link href="/">{APP_TITLE}</Link>
           </h1>
         </div>

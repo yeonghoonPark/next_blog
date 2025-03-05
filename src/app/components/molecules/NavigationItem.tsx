@@ -44,9 +44,10 @@ const NavigationItem = ({
   return (
     <li>
       <div
-        className={`${isHiddenNavigation ? "flex-row px-4 py-2" : "flex-col p-2"} ${
-          isSelected ? "font-semibold text-blue-600 dark:text-yellow-500" : "text-inherit"
-        } relative flex w-full cursor-pointer items-center gap-1 rounded-md hover:bg-neutral-300 dark:hover:bg-blue-900 xl:flex-row xl:px-4 xl:py-2`}
+        className={`
+          ${isHiddenNavigation ? "flex-row px-4 py-2" : "flex-col p-2"} 
+          ${isSelected ? "text-blue-600 dark:text-yellow-500" : "text-inherit"}
+          relative flex xl:flex-row items-center gap-1 hover:bg-neutral-300 dark:hover:bg-blue-900 xl:px-4 xl:py-2 rounded-md w-full font-semibold cursor-pointer`}
         onClick={handleClick}
       >
         <IconComponent isSelected={isSelected} theme={theme} />
