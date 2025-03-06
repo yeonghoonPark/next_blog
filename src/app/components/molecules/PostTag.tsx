@@ -1,5 +1,6 @@
 import { memo } from "react";
 import {
+  CATEGORY_DESIGN_PATTERN,
   CATEGORY_JAVASCRIPT,
   CATEGORY_NEXTJS,
   CATEGORY_REACT,
@@ -7,8 +8,10 @@ import {
 } from "@/app/constants/posts";
 import { Category } from "@/app/models/posts";
 
-const getClassNameByCategory = (category: Category): string | undefined => {
+const getTagStyleByCategory = (category: Category): string | undefined => {
   switch (category) {
+    case CATEGORY_DESIGN_PATTERN:
+      return "bg-gray-300 text-slate-900";
     case CATEGORY_JAVASCRIPT:
       return "bg-yellow-400 text-black";
     case CATEGORY_NEXTJS:
@@ -28,7 +31,7 @@ type Props = {
 
 const PostTag = ({ category }: Props) => {
   return (
-    <span className={`w-fit rounded-2xl px-3 py-1 text-xs ${getClassNameByCategory(category)}`}>
+    <span className={`w-fit rounded-2xl px-3 py-1 text-xs ${getTagStyleByCategory(category)}`}>
       {category}
     </span>
   );
