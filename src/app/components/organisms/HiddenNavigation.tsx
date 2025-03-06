@@ -30,11 +30,11 @@ const HiddenNavigation = () => {
   return (
     <>
       <nav
-        className={`${
-          navigationState === HIDDEN_NAVIGATION_DISPLAY ? "left-0" : "-left-52"
-        } transition-left fixed top-14 z-50 h-full w-52 overflow-y-auto duration-200`}
+        className={`
+        ${navigationState === HIDDEN_NAVIGATION_DISPLAY ? "left-0" : "-left-52"} 
+        top-14 z-50 fixed pt-12 w-52 h-full overflow-y-auto transition-left duration-200`}
       >
-        <ul className="flex h-full w-full flex-col gap-1 bg-[#e8eef4] p-1 duration-0 dark:bg-[#0f192d]">
+        <ul className="flex flex-col gap-1 bg-[#e8eef4] dark:bg-[#0f192d] p-1 w-full h-full duration-0">
           {NAVIGATION_ITEMS.map(({ hasSubitems, IconComponent, path, subitems, title }) => (
             <NavigationItem
               hasSubitems={hasSubitems}
@@ -58,7 +58,7 @@ const HiddenNavigation = () => {
       {/* background overlay */}
       {navigationState === HIDDEN_NAVIGATION_DISPLAY && (
         <div
-          className="fixed left-0 top-14 z-10 h-full w-full bg-black opacity-50 transition-opacity duration-0"
+          className="top-14 left-0 z-10 fixed bg-black opacity-50 w-full h-full transition-opacity duration-0"
           onClick={toggleNavigation}
         />
       )}
