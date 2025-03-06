@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import HamburgerIcon from "@/app/components/atoms/icon/HamburgerIcon";
 import { APP_TITLE } from "@/app/constants/app";
@@ -17,9 +18,10 @@ const Header = () => {
       <div className="flex justify-between items-center mx-auto px-3 max-w-[90rem] h-14">
         <div className="flex items-center gap-6">
           <HamburgerIcon onClick={handleClick} />
-          <h1 className="font-semibold text-lg">
-            <Link href="/">{APP_TITLE}</Link>
-          </h1>
+          <Link className="flex items-center gap-2" href="/">
+            <Image width={40} height={40} src="/favicon.ico" alt="avatar's image" />
+            <h1 className="font-semibold text-lg">{APP_TITLE}</h1>
+          </Link>
         </div>
       </div>
     </header>
