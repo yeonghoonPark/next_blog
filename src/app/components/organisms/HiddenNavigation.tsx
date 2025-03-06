@@ -32,9 +32,9 @@ const HiddenNavigation = () => {
       <nav
         className={`
         ${navigationState === HIDDEN_NAVIGATION_DISPLAY ? "left-0" : "-left-52"} 
-        top-14 z-50 fixed pt-12 w-52 h-full overflow-y-auto transition-left duration-200`}
+        top-14 z-50 fixed w-52 h-screen transition-left duration-200`}
       >
-        <ul className="flex flex-col gap-1 bg-[#e8eef4] dark:bg-[#0f192d] p-1 w-full h-full duration-0">
+        <ul className="flex flex-col gap-4 bg-[#e8eef4] dark:bg-[#0f192d] p-1 pt-12 w-full h-full duration-0">
           {NAVIGATION_ITEMS.map(({ hasSubitems, IconComponent, path, subitems, title }) => (
             <NavigationItem
               hasSubitems={hasSubitems}
