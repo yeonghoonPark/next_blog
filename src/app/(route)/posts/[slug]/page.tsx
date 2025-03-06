@@ -25,7 +25,7 @@ const PostDetailPage = ({ params }: { params: { slug: string } }) => {
     prose-hr:border-gray-300 dark:prose-hr:border-gray-700 
       prose-ol:pl-5 
       prose-ul:pl-5
-    prose-li:marker:text-slate-700 dark:prose-li:marker:text-slate-400
+      prose-li:my-0 prose-li:marker:text-slate-700 dark:prose-li:marker:text-slate-400
       prose-table:mb-5 prose-table:border-separate prose-table:border-spacing-1 prose-table:text-center
       prose-th:p-1.5 prose-th:rounded prose-th:bg-gray-300 dark:prose-th:bg-slate-700
       prose-td:p-1.5 prose-td:rounded prose-td:bg-gray-200 dark:prose-td:bg-slate-600 
