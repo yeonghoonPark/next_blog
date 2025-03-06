@@ -6,6 +6,7 @@ import Header from "@/app/components/organisms/Header";
 import HiddenNavigation from "@/app/components/organisms/HiddenNavigation";
 import SideNavigation from "@/app/components/organisms/SideNavigation";
 import { ThemeProvider } from "@/app/contexts/ThemeContext";
+import Favicon from "@/app/favicon.ico";
 
 const OpenSans = Open_Sans({ subsets: ["latin"] });
 
@@ -13,13 +14,14 @@ export const metadata: Metadata = {
   title: "PPOTTA-DEV",
   description:
     "A blog dedicated to JavaScript, TypeScript, and React. Dive deep into frontend development with practical insights and coding examples.",
+  icons: [{ rel: "icon", url: Favicon.src }],
 };
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <html lang="ko">
       <body
-        className={`${OpenSans.className} flex flex-col flex-1 min-h-screen text-slate-900 dark:text-slate-200`}
+        className={`${OpenSans.className} relative flex flex-col flex-1 min-h-screen text-slate-900 dark:text-slate-200`}
       >
         <ThemeProvider>
           <Header />

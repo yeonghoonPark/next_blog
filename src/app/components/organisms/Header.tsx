@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import HamburgerIcon from "@/app/components/atoms/icon/HamburgerIcon";
 import { APP_TITLE } from "@/app/constants/app";
+import Favicon from "@/app/favicon.ico";
 import { useNavigationStore } from "@/app/store/navigation/useNavigationStore";
 
 const Header = () => {
@@ -19,7 +20,7 @@ const Header = () => {
         <div className="flex items-center gap-6">
           <HamburgerIcon onClick={handleClick} />
           <Link className="flex items-center gap-2" href="/">
-            <Image width={40} height={40} src="/favicon.ico" alt="avatar's image" />
+            <Image width={40} height={40} src={Favicon} alt="avatar's image" />
             <h1 className="font-semibold text-lg">{APP_TITLE}</h1>
           </Link>
         </div>
