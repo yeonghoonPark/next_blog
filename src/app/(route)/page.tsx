@@ -1,3 +1,4 @@
+import { compareDesc } from "date-fns";
 import SectionTitle from "@/app/components/molecules/SectionTitle";
 import PostsGrid from "@/app/components/organisms/PostsGrid";
 import { allPosts } from "@/contentlayer/generated";
@@ -5,7 +6,11 @@ import { allPosts } from "@/contentlayer/generated";
 const FEATURED_POSTS_TITLE = "Featured Posts";
 
 const HomePage = () => {
-  const featuredPosts = allPosts.filter(({ featured }) => featured);
+  const sortedAllPosts = allPosts.sort((a, b) =>
+    compareDesc(new Date(a.createdAt), new Date(b.createdAt)),
+  );
+
+  const featuredPosts = sortedAllPosts.filter(({ featured }) => featured);
 
   return (
     <section>
