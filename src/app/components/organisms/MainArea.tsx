@@ -1,9 +1,8 @@
-import { ReactNode } from "react";
 import HiddenNavigation from "@/app/components/organisms/HiddenNavigation";
 import SideNavigation from "@/app/components/organisms/SideNavigation";
 
 type Props = {
-  children: ReactNode;
+  children: React.ReactNode;
 };
 
 const MainArea = ({ children }: Props) => {

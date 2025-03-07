@@ -1,5 +1,4 @@
 import "@/app/(route)/globals.css";
-import { ReactNode } from "react";
 import type { Metadata } from "next";
 import { Open_Sans } from "next/font/google";
 import BackgroundLines from "@/app/components/molecules/BackgroundLines";
@@ -18,12 +17,10 @@ export const metadata: Metadata = {
   icons: [{ rel: "icon", url: Favicon.src }],
 };
 
-const RootLayout = ({ children }: { children: ReactNode }) => {
+const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <html lang="ko">
-      <body
-        className={`${OpenSans.className} relative flex flex-col flex-1 min-h-screen text-slate-900 dark:text-slate-200`}
-      >
+    <html className={`${OpenSans.className}`} lang="ko">
+      <body className="relative flex flex-col flex-1 min-h-screen overflow-x-hidden text-slate-900 dark:text-slate-200">
         <ThemeProvider>
           {/* background lines */}
           <BackgroundLines />
