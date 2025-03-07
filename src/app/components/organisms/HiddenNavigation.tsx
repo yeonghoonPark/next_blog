@@ -14,15 +14,15 @@ const HiddenNavigation = () => {
   const router = useRouter();
   const { theme, toggleTheme } = useTheme();
   const category = useCategoryStore((state) => state.category);
-  const { setCategory, resetCategory } = useCategoryStore((state) => state.actions);
+  const setCategory = useCategoryStore((state) => state.actions.setCategory);
   const navigationState = useNavigationStore((state) => state.navigationState);
   const toggleNavigation = useNavigationStore((state) => state.actions.toggleNavigation);
 
   const handleClick = (path: string | undefined, subitem?: Category) => {
     if (path) {
+      if (subitem) setCategory(subitem);
+
       router.push(path);
-      subitem ? setCategory(subitem) : resetCategory();
-      toggleNavigation();
     } //
     else toggleTheme();
   };
