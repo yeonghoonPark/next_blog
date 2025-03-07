@@ -1,10 +1,10 @@
 import "@/app/(route)/globals.css";
+import { ReactNode } from "react";
 import type { Metadata } from "next";
 import { Open_Sans } from "next/font/google";
 import Footer from "@/app/components/organisms/Footer";
 import Header from "@/app/components/organisms/Header";
-import HiddenNavigation from "@/app/components/organisms/HiddenNavigation";
-import SideNavigation from "@/app/components/organisms/SideNavigation";
+import MainArea from "@/app/components/organisms/MainArea";
 import { ThemeProvider } from "@/app/contexts/ThemeContext";
 import Favicon from "@/app/favicon.ico";
 
@@ -17,21 +17,18 @@ export const metadata: Metadata = {
   icons: [{ rel: "icon", url: Favicon.src }],
 };
 
-const RootLayout = ({ children }: { children: React.ReactNode }) => {
+const RootLayout = ({ children }: { children: ReactNode }) => {
   return (
     <html lang="ko">
       <body
         className={`${OpenSans.className} relative flex flex-col flex-1 min-h-screen text-slate-900 dark:text-slate-200`}
       >
         <ThemeProvider>
+          {/* header */}
           <Header />
-          <div className="relative flex flex-1 mx-auto max-w-[90rem]">
-            <HiddenNavigation />
-            <SideNavigation />
-            <main className="flex-1 px-12 py-10 md:pl-28 xl:pl-64 text-slate-700 dark:text-slate-400">
-              {children}
-            </main>
-          </div>
+          {/* main area that includes navigation and main content */}
+          <MainArea>{children}</MainArea>
+          {/* footer */}
           <Footer />
         </ThemeProvider>
       </body>

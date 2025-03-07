@@ -35,7 +35,6 @@ const PostDetailPage = ({ params }: { params: { slug: string } }) => {
     prose-code:text-slate-900 dark:prose-code:text-slate-200  prose-code:before:content-none prose-code:after:content-none`}
     >
       <PostMeta post={post} type="post" />
-
       <MDXComponent />
     </article>
   );
