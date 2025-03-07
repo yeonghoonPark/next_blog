@@ -2,7 +2,7 @@ import { memo } from "react";
 
 type Props = {
   title: string;
-  count: string | number;
+  count?: string | number;
 };
 
 const SectionTitle = ({ title, count }: Props) => {
