@@ -2,6 +2,7 @@ import "@/app/(route)/globals.css";
 import { ReactNode } from "react";
 import type { Metadata } from "next";
 import { Open_Sans } from "next/font/google";
+import BackgroundLines from "@/app/components/molecules/BackgroundLines";
 import Footer from "@/app/components/organisms/Footer";
 import Header from "@/app/components/organisms/Header";
 import MainArea from "@/app/components/organisms/MainArea";
@@ -24,6 +25,8 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
         className={`${OpenSans.className} relative flex flex-col flex-1 min-h-screen text-slate-900 dark:text-slate-200`}
       >
         <ThemeProvider>
+          {/* background lines */}
+          <BackgroundLines />
           {/* header */}
           <Header />
           {/* main area that includes navigation and main content */}
