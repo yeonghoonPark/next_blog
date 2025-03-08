@@ -5,13 +5,14 @@ import BackgroundLines from "@/app/components/molecules/BackgroundLines";
 import Footer from "@/app/components/organisms/Footer";
 import Header from "@/app/components/organisms/Header";
 import MainArea from "@/app/components/organisms/MainArea";
+import { APP_TITLE } from "@/app/constants/app";
 import { ThemeProvider } from "@/app/contexts/ThemeContext";
 import Favicon from "@/app/favicon.ico";
 
 const OpenSans = Open_Sans({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "PPOTTA-DEV",
+  title: APP_TITLE,
   description:
     "A blog dedicated to JavaScript, TypeScript, and React. Dive deep into frontend development with practical insights and coding examples.",
   icons: [{ rel: "icon", url: Favicon.src }],

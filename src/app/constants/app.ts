@@ -1,1 +1,1 @@
-export const APP_TITLE = "PPOTTA-DEV";
+export const APP_TITLE = "0Hun-Dev";
