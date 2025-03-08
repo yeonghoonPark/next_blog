@@ -1,27 +1,35 @@
 import "@/app/(route)/globals.css";
 import type { Metadata } from "next";
 import { Open_Sans } from "next/font/google";
-import Footer from "@/app/components/Footer";
-import Header from "@/app/components/Header";
+import BackgroundLines from "@/app/components/molecules/BackgroundLines";
+import Footer from "@/app/components/organisms/Footer";
+import Header from "@/app/components/organisms/Header";
+import MainArea from "@/app/components/organisms/MainArea";
+import { APP_TITLE } from "@/app/constants/app";
 import { ThemeProvider } from "@/app/contexts/ThemeContext";
+import Favicon from "@/app/favicon.ico";
 
 const OpenSans = Open_Sans({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "0hun-dev",
+  title: APP_TITLE,
   description:
     "A blog dedicated to JavaScript, TypeScript, and React. Dive deep into frontend development with practical insights and coding examples.",
+  icons: [{ rel: "icon", url: Favicon.src }],
 };
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <html lang="ko">
-      <body
-        className={`${OpenSans.className} flex select-none flex-col text-gray-800 dark:text-gray-100`}
-      >
+    <html className={`${OpenSans.className}`} lang="ko">
+      <body className="relative flex flex-col flex-1 min-h-screen overflow-x-hidden text-slate-900 dark:text-slate-200">
         <ThemeProvider>
+          {/* background lines */}
+          <BackgroundLines />
+          {/* header */}
           <Header />
-          <main className="mt-16 w-full max-w-5xl grow self-center p-10">{children}</main>
+          {/* main area that includes navigation and main content */}
+          <MainArea>{children}</MainArea>
+          {/* footer */}
           <Footer />
         </ThemeProvider>
       </body>

@@ -1,7 +1,7 @@
 "use client";
 
 import { createContext, useEffect, useState } from "react";
-import { THEME } from "@/app/constants/theme";
+import { THEME } from "@/app/constants/theme/theme";
 import { Theme, ThemeContextProps } from "@/app/models/theme";
 
 const getNextTheme = (theme: Theme): Theme => {

@@ -4,22 +4,22 @@ description: Structure and concept of Nullish Coalescing Operator
 category: JavaScript
 thumbnail: /image/nullish-coalescing-operator.jpg
 createdAt: 2023-12-21
-featured: true
+featured: false
 ---
 
 ---
 
 ## # 목차
 
-- [# `nullish coalescing operator(null 병합 연산자)`의 구조](#-nullish-coalescing-operatornull-병합-연산자의-구조)
-- [# `nullish coalescing operator(null 병합 연산자)`의 원리](#-nullish-coalescing-operatornull-병합-연산자의-원리)
-- [# `nullish coalescing operator(null 병합 연산자)`의 예시](#-nullish-coalescing-operatornull-병합-연산자의-예시)
-- [# `logical OR operator(논리적 OR 연산자)`와의 차이점](#-logical-or-operator논리적-or-연산자와의-차이점)
+- [# null 병합 연산자의 구조](#-null-병합-연산자의-구조)
+- [# null 병합 연산자의 원리](#-null-병합-연산자의-원리)
+- [# null 병합 연산자의 예시](#-null-병합-연산자의-예시)
+- [# 논리적 OR 연산자와의 차이점](#-논리적-or-연산자와의-차이점)
 - [# 마무리](#-마무리)
 
 ---
 
-## # `nullish coalescing operator(null 병합 연산자)`의 구조
+## # null 병합 연산자의 구조
 
 [# 목차](#-목차)
 
@@ -29,12 +29,12 @@ featured: true
 leftExpression ?? rightExpression;
 ```
 
-- 2개의 물음표(??)와 2개의 expression(피연산자)으로 구성되어 있습니다.
-- 왼쪽은 left expression, 오른쪽은 right expression이라고 칭합니다.
+- 2개의 물음표(??)와 2개의 피연산자<sup>(expression)</sup>으로 구성되어 있습니다.
+- 왼쪽은 왼쪽 피연산자, 오른쪽은 오른쪽 피연산자 칭합니다.
 
 ---
 
-## # `nullish coalescing operator(null 병합 연산자)`의 원리
+## # null 병합 연산자의 원리
 
 [# 목차](#-목차)
 
@@ -44,11 +44,11 @@ leftExpression ?? rightExpression;
 (null || undefined) ?? rightExpression;
 ```
 
-- left expression의 값이 `null` 또는 `undefined`인 경우 오른쪽이 실행되고 그렇지 않다면 왼쪽이 실행됩니다.
+- 왼쪽 피연산자의 값이 null 또는 undefined인 경우 오른쪽이 실행되고 그렇지 않다면 왼쪽이 실행됩니다.
 
 ---
 
-## # `nullish coalescing operator(null 병합 연산자)`의 예시
+## # null 병합 연산자의 예시
 
 [# 목차](#-목차)
 
@@ -64,9 +64,9 @@ const printEmpty = () => {
 something ?? printEmpty();
 ```
 
-- something은 선언은 되었지만 값이 할당되지 않았기 때문에 `undefined`입니다.
-- printEmpty()는 console에 "empty"를 출력하는 함수입니다.
-- left expression이 `undefined`이기 때문에 right expression인 printEmpty()를 실행합니다.
+- "something"은 선언은 되었지만 값이 할당되지 않았기 때문에 undefined입니다.
+- 화살표 함수 "printEmpty"는 console에 "empty"를 출력하는 함수입니다.
+- 왼쪽 피연산자가 undefined이기 때문에 오른쪽 피연산자인 함수 "printEmpty"를 실행합니다.
 
 <br />
 
@@ -95,7 +95,7 @@ const printMessage = (text) => {
 
 ---
 
-## # `logical OR operator(논리적 OR 연산자)`와의 차이점
+## # 논리적 OR 연산자와의 차이점
 
 [# 목차](#-목차)
 
@@ -105,9 +105,9 @@ const printMessage = (text) => {
 falsy || rightExpression;
 ```
 
-- left expression이 `falsy`인 경우 오른쪽이 실행되고 그렇지 않다면 왼쪽이 실행됩니다.
+- 왼쪽 피연산자가 falsy인 경우 오른쪽이 실행되고 그렇지 않다면 왼쪽이 실행됩니다.
 
-2.  `falsy`가 되는 경우
+2.  falsy가 되는 경우
 
     - null
     - undefined
@@ -121,12 +121,12 @@ falsy || rightExpression;
 
 ## # 마무리
 
-    1.  `nullish coalescing operator(null 병합 연산자)`
+    1.  null 병합 연산자 (nullish coalescing operator)
 
         -   null
         -   undefined
 
-    2.  `logical OR operator(논리적 OR 연산자)`
+    2.  논리적 OR 연산자 (logical OR operator)
 
         -   null
         -   undefined
@@ -136,11 +136,9 @@ falsy || rightExpression;
         -   NaN
         -   "" ('', ``)
 
-    3.  `default parameter`
+    3.  default parameter
 
         -   undefined
-
-각 연산자의 정확한 차이점을 인지하지 못해 예상치 못한 결과를 마주하고 머리를 긁적인 적이 있습니다. 해당 글을 통해 각 연산자의 구조와 원리를 이해하는 데 조금이나마 도움이 됐으면 좋겠습니다.
 
 [# 목차](#-목차)
 
