@@ -9,7 +9,7 @@ type Props = {
 
 const PostsGrid = ({ posts }: Props) => {
   return (
-    <div className="gap-x-6 gap-y-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 mb-10">
+    <div className="gap-x-6 gap-y-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mb-10">
       {posts.map((post) => (
         <Link href={`/posts/${post._raw.flattenedPath}`} key={post.title}>
           <PostCard post={post} />
