@@ -20,7 +20,7 @@ const PostDetailPage = ({ params }: { params: { slug: string } }) => {
       max-w-6xl mx-auto break-words text-slate-700 dark:text-slate-400
       prose dark:prose-invert 
       prose-h2:mt-[-100px] prose-h2:pt-[100px] prose-h2:text-slate-900 dark:prose-h2:text-slate-200
-      prose-h3:text-base prose-h3:text-slate-900 dark:prose-h3:text-slate-200
+      prose-h3:text-xl prose-h3:text-slate-900 dark:prose-h3:text-slate-200
       prose-p:before:content-none prose-p:after:content-none
     prose-hr:border-gray-300 dark:prose-hr:border-gray-700 
       prose-ol:pl-5 
