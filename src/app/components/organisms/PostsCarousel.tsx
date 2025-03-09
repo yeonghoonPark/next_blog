@@ -100,11 +100,11 @@ const PostsCarousel = ({ posts }: Props) => {
                 className={index === selectedIndex ? "cursor-pointer" : "cursor-default"}
                 href={index === selectedIndex ? `/posts/${post._raw.flattenedPath}` : "/"}
               >
-                <div className="flex flex-col justify-center items-center gap-8 bg-gradient-to-br from-sky-300 dark:from-yellow-300 to-indigo-400 dark:to-amber-500 rounded-md rounded-ss-3xl rounded-ee-3xl h-52">
+                <div className="flex flex-col justify-center items-center gap-8 bg-gradient-to-br from-sky-300 dark:from-yellow-400 to-purple-600 dark:to-rose-500 rounded-md rounded-ss-3xl rounded-ee-3xl h-52">
                   <ReactTyped
                     backDelay={10000}
                     backSpeed={50}
-                    className="text-sm sm:text-lg md:text-3xl lg:text-4xl"
+                    className="font-bold text-white dark:text-black text-sm sm:text-lg md:text-3xl lg:text-4xl"
                     loop={index === selectedIndex}
                     strings={[post.title]}
                     typeSpeed={50}
