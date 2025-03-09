@@ -1,0 +1,264 @@
+---
+title: What is HTTP?
+description: Understanding the Basics of Web Communication, Status Codes, and Headers
+category: Web
+thumbnail: /image/what-is-http.jpg
+createdAt: 2025-03-09
+featured: false
+---
+
+---
+
+## # 목차
+
+- [# HTTP란 무엇인가](#-http란-무엇인가)
+- [# HTTP 요청 구조](#-http-요청-구조)
+- [# HTTP 응답 구조](#-http-응답-구조)
+- [# HTTP 헤더의 중요성](#-http-헤더의-중요성)
+- [# 마무리](#-마무리)
+
+---
+
+## # HTTP란 무엇인가
+
+[# 목차](#-목차)
+
+- _HTTP의 기본 개념_  
+  _HTTP_<sup>_(HyperText Transfer Protocol)_</sup>는 웹 서버와 클라이언트(브라우저) 간에 데이터를 주고받는 데 사용되는 프로토콜입니다.
+  프로토콜은 두 개 이상의 시스템이 서로 데이터를 주고받을 때, 어떻게 데이터를 교환할지에 대한 규칙이나 약속을 정의한 것입니다.
+  쉽게 말하면 *HTTP는 웹 페이지, 이미지, 동영상 등 다양한 데이터를 웹 서버와 클라이언트가 데이터를 주고받기 위해 사용되는 규약 된 언어*로,
+  클라이언트가 서버에 요청을 보내고 서버가 이를 처리한 후 응답을 반환하는 방식으로 작동합니다.
+
+- _HTTP 프로토콜의 역할과 중요성_  
+  웹에서의 모든 상호작용은 HTTP를 통해 이루어지며, 이는 웹 페이지를 열거나 웹 애플리케이션을 사용하는 등의 기본적인 활동을 가능하게 합니다.
+  HTTP는 서버와 클라이언트 간의 의사소통을 표준화하여 다양한 시스템이 원활하게 상호작용을 할 수 있도록 합니다.
+  만약 HTTP가 없다면, 웹 서비스가 제대로 작동할 수 없습니다. 우리는 웹 사이트를 방문하거나 검색하거나 쇼핑하는 등 일상적인 인터넷 활동을 할 수 없게 됩니다.
+  모든 웹 상호작용은 HTTP를 기반으로 이루어지기 때문에, 이는 웹의 핵심적인 프로토콜이자 기반입니다.
+
+---
+
+## # HTTP 요청 구조
+
+[# 목차](#-목차)
+
+### _요청 (Request) 구조_
+
+HTTP 요청은 클라이언트(주로 브라우저)가 서버에 보내는 메시지입니다. 웹 서버가 클라이언트의 요청을 처리하고 응답을 보낼 수 있게 하는 역할을 합니다.
+HTTP 요청은 크게 3가지 주요 요소로 나눠집니다.
+
+1. _요청 라인 (Request Line)_  
+   요청 라인은 HTTP 요청의 첫 번째 줄로, 클라이언트가 서버에 보내는 요청의 기본 정보를 포함하고 있으며, 다음과 같은 구성 요소로 나뉩니다.
+
+- _요청 메서드_<sup>_(Request Method)_</sup>  
+  클라이언트가 서버에서 원하는 작업의 유형을 나타냅니다. (GET, POST, PUT, DELETE 등)
+
+- _요청 URL_<sup>_(Request URL)_</sup>  
+  클라이언트가 요청하는 자원의 주소입니다. (/index.html 또는 /search?q=keyword와 같은 형태)
+
+- _HTTP 버전_<sup>_(HTTP Version)_</sup>  
+  사용된 HTTP 프로토콜의 버전입니다. (HTTP/1.1, HTTP/2, HTTP/3)
+
+```xml
+// 1. 요청 라인
+// 요청 메서드: GET
+// 요청 URL: /search?q=apple
+// HTTP 버전: HTTP/1.1
+
+GET /search?q=apple HTTP/1.1
+```
+
+<br />
+
+2. _헤더 (Header)_  
+   요청 헤더는 서버가 클라이언트의 요청을 처리하는 데 필요한 추가 정보를 전달합니다. 클라이언트의 환경 정보나 서버가 응답할 때 필요한 조건들을 정의합니다.
+
+- _User-Agent_  
+  클라이언트의 브라우저 및 운영체제 정보 (Mozila5.0 (Windows NT 10.0; Win64; x64) Chrome/58.0.3029.110 등)
+
+- _Accept_  
+  클라이언트가 수용할 수 있는 콘텐츠 형식 (text/html, application/json 등)
+
+- _Accept-Language_  
+  클라이언트가 선호하는 언어 (en-US, ko-KR, fr-FR 등)
+
+- _Authorization_  
+  인증이 필요한 요청에서 사용되는 토큰<sup>(Token)</sup>이나 자격 증명 (OAuth 2.0의 Bearer "token" 또는 API Key의 ApiKey "api-key" 등)
+
+```xml
+// 2. 헤더
+
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36
+Accept: application/json
+Accept-Language: en-US, ko-KR;q=0.9, fr-FR;q=0.8
+Authorization: Bearer ya29.a0AfH6SMDfQjwX4aLwFH7a3LpA__
+```
+
+<br />
+
+3. _바디 (Body)_  
+   _요청 바디는 요청 메서드가 POST 또는 PUT과 같이 데이터를 서버에 전송하는 경우에만 포함됩니다._ 본문은 서버가 처리해야 할 데이터를 포함하며,
+   주로 _폼 데이터나 파일 업로드 등이 여기에 포함됩니다._ GET 요청은 본문을 포함하지 않지만, 요청 URL 쿼리 파라미터<sup>(Query Parameters)</sup>를 통해 데이터를 전달할 수 있습니다.
+
+```xml
+// 3. 바디
+// application/json
+
+{
+  "username": "john_doe",
+  "email": "john.doe@example.com",
+  "password": "123456"
+}
+```
+
+---
+
+## # HTTP 응답 구조
+
+[# 목차](#-목차)
+
+### _응답 (Response) 구조_
+
+서버는 클라이언트의 요청을 처리하고, 그에 대한 응답을 다시 클라이언트에게 보냅니다. HTTP 응답은 크게 3가지 주요 요소로 구성됩니다.
+
+1. _상태 라인 (Status Line)_  
+   상태 라인은 응답의 첫 번째 줄로, 서버가 클라이언트의 요청에 대해 어떻게 처리했는지를 나타냅니다. 상태 라인은 다음과 같은 요소로 구성됩니다.
+
+- _HTTP 버전_<sup>_(HTTP Version)_</sup>  
+  서버가 사용하는 프로토콜의 버전입니다. (HTTP/1.1, HTTP/2, HTTP/3)
+
+- _상태 코드_<sup>_(Status Code)_</sup>  
+  서버가 요청을 처리한 결과를 나타내는 숫자 코드입니다. (200, 400, 404, 500, 502 등)
+
+- _상태 메시지_<sup>_(Status Message)_</sup>  
+  상태 코드를 설명하는 간단한 메시지입니다. (OK, Bad Request, Not Found, Internal Server Error, Bad Gateway 등)
+
+```xml
+// 1. 상태 라인
+// HTTP 버전: HTTP/1.1
+// 상태 코드: 200
+// 상태 메시지: OK
+
+HTTP/1.1 200 OK
+```
+
+<br/ >
+
+2. _헤더 (Header)_  
+   응답 헤더는 서버가 클라이언트에게 보내는 추가적인 정보로, 주로 콘텐츠 유형, 서버 정보, 응답의 캐시 처리 등을 포함합니다.
+
+- _Content-Type_  
+  응답의 콘텐츠 형식, HTML 페이지라면 text/html, JSON 데이터라면 application/json (text/html , application/json 등)
+
+- _Content-Length_  
+  응답 본문의 길이, 바이트 단위 (3053)
+
+- _Server_  
+  응답을 처리한 서버 소프트웨어 정보 (Apache/2.4.41 등)
+
+- _Cache-Control_  
+  캐시 처리 방법에 대한 지침 (no-cache, max-age=3600 등)
+
+- _Date_  
+  응답이 생성된 날짜와 시간 (Sat, 09 Mar 2025 12:00:00 GMT)
+
+```xml
+// 2. 헤더
+
+Content-Type: application/json
+Content-Length: 1525
+Server: Nginx/1.18.0
+Cache-Control: max-age=3600, must-revalidate
+Date: Sat, 09 Mar 2025 12:00:00 GMT
+```
+
+<br />
+
+3. _바디 (Body)_  
+   _응답 바디는 GET, POST, PUT, DELETE와 같은 모든 요청 메서드에서 모두 포함될 수 있으며_, 서버가 요청을 처리한 결과를 클라이언트에 전달하는 부분입니다.
+   요청한 자원 *HTML 페이지, 이미지 파일, JSON 데이터 등*이 여기에 포함됩니다.
+   예를 들어, 클라이언트가 웹 페이지를 요청하면, 응답 본문에는 해당 웹 페이지의 HTML 코드가 포함되거나 JSON 데이터가 포함됩니다.
+
+```html
+// 3. 바디 (text/html)
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Welcome to My Site</title>
+  </head>
+  <body>
+    <h1>Welcome!</h1>
+    <p>This is a sample webpage served by the server.</p>
+  </body>
+</html>
+```
+
+```json
+// 3. 바디 (application/json)
+
+{
+  "status": "success",
+  "data": {
+    "user_id": 12345,
+    "username": "john_doe",
+    "email": "john.doe@example.com",
+    "first_name": "John",
+    "last_name": "Doe",
+    "account_created": "2021-05-01T12:30:00Z"
+  },
+  "message": "User information retrieved successfully."
+}
+```
+
+---
+
+## # HTTP 헤더의 중요성
+
+[# 목차](#-목차)
+
+HTTP 헤더는 요청과 응답에서 중요한 역할을 하며, _메타데이터를 전달하는 역할을 합니다._ 메타데이터는 *데이터에 대한 데이터*라고, 표현할 수 있습니다.
+책을 예로 든다면 제목, 저자, 출판일, 장르, 가격 같은 것들을 메타데이터라고 할 수 있습니다.
+헤더의 메타데이터는 데이터를 어떻게 처리할지에 대한 정보를 제공하므로, 서버와 클라이언트 간의 효율적인 통신을 위해 매우 중요합니다.
+
+1. _헤더의 기본 역할_
+
+- _메타데이터 전송_  
+  헤더는 요청과 응답에 대한 추가적인 정보를 전달합니다. 예를 들어, 클라이언트의 브라우저 종류, 서버가 반환할 콘텐츠 형식(HTML, JSON 등),
+  요청이 어떤 데이터 형식으로 처리될지 등을 알려주는 역할을 합니다.
+
+- _상태 정보_  
+  헤더는 서버가 요청을 처리한 결과와 응답의 상태에 대한 정보를 제공합니다. 이를 통해 _클라이언트는 요청이 성공했는지 실패했는지,
+  그리고 응답이 어떤 형식인지 파악할 수 있습니다._ 예를 들어, 응답의 상태 코드 (200 OK, 404 Not Found 등)가 헤더에 포함되어 있습니다.
+
+2. _헤더의 중요성_
+
+- _상태 관리_  
+  헤더는 _사용자 인증 및 세션 관리에 필수적인 역할을 합니다._ Authorization은 인증된 요청을 처리하며, Set-Cookie는 로그인 상태를 유지하는 데 사용됩니다.
+  이 정보는 서버와 클라이언트 간에 사용자 상태를 관리하고, 보안 유지에 중요한 역할을 합니다.
+
+- _데이터 형식 관리_  
+  헤더를 통해 _서버와 클라이언트는 데이터를 주고받을 형식에 대해 협의합니다._ Content-Type 헤더는 서버가 응답할 데이터 형식을 명시하고,
+  Accept는 클라이언트가 원하는 데이터 형식을 알려줍니다. 이렇게 형식에 대한 정보를 주고받음으로써, 서버와 클라이언트는 서로 호환되는 형식으로 데이터를 처리할 수 있습니다.
+
+- _효율적인 캐시 관리_  
+  Cache-Control은 _데이터가 얼마나 자주 갱신될지 또는 얼마나 오래 캐시될지에 대한 정보를 제공합니다._ 예를 들어 "max-age=3600"은 클라이언트가 받은 데이터를 1시간 동안 저장하고,
+  이후에는 서버에서 새로 요청해야 한다는 뜻입니다. 이를 통해 서버와 네트워크 부하를 줄이고, 효율적인 데이터 관리를 할 수 있습니다.
+
+- _서버 최적화_  
+  User-Agent를 통해 클라이언트의 브라우저와 운영체제 정보를 서버에 전달합니다. 이를 통해 _서버는 클라이언트의 환경에 맞춘 최적화된 응답을 제공할 수 있습니다._
+  예를 들어, 모바일 기기에서는 모바일 전용 페이지를 제공하거나, 특정 브라우저에 최적화된 콘텐츠를 제공할 수 있습니다.
+
+---
+
+## # 마무리
+
+[# 목차](#-목차)
+
+HTTP는 웹상에서 데이터가 어떻게 전송되고 처리되는지를 정의하는 중요한 프로토콜입니다.
+웹에서의 모든 상호작용은 HTTP를 기반으로 이루어지기 때문에, 이 프로토콜에 대한 이해는 웹 개발 및 사용자 경험 향상에 중요합니다.
+HTTP는 그 자체로 복잡해 보일 수 있지만, 웹 애플리케이션을 구축하거나 클라이언트와 서버 간의 효율적인 통신을 다룰 때 꼭 필요한 지식입니다.
+웹 개발에 있어서 HTTP의 이해는 필수적이며, 다양한 도구와 기술을 활용해 효율적인 웹 환경을 구축하는 데 도움이 되리라 생각합니다.
+
+_# references_
+
+- _[MDN Web Docs - HTTP](https://developer.mozilla.org/ko/docs/Web/HTTP)_
