@@ -5,13 +5,14 @@ import {
   CATEGORY_NEXTJS,
   CATEGORY_REACT,
   CATEGORY_TYPESCRIPT,
+  CATEGORY_WEB,
 } from "@/app/constants/posts";
 import { Category } from "@/app/models/posts";
 
-const getTagStyleByCategory = (category: Category): string | undefined => {
+const getTagStyleByCategory = (category: Category): string => {
   switch (category) {
     case CATEGORY_DESIGN_PATTERN:
-      return "bg-gray-300 text-slate-900";
+      return "bg-rose-500 text-slate-100";
     case CATEGORY_JAVASCRIPT:
       return "bg-yellow-400 text-black";
     case CATEGORY_NEXTJS:
@@ -20,8 +21,10 @@ const getTagStyleByCategory = (category: Category): string | undefined => {
       return "bg-gray-700 text-sky-300";
     case CATEGORY_TYPESCRIPT:
       return "bg-blue-500 text-white";
+    case CATEGORY_WEB:
+      return "bg-gray-300 text-slate-900";
     default:
-      return;
+      return "";
   }
 };
 
@@ -31,7 +34,7 @@ type Props = {
 
 const PostTag = ({ category }: Props) => {
   return (
-    <span className={`w-fit rounded-2xl px-3 py-1 text-xs ${getTagStyleByCategory(category)}`}>
+    <span className={`${getTagStyleByCategory(category)} px-3 py-1 rounded-2xl w-fit text-xs`}>
       {category}
     </span>
   );
