@@ -14,7 +14,7 @@ const PostMeta = ({ post, type }: Props) => {
 
   return (
     <section className="flex flex-col gap-2 pt-4">
-      <h2 className="group-hover:text-blue-600 group-hover:dark:text-yellow-500 w-full font-bold text-slate-900 dark:text-slate-200 truncate">
+      <h2 className="group-hover:text-blue-600 group-hover:dark:text-yellow-500 w-full font-bold text-slate-900 dark:text-slate-300 truncate">
         {title}
       </h2>
       <p

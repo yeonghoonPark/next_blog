@@ -21,7 +21,7 @@ export const metadata: Metadata = {
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <html className={`${OpenSans.className}`} lang="ko">
-      <body className="relative flex flex-col flex-1 min-h-screen overflow-x-hidden text-slate-900 dark:text-slate-200">
+      <body className="relative flex flex-col flex-1 min-h-screen overflow-x-hidden text-slate-900 dark:text-slate-300">
         <ThemeProvider>
           {/* background lines */}
           <BackgroundLines />
