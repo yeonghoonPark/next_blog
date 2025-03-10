@@ -104,7 +104,7 @@ const PostsCarousel = ({ posts }: Props) => {
                   <ReactTyped
                     backDelay={10000}
                     backSpeed={50}
-                    className="font-bold text-white dark:text-black text-sm sm:text-lg md:text-3xl lg:text-4xl"
+                    className="font-semibold text-slate-100 dark:text-slate-950 md:text-2xl lg:text-4xl"
                     loop={index === selectedIndex}
                     strings={[post.title]}
                     typeSpeed={50}
