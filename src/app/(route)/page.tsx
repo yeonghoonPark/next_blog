@@ -1,7 +1,4 @@
-import {
-  compareDesc,
-  subMonths,
-} from "date-fns";
+import { compareDesc, subMonths } from "date-fns";
 import SectionTitle from "@/app/components/molecules/SectionTitle";
 import PostsGrid from "@/app/components/organisms/PostsGrid";
 import { allPosts } from "@/contentlayer/generated";
@@ -47,8 +44,10 @@ const HomePage = () => {
       )}
 
       {/* You may also like section: Randomly selected posts that are not in the recent or featured categories */}
-      <SectionTitle title={YOU_MAY_ALSO_LIKE_TITLE} count={youMayAlsoLikePosts.length} />
-      <PostsCarousel posts={youMayAlsoLikePosts} />
+      <div className="hidden md:block">
+        <SectionTitle title={YOU_MAY_ALSO_LIKE_TITLE} count={youMayAlsoLikePosts.length} />
+        <PostsCarousel posts={youMayAlsoLikePosts} />
+      </div>
 
       {/* Featured posts section: Posts where "featured" is true */}
       {featuredPosts.length && (
