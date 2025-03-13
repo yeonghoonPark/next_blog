@@ -132,9 +132,8 @@ const PostsCarousel = ({ posts }: Props) => {
       <div className="right-0 bottom-2 absolute flex items-center gap-2">
         {scrollSnaps.map((_, index) => (
           <button
-            className={`
-              ${index === selectedIndex ? "border-blue-600 dark:border-yellow-600" : ""}
-              border-2 dark:border-yellow-100 border-blue-200 bg-white dark:bg-slate-800 appearance-none touch-manipulation inline-flex cursor-pointer w-3 h-3 justify-center items-center rounded-full`}
+            className={`${index === selectedIndex ? "border-slate-500 dark:border-slate-300" : "border-slate-300 dark:border-slate-500"}
+              border-2 bg-transparent appearance-none touch-manipulation inline-flex cursor-pointer w-3 h-3 justify-center items-center rounded-full`}
             key={index}
             onClick={() => onDotButtonClick(index)}
           />

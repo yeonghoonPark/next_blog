@@ -12,7 +12,7 @@ const CarouselArrowButton = ({ direction, disabled, onClick }: Props) => {
   return (
     <button
       type="button"
-      className="p-2 border-2 border-slate-700 dark:border-slate-400 rounded-full w-7 h-7 text-slate-700 hover:text-blue-600 dark:hover:text-yellow-500 dark:text-slate-400"
+      className="p-2 border-2 border-slate-700 dark:border-slate-400 rounded-full w-7 h-7 text-slate-700 dark:text-slate-400"
       disabled={disabled}
       onClick={onClick}
     >
