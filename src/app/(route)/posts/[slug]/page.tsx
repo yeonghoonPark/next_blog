@@ -1,5 +1,6 @@
 import { useMDXComponent } from "next-contentlayer/hooks";
 import { notFound } from "next/navigation";
+
 import PostMeta from "@/app/components/organisms/PostMeta";
 import { allPosts } from "@/contentlayer/generated";
 
@@ -32,7 +33,9 @@ const PostDetailPage = ({ params }: { params: { slug: string } }) => {
     prose-a:text-sky-600 dark:prose-a:text-sky-400 prose-a:no-underline
     prose-em:text-slate-900 dark:prose-em:text-slate-200 prose-em:not-italic prose-em:font-semibold 
     prose-blockquote:bg-gray-200 dark:prose-blockquote:bg-slate-900 prose-blockquote:text-slate-700 dark:prose-blockquote:text-slate-400 prose-blockquote:px-4 prose-blockquote:py-0.5 prose-blockquote:not-italic prose-blockquote:border-blue-600 dark:prose-blockquote:border-yellow-500 prose-blockquote:font-normal prose-blockquote:rounded-r
-    prose-code:text-slate-900 dark:prose-code:text-slate-200  prose-code:before:content-none prose-code:after:content-none`}
+    prose-code:text-slate-700 dark:prose-code:text-slate-600 prose-code:before:content-none prose-code:after:content-none
+      prose-pre:whitespace-pre-wrap 
+    `}
     >
       <PostMeta post={post} type="post" />
       <MDXComponent />
