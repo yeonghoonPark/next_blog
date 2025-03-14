@@ -7,7 +7,6 @@ export const CATEGORY_NEXTJS = "NEXT.js";
 export const CATEGORY_REACT = "React";
 export const CATEGORY_TYPESCRIPT = "TypeScript";
 export const CATEGORY_WEB = "Web";
-export const POSTS = "Posts";
 
 export const CATEGORIES: Category[] = [
   CATEGORY_ALL,
