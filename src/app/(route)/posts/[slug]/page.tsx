@@ -8,7 +8,13 @@ export const generateStaticParams = () => {
   return allPosts.map(({ _raw }) => ({ slug: _raw.flattenedPath }));
 };
 
-const PostDetailPage = ({ params }: { params: { slug: string } }) => {
+type Props = {
+  params: {
+    slug: string;
+  };
+};
+
+const PostDetailPage = ({ params }: Props) => {
   const post = allPosts.find(({ _raw }) => _raw.flattenedPath === params.slug);
 
   if (!post) notFound();

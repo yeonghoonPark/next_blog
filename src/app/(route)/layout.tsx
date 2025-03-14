@@ -1,6 +1,8 @@
 import "@/app/(route)/globals.css";
+
 import type { Metadata } from "next";
 import { Open_Sans } from "next/font/google";
+
 import BackgroundLines from "@/app/components/molecules/BackgroundLines";
 import Footer from "@/app/components/organisms/Footer";
 import Header from "@/app/components/organisms/Header";
@@ -18,7 +20,11 @@ export const metadata: Metadata = {
   icons: [{ rel: "icon", url: Favicon.src }],
 };
 
-const RootLayout = ({ children }: { children: React.ReactNode }) => {
+type Props = {
+  children: React.ReactNode;
+};
+
+const RootLayout = ({ children }: Props) => {
   return (
     <html className={`${OpenSans.className}`} lang="ko">
       <body className="relative flex flex-col flex-1 min-h-screen overflow-x-hidden text-slate-900 dark:text-slate-300">

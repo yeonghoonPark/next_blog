@@ -1,9 +1,10 @@
 import { compareDesc, subMonths } from "date-fns";
+
 import SectionTitle from "@/app/components/molecules/SectionTitle";
+import PostsCarousel from "@/app/components/organisms/PostsCarousel";
 import PostsGrid from "@/app/components/organisms/PostsGrid";
+import { getRandomItems } from "@/app/utils/arrayUtils";
 import { allPosts } from "@/contentlayer/generated";
-import PostsCarousel from "../components/organisms/PostsCarousel";
-import { getRandomItems } from "../utils/arrayUtils";
 
 const FEATURED_POSTS_TITLE = "Featured Posts";
 const RECENT_POSTS_TITLE = "Recent Posts";
