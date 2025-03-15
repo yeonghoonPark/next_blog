@@ -21,11 +21,9 @@ const PostsPage = () => {
     (post) => post.category === category || category === CATEGORY_ALL,
   );
 
-  const getSectionTitle = (prefix: string, suffix: string) => `${prefix} ${suffix}`;
-
   return (
     <section>
-      <SectionTitle title={getSectionTitle(category, "POSTS")} count={filteredPosts.length} />
+      <SectionTitle title={category} count={filteredPosts.length} />
       <PostsGrid posts={filteredPosts} />
     </section>
   );

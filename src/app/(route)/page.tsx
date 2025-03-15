@@ -1,4 +1,7 @@
-import { compareDesc, subMonths } from "date-fns";
+import {
+  compareDesc,
+  subMonths,
+} from "date-fns";
 
 import SectionTitle from "@/app/components/molecules/SectionTitle";
 import PostsCarousel from "@/app/components/organisms/PostsCarousel";
@@ -36,11 +39,11 @@ const HomePage = () => {
 
   return (
     <section>
-      {/* Recent posts section: Posts created within the last month */}
-      {recentPosts.length && (
+      {/* Featured posts section: Posts where "featured" is true */}
+      {featuredPosts.length && (
         <>
-          <SectionTitle title={RECENT_POSTS_TITLE} count={recentPosts.length} />
-          <PostsGrid posts={recentPosts} />
+          <SectionTitle title={FEATURED_POSTS_TITLE} count={featuredPosts.length} />
+          <PostsGrid posts={featuredPosts} />
         </>
       )}
 
@@ -50,11 +53,11 @@ const HomePage = () => {
         <PostsCarousel posts={youMayAlsoLikePosts} />
       </div>
 
-      {/* Featured posts section: Posts where "featured" is true */}
-      {featuredPosts.length && (
+      {/* Recent posts section: Posts created within the last month */}
+      {recentPosts.length && (
         <>
-          <SectionTitle title={FEATURED_POSTS_TITLE} count={featuredPosts.length} />
-          <PostsGrid posts={featuredPosts} />
+          <SectionTitle title={RECENT_POSTS_TITLE} count={recentPosts.length} />
+          <PostsGrid posts={recentPosts} />
         </>
       )}
     </section>
