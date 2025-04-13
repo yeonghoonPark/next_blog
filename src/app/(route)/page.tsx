@@ -1,7 +1,4 @@
-import {
-  compareDesc,
-  subMonths,
-} from "date-fns";
+import { compareDesc, isAfter, subMonths } from "date-fns";
 
 import SectionTitle from "@/app/components/molecules/SectionTitle";
 import PostsCarousel from "@/app/components/organisms/PostsCarousel";
@@ -23,8 +20,12 @@ const HomePage = () => {
   const featuredPosts = sortedAllPosts.filter(({ featured }) => featured);
 
   // Filter posts that were created within the last 1 month
-  const recentPosts = sortedAllPosts.filter(
-    (post) => new Date(post.createdAt) >= subMonths(new Date(), 1),
+  // const recentPosts = sortedAllPosts.filter(
+  //   (post) => new Date(post.createdAt) >= subMonths(new Date(), 1),
+  // );
+
+  const recentPosts = sortedAllPosts.filter((post) =>
+    isAfter(new Date(post.createdAt), subMonths(new Date(), 1)),
   );
 
   // Filter out posts that are in 'recentPosts' or 'featuredPosts'
