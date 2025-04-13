@@ -20,10 +20,6 @@ const HomePage = () => {
   const featuredPosts = sortedAllPosts.filter(({ featured }) => featured);
 
   // Filter posts that were created within the last 1 month
-  // const recentPosts = sortedAllPosts.filter(
-  //   (post) => new Date(post.createdAt) >= subMonths(new Date(), 1),
-  // );
-
   const recentPosts = sortedAllPosts.filter((post) =>
     isAfter(new Date(post.createdAt), subMonths(new Date(), 1)),
   );
