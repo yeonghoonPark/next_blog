@@ -39,7 +39,7 @@ const PostDetailPage = ({ params }: Props) => {
     prose-a:text-sky-600 dark:prose-a:text-sky-400 prose-a:no-underline
     prose-em:text-slate-900 dark:prose-em:text-slate-200 prose-em:not-italic prose-em:font-semibold 
     prose-blockquote:bg-gray-200 dark:prose-blockquote:bg-slate-900 prose-blockquote:text-slate-700 dark:prose-blockquote:text-slate-400 prose-blockquote:px-4 prose-blockquote:py-0.5 prose-blockquote:not-italic prose-blockquote:border-blue-600 dark:prose-blockquote:border-yellow-500 prose-blockquote:font-normal prose-blockquote:rounded-r
-    prose-code:text-slate-900 dark:prose-code:text-slate-600 prose-code:before:content-none prose-code:after:content-none
+    prose-code:text-slate-900 dark:prose-code:text-slate-600 prose-code:before:content-none prose-code:after:content-none prose-code:mx-0.5 prose-code:p-0.5
       prose-pre:whitespace-pre-wrap 
     `}
     >
