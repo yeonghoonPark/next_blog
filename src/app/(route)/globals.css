@@ -40,9 +40,3 @@ body {
   min-height: 100vh;
   overflow-y: scroll;
 }
-
-code {
-  background-color: #ececec;
-  padding: 0.15rem 0.25rem;
-  border-radius: 0.2rem;
-}
