@@ -33,9 +33,9 @@ const PostDetailPage = ({ params }: Props) => {
       
       prose-h2:mt-[-100px] 
       prose-h2:pt-[100px] 
-      prose-h2:text-slate-900 dark:prose-h2:text-slate-200
+      prose-h2:text-slate-900 dark:prose-h2:text-slate-300
       
-      prose-h3:text-slate-900 dark:prose-h3:text-slate-200
+      prose-h3:text-slate-900 dark:prose-h3:text-slate-300
       prose-h3:text-xl 
       
       prose-p:before:content-none prose-p:after:content-none
@@ -64,7 +64,7 @@ const PostDetailPage = ({ params }: Props) => {
       prose-a:text-sky-600 dark:prose-a:text-sky-400 
       prose-a:no-underline
       
-      prose-em:text-slate-900 dark:prose-em:text-slate-200
+      prose-em:text-slate-900 dark:prose-em:text-slate-300
       prose-em:not-italic prose-em:font-semibold
 
       prose-blockquote:px-4 prose-blockquote:py-0.5
@@ -78,7 +78,7 @@ const PostDetailPage = ({ params }: Props) => {
       prose-code:bg-gray-200 dark:prose-code:bg-slate-600
       prose-code:border prose-code:border-gray-300 dark:prose-code:border-slate-500
       prose-code:rounded
-      prose-code:text-slate-900 dark:prose-code:text-slate-200
+      prose-code:text-slate-900 dark:prose-code:text-slate-300
       prose-code:before:content-none prose-code:after:content-none
       
       prose-pre:whitespace-pre-wrap
