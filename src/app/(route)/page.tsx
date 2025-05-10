@@ -37,11 +37,13 @@ const HomePage = () => {
   return (
     <section>
       {/* Featured posts section: Posts where "featured" is true */}
-      {featuredPosts.length && (
+      {featuredPosts.length ? (
         <>
           <SectionTitle title={FEATURED_POSTS_TITLE} count={featuredPosts.length} />
           <PostsGrid posts={featuredPosts} />
         </>
+      ) : (
+        <></>
       )}
 
       {/* You may also like section: Randomly selected posts that are not in the recent or featured categories */}
@@ -51,11 +53,13 @@ const HomePage = () => {
       </div>
 
       {/* Recent posts section: Posts created within the last month */}
-      {recentPosts.length && (
+      {recentPosts.length ? (
         <>
           <SectionTitle title={RECENT_POSTS_TITLE} count={recentPosts.length} />
           <PostsGrid posts={recentPosts} />
         </>
+      ) : (
+        <></>
       )}
     </section>
   );
