@@ -19,9 +19,8 @@ const HomePage = () => {
   /**
    *  Sort all posts by the 'createdAt' date in descending order
    */
-  const sortedAllPosts = allPosts.toSorted((a, b) =>
-    compareDesc(new Date(a.createdAt), new Date(b.createdAt)),
-  );
+  const sortedAllPosts = [...allPosts] //
+    .sort((a, b) => compareDesc(new Date(a.createdAt), new Date(b.createdAt)));
 
   /**
    * Filter posts where the 'featured' field is true
@@ -40,12 +39,16 @@ const HomePage = () => {
     ...featuredPosts.map(({ _id }) => _id),
     ...recentPosts.map(({ _id }) => _id),
   ]);
-  const notRecentOrFeatured = sortedAllPosts.filter(({ _id }) => !excludedIds.has(_id));
+  const notRecentOrFeatured = sortedAllPosts //
+    .filter(({ _id }) => !excludedIds.has(_id));
 
   /**
    *  Get 4 random posts from the filtered posts
    */
-  const youMayAlsoLikePosts = getRandomItems(notRecentOrFeatured, POST_COUNTS.RECOMMENDED);
+  const youMayAlsoLikePosts = getRandomItems(
+    notRecentOrFeatured,
+    POST_COUNTS.RECOMMENDED,
+  );
 
   return (
     <section>
