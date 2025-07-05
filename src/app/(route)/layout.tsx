@@ -1,8 +1,7 @@
-import "@/app/(route)/globals.css";
-
 import type { Metadata } from "next";
 import { Open_Sans } from "next/font/google";
 
+import "@/app/(route)/globals.css";
 import { BackgroundLines, Footer, Header, MainArea } from "@/app/components";
 import { APP_TITLE } from "@/app/constants/app";
 import { ThemeProvider } from "@/app/contexts/ThemeContext";
@@ -28,10 +27,13 @@ const RootLayout = ({ children }: Props) => {
         <ThemeProvider>
           {/* background lines */}
           <BackgroundLines />
+
           {/* header */}
           <Header />
+
           {/* main area that includes navigation and main content */}
           <MainArea>{children}</MainArea>
+
           {/* footer */}
           <Footer />
         </ThemeProvider>
