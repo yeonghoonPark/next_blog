@@ -17,10 +17,8 @@ const HomePage = () => {
   // Filter posts where the 'featured' field is true
   const featuredPosts = sortedAllPosts.filter(({ featured }) => featured);
 
-  // Filter posts that were created within the last 1 month
-  const recentPosts = sortedAllPosts.filter((post) =>
-    isAfter(new Date(post.createdAt), subMonths(new Date(), 1)),
-  );
+  // Filter the last posts 3
+  const recentPosts = sortedAllPosts.slice(0, 3);
 
   // Filter out posts that are in 'recentPosts' or 'featuredPosts'
   const notRecentOrFeatured = sortedAllPosts.filter(
@@ -40,9 +38,7 @@ const HomePage = () => {
           <SectionTitle title={FEATURED_POSTS_TITLE} count={featuredPosts.length} />
           <PostsGrid posts={featuredPosts} />
         </>
-      ) : (
-        <></>
-      )}
+      ) : null}
 
       {/* You may also like section: Randomly selected posts that are not in the recent or featured categories */}
       <div className="hidden md:block">
@@ -56,9 +52,7 @@ const HomePage = () => {
           <SectionTitle title={RECENT_POSTS_TITLE} count={recentPosts.length} />
           <PostsGrid posts={recentPosts} />
         </>
-      ) : (
-        <></>
-      )}
+      ) : null}
     </section>
   );
 };
