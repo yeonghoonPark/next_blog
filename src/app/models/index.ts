@@ -6,3 +6,5 @@ export type Category =
   | "React"
   | "TypeScript"
   | "Web";
+
+export type Theme = "dark" | "light";

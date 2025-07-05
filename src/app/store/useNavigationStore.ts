@@ -1,24 +1,24 @@
 import { create } from "zustand";
-import { NavigationState } from "@/app/models/navigation";
 
 type NavigationActions = {
   toggleNavigation: () => void;
 };
+type NavigationStatus = "display" | "hidden";
 type NavigationStore = {
-  navigationState: NavigationState;
+  navigationState: NavigationStatus;
   actions: NavigationActions;
 };
 
 const initialState = {
-  navigationState: "hidden" as NavigationState,
+  navigationState: "hidden" as NavigationStatus,
 };
 
 export const useNavigationStore = create<NavigationStore>((set) => ({
   ...initialState,
   actions: {
     toggleNavigation: () =>
-      set((state) => ({
-        navigationState: state.navigationState === "display" ? "hidden" : "display",
+      set(({ navigationState }) => ({
+        navigationState: navigationState === "display" ? "hidden" : "display",
       })),
   },
 }));

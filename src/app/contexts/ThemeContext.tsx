@@ -1,14 +1,23 @@
 "use client";
 
 import { createContext, useEffect, useState } from "react";
-import { THEME } from "@/app/constants/theme/theme";
-import { Theme, ThemeContextProps } from "@/app/models/theme";
+
+import { THEME } from "@/app/constants";
+import { Theme } from "@/app/models";
+
+type ThemeContextProps = {
+  theme: Theme;
+  toggleTheme: () => void;
+};
 
 const getNextTheme = (theme: Theme): Theme => {
   return theme === THEME.LIGHT ? THEME.DARK : THEME.LIGHT;
 };
 
-const updateTheme = (theme: Theme, setTheme: React.Dispatch<React.SetStateAction<Theme>>) => {
+const updateTheme = (
+  theme: Theme,
+  setTheme: React.Dispatch<React.SetStateAction<Theme>>,
+) => {
   if (theme === THEME.DARK) {
     document.documentElement.classList.add(THEME.DARK);
     localStorage.theme = THEME.DARK;
@@ -29,7 +38,7 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
   const [theme, setTheme] = useState<Theme>(THEME.LIGHT);
 
   const toggleTheme = () => {
-    setTheme((prevTheme: string) => getNextTheme(prevTheme));
+    setTheme((prevTheme) => getNextTheme(prevTheme));
     updateTheme(getNextTheme(theme), setTheme);
   };
 
@@ -39,5 +48,9 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
       : updateTheme(THEME.LIGHT, setTheme);
   }, []);
 
-  return <ThemeContext.Provider value={{ theme, toggleTheme }}>{children}</ThemeContext.Provider>;
+  return (
+    <ThemeContext.Provider value={{ theme, toggleTheme }}>
+      {children}
+    </ThemeContext.Provider>
+  );
 };

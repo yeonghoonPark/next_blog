@@ -1,5 +1,6 @@
 import { create } from "zustand";
-import { Category } from "@/app/models/posts";
+
+import { Category } from "@/app/models";
 
 type CategoryActions = {
   resetCategory: () => void;

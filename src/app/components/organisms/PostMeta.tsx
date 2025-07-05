@@ -1,7 +1,7 @@
 import { memo } from "react";
 
 import { PostCreatedAt, PostTag } from "@/app/components";
-import { Category } from "@/app/models/posts";
+import { Category } from "@/app/models";
 import { Post } from "@/contentlayer/generated";
 
 type Props = {
