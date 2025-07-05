@@ -1,6 +1,7 @@
 "use client";
 
 import { usePathname, useRouter } from "next/navigation";
+import { useShallow } from "zustand/react/shallow";
 
 import { NavigationItem } from "@/app/components";
 import { NAVIGATION_ITEMS } from "@/app/constants";
@@ -20,10 +21,10 @@ const SideNavigation = () => {
    * zustand
    */
   const { category, setCategory } = useCategoryStore(
-    ({ category, actions: { setCategory } }) => ({
+    useShallow(({ category, actions: { setCategory } }) => ({
       category,
       setCategory,
-    }),
+    })),
   );
 
   /**
