@@ -1,4 +1,4 @@
-import { compareDesc, isAfter, subMonths } from "date-fns";
+import { compareDesc } from "date-fns";
 
 import { PostsCarousel, PostsGrid, SectionTitle } from "@/app/components";
 import { getRandomItems } from "@/app/utils";
