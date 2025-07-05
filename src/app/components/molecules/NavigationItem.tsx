@@ -1,8 +1,7 @@
 "use client";
 
 import { NavigationSubitems } from "@/app/components";
-import { Category } from "@/app/models/posts";
-import { Theme } from "@/app/models/theme";
+import { Category, Theme } from "@/app/models";
 
 type Props = {
   hasSubitems: boolean;
@@ -51,7 +50,9 @@ const NavigationItem = ({
         onClick={handleClick}
       >
         <IconComponent isSelected={isSelected} theme={theme} />
-        <span className={`${isHiddenNavigation ? "ml-8 text-sm" : "text-xs"} xl:ml-8 xl:text-sm`}>
+        <span
+          className={`${isHiddenNavigation ? "ml-8 text-sm" : "text-xs"} xl:ml-8 xl:text-sm`}
+        >
           {title}
         </span>
       </div>

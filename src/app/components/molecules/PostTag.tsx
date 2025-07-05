@@ -1,4 +1,5 @@
 import { memo } from "react";
+
 import {
   CATEGORY_DESIGN_PATTERN,
   CATEGORY_JAVASCRIPT,
@@ -6,8 +7,8 @@ import {
   CATEGORY_REACT,
   CATEGORY_TYPESCRIPT,
   CATEGORY_WEB,
-} from "@/app/constants/posts";
-import { Category } from "@/app/models/posts";
+} from "@/app/constants";
+import { Category } from "@/app/models";
 
 const getTagStyleByCategory = (category: Category): string => {
   switch (category) {
@@ -34,7 +35,9 @@ type Props = {
 
 const PostTag = ({ category }: Props) => {
   return (
-    <span className={`${getTagStyleByCategory(category)} px-3 py-1 rounded-2xl w-fit text-xs`}>
+    <span
+      className={`${getTagStyleByCategory(category)} px-3 py-1 rounded-2xl w-fit text-xs`}
+    >
       {category}
     </span>
   );

@@ -1,5 +1,6 @@
 import { memo } from "react";
-import { APP_TITLE } from "@/app/constants/app";
+
+import { APP_TITLE } from "@/app/constants";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();

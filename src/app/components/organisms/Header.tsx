@@ -4,12 +4,14 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { HamburgerIcon } from "@/app/components";
-import { APP_TITLE } from "@/app/constants/app";
+import { APP_TITLE } from "@/app/constants";
 import Favicon from "@/app/favicon.ico";
-import { useNavigationStore } from "@/app/store/navigation/useNavigationStore";
+import { useNavigationStore } from "@/app/store";
 
 const Header = () => {
-  const toggleNavigation = useNavigationStore((state) => state.actions.toggleNavigation);
+  const toggleNavigation = useNavigationStore(
+    (state) => state.actions.toggleNavigation,
+  );
 
   const handleClick = () => {
     if (window.innerWidth < 1280) toggleNavigation();

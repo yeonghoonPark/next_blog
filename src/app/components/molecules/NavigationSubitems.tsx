@@ -1,5 +1,5 @@
 import { DotIcon } from "@/app/components";
-import { Category } from "@/app/models/posts";
+import { Category } from "@/app/models";
 
 type Props = {
   isHiddenNavigation?: boolean;
@@ -28,7 +28,9 @@ const NavigationSubitems = ({
 
   // ml-1 text-xs
   return (
-    <ul className={`${isHiddenNavigation ? "block" : "hidden"} xl:block w-full`}>
+    <ul
+      className={`${isHiddenNavigation ? "block" : "hidden"} xl:block w-full`}
+    >
       {subitems.map((subitem) => (
         <li
           className={`${

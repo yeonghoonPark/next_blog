@@ -2,14 +2,17 @@
 
 import { useCallback, useEffect, useRef } from "react";
 
-import { EmblaCarouselType, EmblaEventType, EmblaOptionsType } from "embla-carousel";
+import {
+  EmblaCarouselType,
+  EmblaEventType,
+  EmblaOptionsType,
+} from "embla-carousel";
 import useEmblaCarousel from "embla-carousel-react";
 import Link from "next/link";
 import { ReactTyped } from "react-typed";
 
 import { CarouselArrowButton } from "@/app/components";
-import { useCarouselArrowButton } from "@/app/hooks/useCarouselArrowButton";
-import { useCarouselDotButton } from "@/app/hooks/useCarouselDotButton";
+import { useCarouselArrowButton, useCarouselDotButton } from "@/app/hooks";
 import { restrictToRange } from "@/app/utils";
 import { Post } from "@/contentlayer/generated";
 
@@ -39,42 +42,45 @@ const PostsCarousel = ({ posts }: Props) => {
     tweenFactor.current = TWEEN_FACTOR_BASE * emblaApi.scrollSnapList().length;
   }, []);
 
-  const tweenOpacity = useCallback((emblaApi: EmblaCarouselType, eventName?: EmblaEventType) => {
-    const engine = emblaApi.internalEngine();
-    const scrollProgress = emblaApi.scrollProgress();
-    const slidesInView = emblaApi.slidesInView();
-    const isScrollEvent = eventName === "scroll";
+  const tweenOpacity = useCallback(
+    (emblaApi: EmblaCarouselType, eventName?: EmblaEventType) => {
+      const engine = emblaApi.internalEngine();
+      const scrollProgress = emblaApi.scrollProgress();
+      const slidesInView = emblaApi.slidesInView();
+      const isScrollEvent = eventName === "scroll";
 
-    emblaApi.scrollSnapList().forEach((scrollSnap, snapIndex) => {
-      let diffToTarget = scrollSnap - scrollProgress;
-      const slidesInSnap = engine.slideRegistry[snapIndex];
+      emblaApi.scrollSnapList().forEach((scrollSnap, snapIndex) => {
+        let diffToTarget = scrollSnap - scrollProgress;
+        const slidesInSnap = engine.slideRegistry[snapIndex];
 
-      slidesInSnap.forEach((slideIndex) => {
-        if (isScrollEvent && !slidesInView.includes(slideIndex)) return;
+        slidesInSnap.forEach((slideIndex) => {
+          if (isScrollEvent && !slidesInView.includes(slideIndex)) return;
 
-        if (engine.options.loop) {
-          engine.slideLooper.loopPoints.forEach((loopItem) => {
-            const target = loopItem.target();
+          if (engine.options.loop) {
+            engine.slideLooper.loopPoints.forEach((loopItem) => {
+              const target = loopItem.target();
 
-            if (slideIndex === loopItem.index && target !== 0) {
-              const sign = Math.sign(target);
+              if (slideIndex === loopItem.index && target !== 0) {
+                const sign = Math.sign(target);
 
-              if (sign === -1) {
-                diffToTarget = scrollSnap - (1 + scrollProgress);
+                if (sign === -1) {
+                  diffToTarget = scrollSnap - (1 + scrollProgress);
+                }
+                if (sign === 1) {
+                  diffToTarget = scrollSnap + (1 - scrollProgress);
+                }
               }
-              if (sign === 1) {
-                diffToTarget = scrollSnap + (1 - scrollProgress);
-              }
-            }
-          });
-        }
+            });
+          }
 
-        const tweenValue = 1 - Math.abs(diffToTarget * tweenFactor.current);
-        const opacity = restrictToRange(tweenValue, 0, 1).toString();
-        emblaApi.slideNodes()[slideIndex].style.opacity = opacity;
+          const tweenValue = 1 - Math.abs(diffToTarget * tweenFactor.current);
+          const opacity = restrictToRange(tweenValue, 0, 1).toString();
+          emblaApi.slideNodes()[slideIndex].style.opacity = opacity;
+        });
       });
-    });
-  }, []);
+    },
+    [],
+  );
 
   useEffect(() => {
     if (!emblaApi) return;
@@ -99,8 +105,14 @@ const PostsCarousel = ({ posts }: Props) => {
               key={post.title}
             >
               <Link
-                className={index === selectedIndex ? "cursor-pointer" : "cursor-default"}
-                href={index === selectedIndex ? `/posts/${post._raw.flattenedPath}` : "/"}
+                className={
+                  index === selectedIndex ? "cursor-pointer" : "cursor-default"
+                }
+                href={
+                  index === selectedIndex
+                    ? `/posts/${post._raw.flattenedPath}`
+                    : "/"
+                }
               >
                 <div className="flex flex-col justify-center items-center gap-8 bg-gradient-to-br from-sky-300 dark:from-yellow-400 to-purple-600 dark:to-rose-500 rounded-md rounded-ss-3xl rounded-ee-3xl h-52">
                   <ReactTyped

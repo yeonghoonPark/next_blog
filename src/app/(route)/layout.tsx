@@ -3,8 +3,8 @@ import { Open_Sans } from "next/font/google";
 
 import "@/app/(route)/globals.css";
 import { BackgroundLines, Footer, Header, MainArea } from "@/app/components";
-import { APP_TITLE } from "@/app/constants/app";
-import { ThemeProvider } from "@/app/contexts/ThemeContext";
+import { APP_TITLE } from "@/app/constants";
+import { ThemeProvider } from "@/app/contexts";
 import Favicon from "@/app/favicon.ico";
 
 const OpenSans = Open_Sans({ subsets: ["latin"] });
