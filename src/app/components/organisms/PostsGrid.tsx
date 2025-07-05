@@ -1,6 +1,8 @@
 import { memo } from "react";
+
 import Link from "next/link";
-import PostCard from "@/app/components/organisms/PostCard";
+
+import { PostCard } from "@/app/components";
 import { Post } from "@/contentlayer/generated";
 
 type Props = {

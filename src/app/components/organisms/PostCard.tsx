@@ -1,5 +1,4 @@
-import PostThumbnail from "@/app/components/molecules/PostThumbnail";
-import PostMeta from "@/app/components/organisms/PostMeta";
+import { PostMeta, PostThumbnail } from "@/app/components";
 import { Post } from "@/contentlayer/generated";
 
 type Props = {

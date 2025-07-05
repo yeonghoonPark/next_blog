@@ -3,10 +3,7 @@ import "@/app/(route)/globals.css";
 import type { Metadata } from "next";
 import { Open_Sans } from "next/font/google";
 
-import BackgroundLines from "@/app/components/molecules/BackgroundLines";
-import Footer from "@/app/components/organisms/Footer";
-import Header from "@/app/components/organisms/Header";
-import MainArea from "@/app/components/organisms/MainArea";
+import { BackgroundLines, Footer, Header, MainArea } from "@/app/components";
 import { APP_TITLE } from "@/app/constants/app";
 import { ThemeProvider } from "@/app/contexts/ThemeContext";
 import Favicon from "@/app/favicon.ico";

@@ -2,8 +2,7 @@
 
 import { compareDesc } from "date-fns";
 
-import SectionTitle from "@/app/components/molecules/SectionTitle";
-import PostsGrid from "@/app/components/organisms/PostsGrid";
+import { PostsGrid, SectionTitle } from "@/app/components";
 import { CATEGORY_ALL } from "@/app/constants/posts";
 import { useCategoryStore } from "@/app/store/posts/useCategoryStore";
 import { allPosts } from "@/contentlayer/generated";

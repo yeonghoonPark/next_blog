@@ -1,4 +1,4 @@
-import DotIcon from "@/app/components/atoms/icon/DotIcon";
+import { DotIcon } from "@/app/components";
 import { Category } from "@/app/models/posts";
 
 type Props = {

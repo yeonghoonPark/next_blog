@@ -1,11 +1,13 @@
 "use client";
 
 import { useCallback, useEffect, useRef } from "react";
+
 import { EmblaCarouselType, EmblaEventType, EmblaOptionsType } from "embla-carousel";
 import useEmblaCarousel from "embla-carousel-react";
 import Link from "next/link";
 import { ReactTyped } from "react-typed";
-import CarouselArrowButton from "@/app/components/molecules/CarouselArrowButton";
+
+import { CarouselArrowButton } from "@/app/components";
 import { useCarouselArrowButton } from "@/app/hooks/useCarouselArrowButton";
 import { useCarouselDotButton } from "@/app/hooks/useCarouselDotButton";
 import { restrictToRange } from "@/app/utils/mathUtils";
