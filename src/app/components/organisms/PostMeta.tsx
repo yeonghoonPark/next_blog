@@ -1,7 +1,6 @@
 import { memo } from "react";
 
-import PostCreatedAt from "@/app/components/molecules/PostCreatedAt";
-import PostTag from "@/app/components/molecules/PostTag";
+import { PostCreatedAt, PostTag } from "@/app/components";
 import { Category } from "@/app/models/posts";
 import { Post } from "@/contentlayer/generated";
 

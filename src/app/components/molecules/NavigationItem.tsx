@@ -1,8 +1,8 @@
 "use client";
 
+import { NavigationSubitems } from "@/app/components";
 import { Category } from "@/app/models/posts";
 import { Theme } from "@/app/models/theme";
-import NavigationSubitems from "./NavigationSubitems";
 
 type Props = {
   hasSubitems: boolean;

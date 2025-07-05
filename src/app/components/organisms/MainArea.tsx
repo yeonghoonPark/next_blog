@@ -1,5 +1,4 @@
-import HiddenNavigation from "@/app/components/organisms/HiddenNavigation";
-import SideNavigation from "@/app/components/organisms/SideNavigation";
+import { HiddenNavigation, SideNavigation } from "@/app/components";
 
 type Props = {
   children: React.ReactNode;

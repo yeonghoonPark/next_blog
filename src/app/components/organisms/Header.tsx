@@ -2,7 +2,8 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import HamburgerIcon from "@/app/components/atoms/icon/HamburgerIcon";
+
+import { HamburgerIcon } from "@/app/components";
 import { APP_TITLE } from "@/app/constants/app";
 import Favicon from "@/app/favicon.ico";
 import { useNavigationStore } from "@/app/store/navigation/useNavigationStore";

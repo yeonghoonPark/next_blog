@@ -1,7 +1,8 @@
 "use client";
 
 import { usePathname, useRouter } from "next/navigation";
-import NavigationItem from "@/app/components/molecules/NavigationItem";
+
+import { NavigationItem } from "@/app/components";
 import { NAVIGATION_ITEMS } from "@/app/constants/navigation";
 import { useTheme } from "@/app/hooks/useTheme";
 import { Category } from "@/app/models/posts";
