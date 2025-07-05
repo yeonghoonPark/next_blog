@@ -7,7 +7,7 @@ import { NAVIGATION_ITEMS } from "@/app/constants/navigation";
 import { useTheme } from "@/app/hooks/useTheme";
 import { Category } from "@/app/models/posts";
 import { useCategoryStore } from "@/app/store/posts/useCategoryStore";
-import { capitalizeFirstLetter } from "@/app/utils/stringUtils";
+import { capitalizeFirstLetter } from "@/app/utils";
 
 const SideNavigation = () => {
   const pathname = usePathname();

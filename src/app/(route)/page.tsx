@@ -1,7 +1,7 @@
 import { compareDesc, isAfter, subMonths } from "date-fns";
 
 import { PostsCarousel, PostsGrid, SectionTitle } from "@/app/components";
-import { getRandomItems } from "@/app/utils/arrayUtils";
+import { getRandomItems } from "@/app/utils";
 import { allPosts } from "@/contentlayer/generated";
 
 const FEATURED_POSTS_TITLE = "Featured Posts";

@@ -10,7 +10,7 @@ import { ReactTyped } from "react-typed";
 import { CarouselArrowButton } from "@/app/components";
 import { useCarouselArrowButton } from "@/app/hooks/useCarouselArrowButton";
 import { useCarouselDotButton } from "@/app/hooks/useCarouselDotButton";
-import { restrictToRange } from "@/app/utils/mathUtils";
+import { restrictToRange } from "@/app/utils";
 import { Post } from "@/contentlayer/generated";
 
 type Props = {
