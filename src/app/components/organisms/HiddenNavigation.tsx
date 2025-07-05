@@ -1,6 +1,7 @@
 "use client";
 
 import { usePathname, useRouter } from "next/navigation";
+import { useShallow } from "zustand/react/shallow";
 
 import { NavigationItem } from "@/app/components";
 import { NAVIGATION_ITEMS } from "@/app/constants";
@@ -20,16 +21,16 @@ const HiddenNavigation = () => {
    * zustand
    */
   const { category, setCategory } = useCategoryStore(
-    ({ category, actions: { setCategory } }) => ({
+    useShallow(({ category, actions: { setCategory } }) => ({
       category,
       setCategory,
-    }),
+    })),
   );
   const { navigationState, toggleNavigation } = useNavigationStore(
-    ({ navigationState, actions: { toggleNavigation } }) => ({
+    useShallow(({ navigationState, actions: { toggleNavigation } }) => ({
       navigationState,
       toggleNavigation,
-    }),
+    })),
   );
 
   /**
