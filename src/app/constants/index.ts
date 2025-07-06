@@ -1,4 +1,9 @@
-import { HomeIcon, NotebookIcon, ThemeIcon } from "@/app/components";
+import {
+  DocumentIcon,
+  HomeIcon,
+  NotebookIcon,
+  ThemeIcon,
+} from "@/app/components";
 
 /**
  * Categories replated
@@ -7,6 +12,7 @@ export const CATEGORY_ALL = "All";
 export const CATEGORY_DESIGN_PATTERN = "Design Pattern";
 export const CATEGORY_JAVASCRIPT = "JavaScript";
 export const CATEGORY_NEXTJS = "NEXT.js";
+export const CATEGORY_PROJECT = "Project";
 export const CATEGORY_REACT = "React";
 export const CATEGORY_TYPESCRIPT = "TypeScript";
 export const CATEGORY_WEB = "Web";
@@ -56,13 +62,13 @@ export const NAVIGATION_ITEMS = [
     subitems: CATEGORIES,
     title: PATHS.POSTS.title,
   },
-  // {
-  //   IconComponent: NotebookIcon,
-  //   path: PATHS.REFLECTIONS.path,
-  //   hasSubitems: false,
-  //   subitems: [],
-  //   title: PATHS.REFLECTIONS.title,
-  // },
+  {
+    IconComponent: DocumentIcon,
+    path: PATHS.REFLECTIONS.path,
+    hasSubitems: false,
+    subitems: [],
+    title: PATHS.REFLECTIONS.title,
+  },
   {
     IconComponent: ThemeIcon,
     path: undefined,

@@ -4,6 +4,7 @@ import {
   CATEGORY_DESIGN_PATTERN,
   CATEGORY_JAVASCRIPT,
   CATEGORY_NEXTJS,
+  CATEGORY_PROJECT,
   CATEGORY_REACT,
   CATEGORY_TYPESCRIPT,
   CATEGORY_WEB,
@@ -18,6 +19,8 @@ const getTagStyleByCategory = (category: Category): string => {
       return "bg-yellow-400 text-black";
     case CATEGORY_NEXTJS:
       return "bg-neutral-50 text-gray-900";
+    case CATEGORY_PROJECT:
+      return "bg-sky-500 text-white ";
     case CATEGORY_REACT:
       return "bg-gray-700 text-sky-300";
     case CATEGORY_TYPESCRIPT:

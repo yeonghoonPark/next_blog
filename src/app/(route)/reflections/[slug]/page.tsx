@@ -2,11 +2,11 @@ import { useMDXComponent } from "next-contentlayer/hooks";
 import { notFound } from "next/navigation";
 
 import { PostMeta } from "@/app/components";
-import { allPosts } from "@/contentlayer/generated";
+import { allReflections } from "@/contentlayer/generated";
 
 export const generateStaticParams = () => {
-  return allPosts.map(({ _raw }) => ({
-    slug: _raw.flattenedPath.replace(/^posts\//, ""),
+  return allReflections.map(({ _raw }) => ({
+    slug: _raw.flattenedPath.replace(/^reflections\//, ""),
   }));
 };
 
@@ -16,14 +16,14 @@ type Props = {
   };
 };
 
-const PostDetailPage = ({ params }: Props) => {
-  const post = allPosts.find(
-    ({ _raw }) => _raw.flattenedPath === `posts/${params.slug}`,
+const ReflectionDetailPage = ({ params }: Props) => {
+  const reflection = allReflections.find(
+    ({ _raw }) => _raw.flattenedPath === `reflections/${params.slug}`,
   );
 
-  if (!post) notFound();
+  if (!reflection) notFound();
 
-  const MDXComponent = useMDXComponent(post?.body.code || "");
+  const MDXComponent = useMDXComponent(reflection?.body.code || "");
 
   return (
     <article
@@ -91,10 +91,10 @@ const PostDetailPage = ({ params }: Props) => {
       [&_pre_code]:bg-transparent [&_pre_code]:dark:bg-transparent
     `}
     >
-      <PostMeta post={post} type="post" />
+      <PostMeta post={reflection} type="post" />
       <MDXComponent />
     </article>
   );
 };
 
-export default PostDetailPage;
+export default ReflectionDetailPage;
