@@ -19,7 +19,7 @@ const Header = () => {
 
   return (
     <header className="top-0 z-10 sticky flex-none backdrop-blur-md border-neutral-300 dark:border-gray-700 border-b w-full">
-      <div className="flex justify-between items-center mx-auto px-3 max-w-[90rem] h-14">
+      <div className="flex justify-between items-center mx-auto md:px-5 xl:px-3 max-w-[90rem] h-14">
         <div className="flex items-center gap-6">
           <HamburgerIcon onClick={handleClick} />
           <Link className="flex items-center gap-2" href="/">

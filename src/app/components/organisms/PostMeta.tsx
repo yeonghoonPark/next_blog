@@ -2,15 +2,15 @@ import { memo } from "react";
 
 import { PostCreatedAt, PostTag } from "@/app/components";
 import { Category } from "@/app/models";
-import { Post } from "@/contentlayer/generated";
+import { Post, Reflection } from "@/contentlayer/generated";
 
 type Props = {
-  post: Post;
+  post: Post | Reflection;
   type: "card" | "post";
 };
 
 const PostMeta = ({ post, type }: Props) => {
-  const { title, description, category, createdAt } = post;
+  const { title, description, createdAt } = post;
 
   return (
     <section className="flex flex-col gap-2 pt-4">
@@ -27,7 +27,7 @@ const PostMeta = ({ post, type }: Props) => {
         {description}
       </p>
       <div className="flex justify-between items-end">
-        <PostTag category={category as Category} />
+        <PostTag category={post.category as Category} />
         <PostCreatedAt createdAt={createdAt} />
       </div>
     </section>

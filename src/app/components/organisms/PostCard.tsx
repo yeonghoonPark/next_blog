@@ -1,16 +1,16 @@
 import { PostMeta, PostThumbnail } from "@/app/components";
-import { Post } from "@/contentlayer/generated";
+import { Post, Reflection } from "@/contentlayer/generated";
 
 type Props = {
-  post: Post;
+  post: Post | Reflection;
 };
 
 const PostCard = ({ post }: Props) => {
-  const { title, thumbnail } = post;
+  const { thumbnail } = post;
 
   return (
     <article className="group">
-      <PostThumbnail altText={`${title}s image`} thumbnail={thumbnail as string} />
+      <PostThumbnail altText="image" thumbnail={thumbnail as string} />
       <PostMeta post={post} type="card" />
     </article>
   );

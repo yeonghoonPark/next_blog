@@ -3,6 +3,7 @@ export type Category =
   | "Design Pattern"
   | "JavaScript"
   | "NEXT.js"
+  | "Project"
   | "React"
   | "TypeScript"
   | "Web";
