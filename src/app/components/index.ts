@@ -2,6 +2,7 @@
  * atoms
  */
 export { default as CloseIcon } from "@/app/components/atoms/icon/CloseIcon";
+export { default as DocumentIcon } from "@/app/components/atoms/icon/DocumentIcon";
 export { default as DotIcon } from "@/app/components/atoms/icon/DotIcon";
 export { default as HamburgerIcon } from "@/app/components/atoms/icon/HamburgerIcon";
 export { default as HomeIcon } from "@/app/components/atoms/icon/HomeIcon";
