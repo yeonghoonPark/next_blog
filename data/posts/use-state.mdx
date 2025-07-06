@@ -2,7 +2,7 @@
 title: Hooks - useState
 description: A Deep Dive into useState — From Beginner to Advanced
 category: React
-thumbnail: /image/use-state.jpg
+thumbnail: /image/posts/use-state.jpg
 createdAt: 2025-04-20
 featured: false
 ---
@@ -220,7 +220,10 @@ function Order() {
   return (
     <div>
       <input value={price} onChange={(e) => setPrice(Number(e.target.value))} />
-      <input value={quantity} onChange={(e) => setQuantity(Number(e.target.value))} />
+      <input
+        value={quantity}
+        onChange={(e) => setQuantity(Number(e.target.value))}
+      />
       <p>Total: {total}</p>
     </div>
   );
@@ -338,6 +341,10 @@ _리액트에서 상태 관리의 핵심은 불변성을 유지하는 것과, �
 
 _# references_
 
-<a href="https://react.dev/reference/react/useState" target="_blank" rel="noopener noreferrer">
+<a
+  href="https://react.dev/reference/react/useState"
+  target="_blank"
+  rel="noopener noreferrer"
+>
   - useState - React
 </a>

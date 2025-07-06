@@ -2,7 +2,7 @@
 title: Why Avoid Using Inline Styles
 description: What are the benefits of avoiding inline style?
 category: React
-thumbnail: /image/why-avoid-using-inline-styles.jpg
+thumbnail: /image/posts/why-avoid-using-inline-styles.jpg
 createdAt: 2023-12-25
 featured: false
 ---
@@ -182,7 +182,7 @@ export default function App() {
 2. 만약 상태 변화에 따라 스타일이 변경되어야 한다면 컴포넌트 내부에서 "useMemo"를 이용해 캐싱 할 수 있습니다.
 
 ```js
-import { memo, useState, useMemo, useEffect } from "react";
+import { memo, useEffect, useMemo, useState } from "react";
 
 // 1. child component
 const StyledDiv = memo(function StyledDiv({ style }) {
@@ -229,7 +229,7 @@ export default function App() {
 3. 라이브러리나 프레임워크의 힘을 빌린다. (feat. "tailwind")
 
 ```js
-import { memo, useState, useEffect } from "react";
+import { memo, useEffect, useState } from "react";
 
 // 1. child component
 const StyledDiv = memo(function StyledDiv({ className }) {
