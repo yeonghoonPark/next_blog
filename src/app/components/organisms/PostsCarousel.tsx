@@ -93,7 +93,7 @@ const PostsCarousel = ({ posts }: Props) => {
       .on("reInit", tweenOpacity)
       .on("scroll", tweenOpacity)
       .on("slideFocus", tweenOpacity);
-  }, [emblaApi, tweenOpacity]);
+  }, [emblaApi, setTweenFactor, tweenOpacity]);
 
   return (
     <div className="relative flex flex-col gap-6 mb-10 select-none">
@@ -109,9 +109,7 @@ const PostsCarousel = ({ posts }: Props) => {
                   index === selectedIndex ? "cursor-pointer" : "cursor-default"
                 }
                 href={
-                  index === selectedIndex
-                    ? `/posts/${post._raw.flattenedPath}`
-                    : "/"
+                  index === selectedIndex ? `/${post._raw.flattenedPath}` : "/"
                 }
               >
                 <div className="flex flex-col justify-center items-center gap-8 bg-gradient-to-br from-sky-300 dark:from-yellow-400 to-purple-600 dark:to-rose-500 rounded-md rounded-ss-3xl rounded-ee-3xl h-52">
