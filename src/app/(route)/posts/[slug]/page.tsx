@@ -72,7 +72,7 @@ const PostDetailPage = ({ params }: Props) => {
       prose-em:not-italic prose-em:font-semibold
 
       prose-blockquote:px-4 prose-blockquote:py-0.5
-      prose-blockquote:bg-gray-200 dark:prose-blockquote:bg-slate-900 
+      prose-blockquote:bg-slate-200 dark:prose-blockquote:bg-slate-900 
       prose-blockquote:rounded-r
       prose-blockquote:border-blue-600 dark:prose-blockquote:border-yellow-500
       prose-blockquote:text-slate-700 dark:prose-blockquote:text-slate-400 
