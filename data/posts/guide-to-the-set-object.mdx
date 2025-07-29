@@ -93,11 +93,11 @@ const set4 = new Set(1); // TypeError: 1 is not iterable
 - 원시 타입 (Boolean, Number, String 등) 값 자체 비교
 - 참조 타입 (Array, Function, Object 등) 메모리상의 참조 주소 기준 비교
 
-> ❓ _자바스크립트에서 `NaN`은 유일한 값 아닌가?_
+> ❓ _`Set` 객체에서 `NaN`이 중복되지 않는 이유_
 >
 > 자바스크립트에서 `NaN`은 어떤 값과도 다른 고유한 값이지만,
-> _SameValueZero_ 비교 알고리즘은 `NaN`과 `NaN`을 동등하다고 간주하며 *+0*과 _-0_ 도 같은 값으로 보기 때문에
-> `Set` 객체에서는 `NaN`과 _+0_, *-0*에 대한 중복을 허용하지 않습니다.
+> _SameValueZero_ 비교 알고리즘은 `NaN`과 `NaN`을 같은 값으로 간주합니다.
+> 따라서, 해당 알고리즘을 통해 값을 비교하는 `Set` 객체에서는 `NaN`의 중복을 허용하지 않습니다.
 
 ```javascript
 const set = new Set([1]); // Set(1) {1}
