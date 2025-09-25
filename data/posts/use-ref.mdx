@@ -1,0 +1,289 @@
+---
+title: Hooks - useRef
+description: A reference value that does not trigger rendering
+category: React
+thumbnail: /image/posts/use-ref.jpg
+createdAt: 2025-09-25
+featured: false
+---
+
+---
+
+## # 목차
+
+- [# 렌더링이란 무엇인가](#-렌더링이란-무엇인가)
+- [# useRef가 필요한 이유](#-useref가-필요한-이유)
+- [# 기본 문법과 구조](#-기본-문법과-구조)
+- [# 왜 useRef는 렌더링을 유발하지 않을까](#-왜-useref는-렌더링을-유발하지-않을까)
+- [# 사용 팁과 패턴](#-사용-팁과-패턴)
+- [# 자주 하는 실수와 주의할 점](#-자주-하는-실수와-주의할-점)
+- [# 마무리](#-마무리)
+
+---
+
+## # 렌더링이란 무엇인가
+
+[# 목차](#-목차)
+
+렌더링<sup>(Rendering)</sup>은 브라우저가 HTML, CSS, JavaScript를 해석해 화면 픽셀로 그리는 과정 전체를 의미합니다.
+DOM과 CSSOM<sup>(CSS Object Model)</sup>을 생성하고, 이를 합쳐 렌더 트리를 만들어 레이아웃과 페인트 단계를 거쳐 화면에 출력됩니다.
+
+리액트 관점에서 보자면,
+컴포넌트가 최초에 호출되거나 컴포넌트 내부에 참조하는 상태가 변경되어 불변성이 유지되었을 때,
+컴포넌트가 다시 호출되어 새로운 리액트 엘리먼트 트리가 생성되는 것을 의미합니다.
+즉, 리액트 컴포넌트가 실행되어 *UI를 계산하고 브라우저 DOM에 반영하는 과정*을 렌더링이라 합니다.
+
+---
+
+## # useRef가 필요한 이유
+
+[# 목차](#-목차)
+
+리액트 컴포넌트는 본질적으로 상태를 기반으로 한 순수 함수이며, 화면을 효율적으로 그리기에 최적화되어 있습니다.
+`state`, `props`, `context` 등과 같은 참조 값이 변경되면 불변성을 기준으로 다시 렌더링이 발생합니다.
+하지만 모든 값이 반드시 렌더링을 유발할 필요는 없으며, 오히려 불필요한 렌더링은 성능 저하로 이어질 수 있습니다.
+이때 `useRef`는 이러한 *불필요한 렌더링을 억제하면서 컴포넌트의 라이프사이클 안에서 안전하게 값을 관리*할 수 있는 수단을 제공합니다.
+
+---
+
+## # 기본 문법과 구조
+
+[# 목차](#-목차)
+
+`useRef` 훅은 컴포넌트의 라이프사이클 동안 렌더링을 유발하지 않고 값을 다룰 수 있으며, 기본적인 형태는 다음과 같습니다.
+
+```javascript
+const ref = useRef(initialValue);
+```
+
+초기값으로 할당할 1개의 인자를 전달받으며, 생략 시 `undefined`가 할당됩니다.
+
+```javascript
+function MyComponent() {
+  const counterRef = useRef(0); // 초기값 0
+  const inputRef = useRef(); // 초기값 undefined
+
+  // ...
+}
+```
+
+`useRef`로 선언한 변수는 `{ current: initialValue }` 객체를 반환합니다.
+컴포넌트의 최초 렌더링 이후에 리렌더링이 발생하더라도 동일한 객체 참조를 유지하기 때문에 직접 값을 변경하지 않는다면,
+해당 변수는 컴포넌트의 라이프사이클 동안 동일한 값을 가지게 됩니다.
+이러한 특성으로 주로 *DOM 요소 접근과 렌더링과 무관한 값 저장*에 사용됩니다.
+
+---
+
+## # 왜 useRef는 렌더링을 유발하지 않을까
+
+[# 목차](#-목차)
+
+`useRef`로 선언한 변수는 값이 바뀌더라도 렌더링이 발생하지 않습니다.
+이는 `useRef`가 단순히 `{ current: value }` 형태의 *mutable object*를 반환하기 때문입니다.
+쉽게 말해, 자바스크립트의 객체나 배열을 직접 수정하는 것과 같은 원리로 이는 불변성을 유지하지 않기 때문에 컴포넌트가 다시 실행되지 않습니다.
+
+```javascript
+function Counter() {
+  const countRef = useRef(0);
+
+  const increaseCountRef = () => {
+    countRef.current += 1;
+    console.log(countRef.current); // 값 증가
+  };
+
+  return (
+    <div>
+      <button onClick={increaseCountRef}>Increase</button>
+      <div>{countRef.current}</div>
+    </div>
+  );
+}
+```
+
+위 예제에서 버튼을 클릭할 때마다 `counterRef.current`의 값은 증가하지만,
+리렌더링이 발생하지 않아 UI에는 반영되지 않습니다.
+즉, `useRef`는 컴포넌트의 라이프사이클 동안 *렌더링과 무관하게 독립적으로 값을 저장하는 저장소*역할을 합니다.
+
+---
+
+## # 사용 팁과 패턴
+
+[# 목차](#-목차)
+
+### 🎮 DOM 제어
+
+`useRef`는 리액트 컴포넌트 내에서 특정 `input`, `video` 등의 DOM 요소를 직접 참조할 수 있습니다.
+이를 통해 참조된 DOM 노드에 접근하여 브라우저 API를 실행할 수 있으며,
+리액트의 선언적 렌더링 흐름과 별개로 직접 DOM을 제어해야 할 때 유용하게 사용할 수 있습니다.
+
+```javascript
+function Input() {
+  // input DOM 요소를 참조할 ref 선언
+  const inputRef = useRef(null);
+
+  // 컴포넌트가 마운트된 직후 input에 포커스를 맞춤
+  useEffect(() => {
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, []);
+
+  return <input ref={inputRef} />;
+}
+
+function VideoPlayer() {
+  // video DOM 요소를 참조할 ref 선언
+  const videoRef = useRef(null);
+
+  // Play 버튼 클릭 시, 비디오 재생
+  const handlePlay = () => {
+    videoRef.current.play();
+  };
+
+  // Pause 버튼 클릭 시, 비디오 일시정지
+  const handlePause = () => {
+    videoRef.current.pause();
+  };
+
+  return (
+    <video width="250" ref={videoRef}>
+      <source
+        src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
+        type="video/mp4"
+      />
+      <button onClick={handlePlay}>Play</button>
+      <button onClick={handlePause}>Pause</button>
+    </video>
+  );
+}
+```
+
+### 🐚 이전 값 저장 (Previous Value)
+
+`useRef`는 컴포넌트가 리렌더링 되더라도 값을 유지할 수 있기 때문에,이전 렌더링에서의 값을 저장하는데 유용합니다.
+이를 통해 현재 값과 이전값을 비교하거나 상태 변화 추적 등의 작업을 수행할 수 있습니다.
+
+```javascript
+function PreviousComponent({ value }) {
+  const prevValueRef = useRef();
+
+  useEffect(() => {
+    // 렌더링 후, prevValueRef.current에 현재 값 저장
+    prevValueRef.current = value;
+  }, [value]);
+
+  return <>{`이전 값: ${prevValueRef.current} / 현재 값: ${value}`}</>;
+}
+```
+
+위 예시에서 `prevValueRef`가 이전 값을 가질 수 있는 이유는, `useEffect`가 컴포넌트의 렌더링 이후에 실행되기 때문입니다.
+이펙트 내부에서 값을 업데이트하면, 그 값은 다음 렌더링 시점에 반영되어 이전 렌더링 시점의 값으로 존재할 수 있습니다.
+이 특성을 활용하여 이전 값을 저장하는 재사용 가능한 커스텀 훅을 만들 수 있습니다.
+
+```javascript
+/**
+ * usePrevious - 이전 렌더링의 값을 기억하는 커스텀 훅
+ * @param value 현재 상태 또는 Props 값
+ * @returns 이전 렌더링 시점의 value 값 (첫 렌더 시 undefined)
+ */
+function usePrevious(value) {
+  const ref = useRef();
+
+  useEffect(() => {
+    // 렌더링 후, ref.current에 현재 값 저장
+    ref.current = value;
+  }, [value]);
+
+  // 이전 렌더링의 값 반환
+  return ref.current;
+}
+```
+
+// timer, interval 예시
+
+---
+
+## # 자주 하는 실수와 주의할 점
+
+[# 목차](#-목차)
+
+### 🪓 렌더링 도중 사용 금지
+
+컴포넌트 함수 실행 중(렌더링 과정 중)에 `useRef` 변수값을 변경하는 것은 예기치 못한 동작을 유발할 수 있습니다.
+단, `ref.current` 값을 읽는 것은 괜찮지만, 렌더링 중 값을 수정하는 것은 지양해야 합니다.
+안전한 방법은 `useEffect`, `useLayoutEffect` 또는 이벤트 핸들러 내에서 값을 다뤄야 합니다.
+
+```javascript
+function IncorrectComponent() {
+  const ref = useRef();
+
+  // ❌ 렌더링 중 값 변경
+  ref.current = 1;
+
+  // ...
+}
+
+function CorrectComponent() {
+  const ref = useRef();
+
+  // ✅ 렌더링이 끝난 후 이벤트에서 값 변경
+  const handleClick = () => {
+    ref.current = 1;
+  };
+
+  // ✅ 렌더링이 후 값 변경
+  useEffect(() => {
+    ref.current = 1;
+  }, []);
+
+  // ....
+}
+```
+
+### 💩 초기값에 `new` 객체 생성 지양
+
+`useRef` 초기값에 `new` 연산자 호출 결과를 직접 넣으면, 컴포넌트가 렌더링될 때마다 해당 생성자가 실행되어 불필요한 객체가 반복 생성됩니다.
+이로 인해 메모리 낭비가 생길 수 있으므로 피해야 합니다.
+
+```javascript
+function IncorrectComponent() {
+  // ❌ 렌더링마다 new VideoPlayer() 실행
+  const playerRef = useRef(new VideoPlayer());
+
+  // ...
+}
+
+function CorrectComponent() {
+  const playerRef = useRef(null);
+
+  // ✅ 렌더링 후 한 번만 실행
+  useEffect(() => {
+    if (playerRef.current === null) {
+      playerRef.current = new VideoPlayer();
+    }
+  }, []);
+
+  // ...
+}
+```
+
+---
+
+## # 마무리
+
+[# 목차](#-목차)
+
+`useRef`는 리액트 함수형 컴포넌트에서 라이프사이클 동안 값을 안전하게 저장하면서, _값이 변경되어도 렌더링을 유발하지 않는 저장소_ 역할을 합니다.
+이는 불필요한 렌더링을 방지하고, DOM 요소 직접 제어나 이전값 저장, 외부 라이브러리 인스턴스 관리 등 렌더링과 무관한 상태를 다룰 때 유용합니다.
+`useState`가 UI 상태 변화를 위한 리렌더링을 발생시킨다면, `useRef`는 렌더링과 독립적으로 값을 유지한다는 점에서 목적과 사용법이 명확히 다릅니다.
+따라서 두 훅의 특성과 차이를 이해하고 상황에 맞게 사용하는 것이 효율적이고 최적화된 컴포넌트를 만드는 데 도움이 될 거로 생각합니다.
+
+_# references_
+
+<a
+  href="https://react.dev/reference/react/useRef"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  - useRef - React
+</a>
